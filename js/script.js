@@ -5,6 +5,7 @@ $(document).ready(function () {
             format: 'LT'
         });
     });
+    $('#loginModal').modal('show')
     
     var userCategories;
     var information = {0: []};

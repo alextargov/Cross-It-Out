@@ -8,9 +8,9 @@
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
     <title>X-It-Out</title>
-    
+
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -58,6 +58,35 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="loginmodal-container-header">
+                          <h1>Login to Your Account</h1>
+                    </div>
+                    <br>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-dialog">
+                        <div class="loginmodal-container">
+                            <form>
+                                <input type="text" name="user" placeholder="Username">
+                                <input type="password" name="pass" placeholder="Password">
+                                <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
