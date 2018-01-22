@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <title>Bootstrap 101 Template</title>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
+    <title>X-It-Out</title>
+    
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -16,38 +18,33 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="el col-sm-4 col-md-3 sidebar">
-                <div class="mini-submenu">
+            <div class="el col-sm-3 col-md-3 sidebar">
+                Menu
+                <!-- <div class="mini-submenu">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </div>
-                <div class=" el list-group">
+                <div id="category-list" class="el list-group">
                     <span href="#" class="list-group-item active">
                         <i class="fas fa-user"></i> Pesho Petrov
                     </span>
-                    <a href="#" class="list-group-item">
-                        <i class="fas fa-sun"></i> My day
+                    <a id="0" href="#" class="list-group-item category" data-toggle="popover">
+                        <i class="fa fa-plus"></i> My day
                     </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fas fa-check-circle"></i> To do
-                        <span class="badge">4</span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fas fa-list-ul"></i> Tomorrow
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fas fa-list-ul"></i> Yesterday
-                        <span class="badge">0</span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fas fa-list-ul"></i> Next week
-                        <span class="badge">24</span>
-                    </a>
-                </div>
+
+                    <div id="category-input-container" class="list-group-item">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary add-category" type="button">Add</button>
+                            </span>
+                            <input type="text" class="form-control category-input" placeholder="Category name">
+                        </div>
+                    </div>
+                </div> -->
             </div>
 
-            <div class="el col-sm-8 col-md-6">
+            <div class="el col-sm-6 col-md-6">
                 <div class="row">
                     <div class="el col-sm-12 col-md-12 header">
                         <h2>My Day</h2>
@@ -56,13 +53,16 @@
                 </div>
             </div>
 
-            <div class="el col-sm-4 col-md-3 sidebar">
+            <div class="el col-sm-3 col-md-3 sidebar">
                 somthing
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery.timepicker.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
 </body>
 
 </html>

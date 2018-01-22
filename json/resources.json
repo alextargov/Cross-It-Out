@@ -1,0 +1,60 @@
+{
+    "clients": [{
+        "name": "John Doe",
+        "categories": [{
+            "category-name": "Work",
+            "tasks": [{
+                    "task-name": "task1",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task2",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task3",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                }
+            ]
+        },
+        {
+            "category-name": "Tomorrow",
+            "tasks": [{
+                    "task-name": "task1",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task2",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                }
+            ]
+        }]
+    },
+    {
+        "name": "Jane Doe",
+        "categories": [{
+            "category-name": "Birthday prep.",
+            "tasks": [{
+                    "task-name": "task1",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task2",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task3",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                }
+            ]
+        }]
+    }]
+}

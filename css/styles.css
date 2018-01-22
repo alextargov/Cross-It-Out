@@ -3,10 +3,19 @@
 }
 
 .header {
-    background: url("../img/Foggy-Road_1.jpg") bottom no-repeat;
-    background-size: cover;
+    background:#337ab7;
+    color: #FFF;
+    /* background: linear-gradient(-45deg,#ec5252 ,#6e1a52 ); */
 }
 
 .el {
     border-radius: 4px;
+}
+
+body {
+   background: #F7F7F7 !important;
+}
+
+.popover {
+    width: 100%;
 }
