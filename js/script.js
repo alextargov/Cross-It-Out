@@ -125,7 +125,7 @@ $(document).ready(function () {
             'step': 30,
             'disableTimeRanges': [
                 ['00:00', (new Date().getHours())+ ':' + new Date().getMinutes()],
-            ]
+            ],
         });
     });
     
