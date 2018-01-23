@@ -5,8 +5,21 @@ $(document).ready(function () {
             format: 'LT'
         });
     });
-    $('#loginModal').modal('show')
-    
+
+    /****** Login MODAL ******/
+
+    $('#loginModal').modal('show');
+
+    /****** Greetings login value ******/
+
+     $(document).on("click", "#login-button", function() {
+        $('#loginModal').modal('hide');
+        var userName = $('#username').val();
+        document.getElementById("greeetings-content").innerHTML = "Welcome to X-it-out, " + userName + " !!!" + "\n" + 
+        "We're glad that you're with us, let's start :)";
+        $('#greetings-modal').modal('show');
+    });
+  
     var userCategories;
     var information = {0: []};
     $.ajax({
