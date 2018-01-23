@@ -9,7 +9,11 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <title>X-It-Out</title>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,8 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="el col-sm-3 col-md-3 sidebar">
-                Menu
-                <!-- <div class="mini-submenu">
+                <div class="mini-submenu">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -41,7 +44,7 @@
                             <input type="text" class="form-control category-input" placeholder="Category name">
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
 
             <div class="el col-sm-6 col-md-6">
@@ -66,28 +69,26 @@
                     <div class="loginmodal-container-header">
                         <h1 class="form-signin-heading">Login to your account</h1>
                     </div>
-                    <br>
+                    <!-- <br> -->
                 </div>
                 <div class="modal-body">
                     <div class="modal-dialog">
                         <div class="loginmodal-container">
                             <div class="wrapper">
                                 <form class="form-signin" onSubmit="return false;">
-                                    <input id="username" type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus=""
-                                    />
+                                    <input id="username"  type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus=""/>
                                     <input type="password" class="form-control" name="password" placeholder="Password" />
-                                    <label class="checkbox">
+                                    <!-- <label class="checkbox">
                                         <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-                                    </label>
+                                    </label> -->
                                     <button id="login-button" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -96,12 +97,13 @@
     <div id="greetings-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content greetings">
-                <h4 id="greeetings-content"></h4>
+            <div class="modal-content greetings" id="greeetings-content">
+                <p class="modal-content-heading"></p>
+                <p class="modal-content-body"></p>
+                <button type="button" id="btn_ok" class="btn btn-primary">OK</button>
             </div>
         </div>
     </div>
-
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>

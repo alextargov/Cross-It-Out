@@ -21,7 +21,7 @@ body {
 
 .modal-dialog {
     height: 235px !important;
-    width: 600px !important;
+    width: 450px !important;
 }
 
 .modal-body, .modal-header {
@@ -34,17 +34,16 @@ body {
 	background: #eee !important;	
 }
 
-.wrapper {	
+/* .wrapper {	
 	margin-top: 80px;
   margin-bottom: 80px;
-}
+} */
 
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 45px;
   margin: 0 auto;
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);  
 
   .form-signin-heading,
 	.checkbox {
@@ -64,7 +63,7 @@ body {
 	  position: relative;
 	  font-size: 16px;
 	  height: auto;
-	  padding: 10px;
+    padding: 0px;
 		@include box-sizing(border-box);
 
 		&:focus {
@@ -98,7 +97,6 @@ body {
   position: relative;
 }
 
-
 /****** Welcome MODAL ******/
 
 .greetings {
@@ -108,6 +106,28 @@ body {
   margin-top: 100px;
 }
 
-.greetings h4 {
-  margin-top: 60px;
+
+#greeetings-content > .modal-content-heading {
+  font-size: 1.7em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30px;
+}
+
+#greeetings-content > .modal-content-body {
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.btn-primary {
+  margin-top: 50px;
+  width: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.form-control {
+  margin-bottom: 5px
 }
