@@ -1,13 +1,11 @@
 /* eslint-disable */
 $(document).ready(function () {
-    $(function () {
-        $('#datetimepicker3').datetimepicker({
-            format: 'LT'
-        });
-    });
-    
     var userCategories;
-    var information = {0: []};
+    var information = {
+        0: [],
+    };
+
+    // --- gets the info from the JSON file and appends it to the UI ---
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -26,7 +24,7 @@ $(document).ready(function () {
                 var badge = document.createElement("span");
 
                 information[+getLastCategory.id + 1] = [];
-                $.each(cat.tasks, function(index,value) {
+                $.each(cat.tasks, function (index, value) {
                     information[+getLastCategory.id + 1].push(value);
                 });
 
@@ -36,15 +34,14 @@ $(document).ready(function () {
                 anchor.id = +getLastCategory.id + 1;
                 icon.className += " fa fa-plus";
                 badge.className += " badge";
+                badge.id = "badge_" + (+getLastCategory.id + 1);
 
                 anchor.appendChild(icon);
                 anchor.innerHTML += " " + cat["category-name"];
                 badge.innerHTML = taskLength;
                 anchor.appendChild(badge);
-                // getLastCategory.after(anchor);
                 getLastCategory.after(anchor);
             }
-            console.log(information);
         },
         error: function (result, err, errorThrown) {
             console.log(result);
@@ -52,6 +49,8 @@ $(document).ready(function () {
             console.log(errorThrown);
         }
     });
+
+    // --- adds a category in the UI and in the information object ---
     $(".add-category").click(function () {
         var value = $(".category-input").val();
         if (value) {
@@ -67,6 +66,7 @@ $(document).ready(function () {
             icon.className = "fa fa-plus";
 
             badge.className = "badge";
+            badge.id = "badge_" + (+getLastCategory.id + 1);
             badge.innerHTML = 0;
 
             anchor.append(icon);
@@ -79,56 +79,117 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("click", ".category", function(el) {
+    $(document).on("click", ".category", function (el) {
         var re = /\b[a-zA-Z0-9]\w+/g;
         var title = el.target.innerText.match(re).join(' ')
-        console.log(el.target.id);
 
         $(el.target).popover({
             trigger: "manual",
             placement: "bottom",
             html: true,
-            title: title, 
-            content: 
-            ` <!-- think it's xss vaulnerable -->
+            title: title,
+            content: `<!-- think it's xss vaulnerable -->
             <div class="form-group">
-                <div class='input-group'>
-                    <input id='add-task' type='text' class='form-control'>
+                <div class='input-group popover-task'>
+                    <input id='input-task' type='text' class='form-control'>
                     <span class="input-group-addon">
-                    <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
                     </span>
                 </div>
-                <br>
-                <div class='input-group date' >
-                    <input type='text' class="form-control" id='datetimepicker' />
+                <div class='input-group date popover-task'>
+                    <input type='text' class="form-control" id='timepicker' />
                     <span class="input-group-addon">
                         <i class="fa fa-clock"></i>
                     </span>
                 </div>
-                <div class="input-group">
-                    <select class="form-control" id="inputGroupSelect01">
-                        <option selected>Priority</option>
+                <div class='input-group date popover-task'>
+                    <input type='text' class="form-control" id='datepicker' />
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="input-group popover-task">
+                    <select class="form-control select-priority" id="selectPriority">
                         <option value="high">High</option>
                         <option value="medium">Medium</option>
                         <option value="low">Low</option>
                     </select>
-                </div>
+                    <span class="input-group-addon">
+                        <i class="fa fa-sort" aria-hidden="true"></i>
+                    </span>
+                </div>                
                 <br>
                 <button class="btn btn-primary" id="add-task">Add task</button>
+                <button class="btn btn-primary" id="show-tasks">Show tasks</button>
             </div>
             `,
         });
-        
+
         $(el.target).popover("toggle");
-        $('#datetimepicker').timepicker({
+
+        // --- settings for the time- and date-pickers ---
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes;
+        if (date.getMinutes() < 10) {
+            minutes = '0' + date.getMinutes();
+        } else {
+            minutes = date.getMinutes();
+        }
+        $('#timepicker').timepicker({
             'timeFormat': 'H:i',
             'step': 30,
             'disableTimeRanges': [
-                ['00:00', (new Date().getHours())+ ':' + new Date().getMinutes()],
+                ['00:00', hours + ':' + minutes],
             ],
         });
+        $("#datepicker").datepicker({
+            minDate: 0,
+            maxDate: "+1M +10D",
+        });
+        $("#datepicker").datepicker().datepicker("setDate", new Date());
+
+        // --- adds a task in the information object ---
+        $("#add-task").on("click", function () {
+            var badge = $('#badge_' + el.target.id)[0];
+            var currentTaskCount = +badge.innerHTML;
+            badge.innerHTML = +currentTaskCount + 1;
+
+            var task = $('#input-task').val();
+            var priority = $('#selectPriority').val();
+            var time = $('#timepicker').val();
+            var date = $('#datepicker').val();
+
+            if (task && priority && time && date) {
+                information[el.target.id].push({
+                    "task-name": task,
+                    "task-due-time": time,
+                    "task-due-date": date,
+                    "task-priority": priority,
+                });
+                $(el.target).popover("hide");
+            }
+        });
+
+        // --- show all tasks in the category ---
+        $("#show-tasks").on("click", function () {
+            
+        });
+
+        // --- hides the container if the user clicks outside it ---
+        $(document).mouseup(function (e) {
+            var container = $('.popover');
+            var calendar = $('.ui-datepicker');
+            var time = $('.ui-timepicker-wrapper');
+
+            if (!container.is(e.target) && container.has(e.target).length === 0 &&
+                !calendar.is(e.target) && calendar.has(e.target).length === 0 &&
+                !time.is(e.target) && time.has(e.target).length === 0) {
+                $(el.target).popover("hide");
+            }
+        });
     });
-    
+
     // !!! IMPORTANT - FOR SOME REASON THE CODE BELOW DOESN'T WORK FOR DYNAMICALLY CREATED ITEMS !!!!
     // $(".category").click(function (el) {
     //     console.log(el)
