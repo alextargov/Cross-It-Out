@@ -121,7 +121,7 @@ body {
   margin-top: 50px;
 }
 
-.btn-primary {
+.btn-primary.confirm {
   margin-top: 50px;
   width: 100px;
   padding-top: 10px;
