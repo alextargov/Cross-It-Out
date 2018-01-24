@@ -19,6 +19,7 @@ body {
     width: 100%;
 }
 
+<<<<<<< HEAD
 .modal-dialog {
     height: 235px !important;
     width: 450px !important;
@@ -131,3 +132,24 @@ body {
 .form-control {
   margin-bottom: 5px
 }
+=======
+.popover-task {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.ui-datepicker {
+    z-index: 9999 !important;
+}
+
+.input-group-addon {
+    width: 40px !important;
+    padding: 0px !important;
+}
+
+.select-priority {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+>>>>>>> c2bebc79998c81d7624b9135fcaf6ea4148b5285
