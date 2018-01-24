@@ -1,0 +1,68 @@
+{
+    "clients": [{
+        "name": "John Doe",
+        "categories": [{
+            "category-name": "Work",
+            "tasks": [{
+                    "task-name": "task1",
+                    "task-due-time": "some time",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task2",
+                    "task-due-time": "some time",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task3",
+                    "task-due-time": "some time",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                }
+            ]
+        },
+        {
+            "category-name": "Tomorrow",
+            "tasks": [{
+                    "task-name": "task1",
+                    "task-due-time": "some time",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task2",
+                    "task-due-time": "some time",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                }
+            ]
+        }]
+    },
+    {
+        "name": "Jane Doe",
+        "categories": [{
+            "category-name": "Birthday prep.",
+            "tasks": [{
+                    "task-name": "task1",
+                    "task-due-time": "some time",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task2",
+                    "task-due-time": "some time",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                },
+                {
+                    "task-name": "task3",
+                    "task-due-time": "some time",
+                    "task-due-date": "some date",
+                    "task-priority": "high"
+                }
+            ]
+        }]
+    }]
+}

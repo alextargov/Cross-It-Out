@@ -3,10 +3,134 @@
 }
 
 .header {
-    background: url("../img/Foggy-Road_1.jpg") bottom no-repeat;
-    background-size: cover;
+    background: #337ab7;
+    color: #FFF;
+    /* background: linear-gradient(-45deg,#ec5252 ,#6e1a52 ); */
 }
 
 .el {
     border-radius: 4px;
+}
+
+body {
+    background: #F7F7F7 !important;
+}
+
+.popover {
+    width: 100%;
+}
+
+.popover-task {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.ui-datepicker {
+    z-index: 9999 !important;
+}
+
+.input-group-addon {
+    width: 40px !important;
+    padding: 0px !important;
+}
+
+.select-priority {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-signin {
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.form-signin-heading,
+.checkbox {
+    margin-bottom: 30px;
+}
+
+.form-signin-heading h2 {
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.checkbox {
+    font-weight: normal;
+}
+
+.form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 0px;
+}
+
+input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.loginmodal-container-header {
+    text-align: center;
+    font-size: 1.8em;
+    font-family: roboto;
+}
+
+.loginmodal-container input[type=submit] {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+
+/****** Welcome MODAL ******/
+.modal-body, .modal-header {
+    padding: 0px !important;
+}
+
+.modal-dialog {
+    height: 235px !important;
+    width: 450px !important;
+}
+.greetings {
+    text-align: center;
+    width: 600px !important;
+    height: 300px !important;
+    margin-top: 100px;
+}
+
+#greeetings-content>.modal-content-heading {
+    font-size: 1.7em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#greeetings-content>.modal-content-body {
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.btn-primary.confirm {
+    margin-top: 50px;
+    width: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.form-control {
+    margin-bottom: 5px
 }
