@@ -16,11 +16,6 @@ $(document).on("click", "#btn_ok", function() {
     $('#greetings-modal').modal('hide');
 });
 
-var userCategories;
-var information = {
-    0: [],
-};
-
 // --- gets the info from the JSON file and appends it to the UI ---
 $.ajax({
     type: "GET",
@@ -37,9 +32,11 @@ $.ajax({
             var icon = document.createElement("i");
             var badge = document.createElement("span");
 
-            information[+getLastCategory.id + 1] = [];
+            var nextId = +getLastCategory.id + 1;
+            database.addCategory(nextId);
+
             $.each(cat.tasks, function (index, value) {
-                information[+getLastCategory.id + 1].push(value);
+                database.addTask(nextId, value);
             });
 
             anchor.setAttribute("href", "#");
@@ -88,7 +85,9 @@ $(".add-category").click(function () {
         anchor.append(badge);
         getLastCategory.after(anchor);
 
-        information[+getLastCategory.id + 1] = [];
+        var nextId = +getLastCategory.id + 1;
+        // information[+getLastCategory.id + 1] = [];
+        database.addCategory(nextId);
         $(".category-input").val("");
     }
 });
@@ -176,13 +175,13 @@ $(document).on("click", ".category", function (el) {
         var date = $('#datepicker').val();
 
         if (task && priority && time && date) {
-            information[el.target.id].push({
-                "task-name": task,
-                "task-due-time": time,
-                "task-due-date": date,
-                "task-priority": priority,
-            });
-            console.log(information);
+            var taskInformation = {
+                "taskName": task,
+                "taskDueTime": time,
+                "taskDueDate": date,
+                "taskPriority": priority,
+            };
+            database.addTask(el.target.id, taskInformation);
             $(el.target).popover("hide");
         }
     });
