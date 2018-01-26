@@ -37,6 +37,14 @@ body {
     background:#e3e3e3 ;
 }
 
+.popover-task-addon {
+    cursor: default !important;
+}
+
+.popover-task-addon:hover {
+    background: #eee;
+}
+
 .ui-datepicker {
     z-index: 9999 !important;
 }
@@ -50,6 +58,20 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+
+.main {
+    padding: 0px !important;
+    margin-top: 10px;
+}
+
+.thumbnail {
+    padding: 0px !important;
+}
+
+.show-more {
+    padding: 2px 5px !important;
+    float: right;
 }
 
 .form-signin {

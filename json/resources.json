@@ -5,20 +5,20 @@
             "category-name": "Work",
             "tasks": [{
                     "taskName": "task1",
-                    "taskDueTime": "some time",
-                    "taskDueDate": "some date",
+                    "taskDueTime": "12:30",
+                    "taskDueDate": "01/26/2018",
                     "taskPriority": "high"
                 },
                 {
                     "taskName": "task2",
-                    "taskDueTime": "some time",
-                    "taskDueDate": "some date",
+                    "taskDueTime": "13:30",
+                    "taskDueDate": "01/26/2018",
                     "taskPriority": "high"
                 },
                 {
                     "taskName": "task3",
-                    "taskDueTime": "some time",
-                    "taskDueDate": "some date",
+                    "taskDueTime": "14:30",
+                    "taskDueDate": "01/29/2018",
                     "taskPriority": "high"
                 }
             ]
@@ -27,14 +27,14 @@
             "category-name": "Tomorrow",
             "tasks": [{
                     "taskName": "task1",
-                    "taskDueTime": "some time",
-                    "taskDueDate": "some date",
+                    "taskDueTime": "15:30",
+                    "taskDueDate": "01/29/2018",
                     "taskPriority": "high"
                 },
                 {
                     "taskName": "task2",
-                    "taskDueTime": "some time",
-                    "taskDueDate": "some date",
+                    "taskDueTime": "16:30",
+                    "taskDueDate": "01/28/2018",
                     "taskPriority": "high"
                 }
             ]

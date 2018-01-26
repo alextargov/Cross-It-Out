@@ -3,9 +3,12 @@
 /****** Login MODAL ******/
 $('#loginModal').modal('show');
 /****** Greetings login value ******/
+var userName = $('#username');
+userName.val('');
+
 $(document).on("click", "#login-button", function () {
     $('#loginModal').modal('hide');
-    var userName = $('#username').val();
+    userName = userName.val();
     var wrapper = document.getElementById("greeetings-content");
     wrapper.getElementsByClassName("modal-content-heading")[0].innerHTML = "Welcome to X-it-out, " + userName + " !!!"
     wrapper.getElementsByClassName("modal-content-body")[0].innerText = "We're glad that you're with us, let's start :)";

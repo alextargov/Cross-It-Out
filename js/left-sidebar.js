@@ -23,19 +23,19 @@ $(document).on("click", ".input-group-addon", function (el) {
             <div class="form-group">
                 <div class='input-group popover-task'>
                     <input id='input-task' type='text' class='form-control'>
-                    <span class="input-group-addon">
+                    <span class="input-group-addon popover-task-addon">
                         <i class="fa fa-th-list" aria-hidden="true"></i>
                     </span>
                 </div>
                 <div class='input-group date popover-task'>
                     <input type='text' class="form-control" id='timepicker' />
-                    <span class="input-group-addon">
+                    <span class="input-group-addon popover-task-addon">
                         <i class="fa fa-clock"></i>
                     </span>
                 </div>
                 <div class='input-group date popover-task'>
                     <input type='text' class="form-control" id='datepicker' />
-                    <span class="input-group-addon">
+                    <span class="input-group-addon popover-task-addon">
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </span>
                 </div>
@@ -45,7 +45,7 @@ $(document).on("click", ".input-group-addon", function (el) {
                         <option value="medium">Medium</option>
                         <option value="low">Low</option>
                     </select>
-                    <span class="input-group-addon">
+                    <span class="input-group-addon popover-task-addon">
                         <i class="fa fa-sort" aria-hidden="true"></i>
                     </span>
                 </div>                
@@ -83,8 +83,7 @@ $(document).on("click", ".input-group-addon", function (el) {
     $("#add-task").on("click", function () {
         var id = target.parentElement.id
         var badge = $('#badge_' + id)[0];
-        var currentTaskCount = +badge.innerHTML;
-        badge.innerHTML = +currentTaskCount + 1;
+        var currentTaskCount = +badge.innerHTML;    
 
         var task = $('#input-task').val();
         var priority = $('#selectPriority').val();
@@ -100,8 +99,8 @@ $(document).on("click", ".input-group-addon", function (el) {
             };
             database.addTask(id, taskInformation);
             $('div#' + parent.id).popover("hide");
-
             visualizeTasks(id);
+            badge.innerHTML = +currentTaskCount + 1;
         }
     });
 
@@ -122,6 +121,20 @@ $(document).on("click", ".input-group-addon", function (el) {
 $(document).on("click", ".cat", function (el) {
     document.getElementsByClassName('main')[0].innerHTML = '';
     var id = el.currentTarget.parentElement.id;
+
+    window.onresize = function(event) {
+        if (window.innerWidth >= 992) {
+            itemsToShow = 3;
+            visualizeTasks(id);
+        } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
+            itemsToShow = 2;
+            visualizeTasks(id);
+        } else if (window.innerWidth < 768) {
+            itemsToShow = 1;
+            visualizeTasks(id);
+        }
+    };
+    
     visualizeTasks(id);
 });
 
