@@ -1,21 +1,5 @@
 /* eslint-disable */
 
-/****** Login MODAL ******/
-$('#loginModal').modal('show');
-/****** Greetings login value ******/
- $(document).on("click", "#login-button", function() {
-    $('#loginModal').modal('hide');
-    var userName = $('#username').val();
-    var wrapper = document.getElementById("greeetings-content");
-    wrapper.getElementsByClassName("modal-content-heading")[0].innerHTML = "Welcome to X-it-out, " + userName + " !!!"
-    wrapper.getElementsByClassName("modal-content-body")[0].innerText = "We're glad that you're with us, let's start :)";
-    $('#greetings-modal').modal('show');
-});
-
-$(document).on("click", "#btn_ok", function() {
-    $('#greetings-modal').modal('hide');
-});
-
 // --- gets the info from the JSON file and appends it to the UI ---
 $.ajax({
     type: "GET",
@@ -31,27 +15,41 @@ $.ajax({
             var anchor = document.createElement("a");
             var icon = document.createElement("i");
             var badge = document.createElement("span");
+            var addon = document.createElement("span");
+            var catName = document.createElement("span");
+            var div = document.createElement("div");
 
             var nextId = +getLastCategory.id + 1;
+            console.log(getLastCategory);
             database.addCategory(nextId);
 
             $.each(cat.tasks, function (index, value) {
                 database.addTask(nextId, value);
             });
 
+            div.className = "category input-group";
+            addon.className = "input-group-addon";
+            icon.className += " fa fa-plus";
+            anchor.className += " cat list-group-item";
+            badge.className += " badge";
+            catName.className = "catName";
             anchor.setAttribute("href", "#");
             anchor.setAttribute("data-toggle", "popover");
-            anchor.className += "category list-group-item";
-            anchor.id = +getLastCategory.id + 1;
-            icon.className += " fa fa-plus";
-            badge.className += " badge";
-            badge.id = "badge_" + (+getLastCategory.id + 1);
 
-            anchor.appendChild(icon);
-            anchor.innerHTML += " " + cat["category-name"];
-            badge.innerHTML = taskLength;
+            div.id = +getLastCategory.id + 1;
+            badge.id = "badge_" + (+getLastCategory.id + 1);
+            catName.innerHTML += " " + cat["category-name"];
+
+            div.appendChild(addon);
+            addon.appendChild(icon);
+
+            div.appendChild(anchor);
+            anchor.appendChild(catName);
             anchor.appendChild(badge);
-            getLastCategory.after(anchor);
+
+            //anchor.innerHTML += " " + cat["category-name"];
+            badge.innerHTML = taskLength;
+            getLastCategory.after(div);
         }
     },
     error: function (result, err, errorThrown) {
@@ -61,149 +59,57 @@ $.ajax({
     }
 });
 
-// --- adds a category in the UI and in the information object ---
-$(".add-category").click(function () {
-    var value = $(".category-input").val();
-    if (value) {
-        var getLastCategory = $(".category").last()[0];
-        var anchor = document.createElement("a");
-        var icon = document.createElement("i");
-        var badge = document.createElement("span");
 
-        anchor.setAttribute("href", "#");
-        anchor.setAttribute("data-toggle", "popover");
-        anchor.className = "category list-group-item";
-        anchor.id = +getLastCategory.id + 1;
-        icon.className = "fa fa-plus";
+var visualizeTasks = function(id) {
+    document.getElementsByClassName('main')[0].innerHTML = '';
+    var tasks = database.getAllTasksInCategory(id);
+    var counter = 0;
+    var row = document.createElement('div');
+    
+    row.className = 'row';
+    
+    document.getElementsByClassName('main')[0].appendChild(row); 
 
-        badge.className = "badge";
-        badge.id = "badge_" + (+getLastCategory.id + 1);
-        badge.innerHTML = 0;
-
-        anchor.append(icon);
-        anchor.innerHTML += " " + value;
-        anchor.append(badge);
-        getLastCategory.after(anchor);
-
-        var nextId = +getLastCategory.id + 1;
-        // information[+getLastCategory.id + 1] = [];
-        database.addCategory(nextId);
-        $(".category-input").val("");
-    }
-});
-
-$(document).on("click", ".category", function (el) {
-    var re = /\b[a-zA-Z0-9]\w+/g;
-    var title = el.target.innerText.match(re).join(' ')
-    console.log(el.target);
-
-    $(el.target).popover({
-        trigger: "manual",
-        placement: "bottom",
-        html: true,
-        title: title,
-        content: `<!-- think it's xss vaulnerable -->
-            <div class="form-group">
-                <div class='input-group popover-task'>
-                    <input id='input-task' type='text' class='form-control'>
-                    <span class="input-group-addon">
-                        <i class="fa fa-th-list" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class='input-group date popover-task'>
-                    <input type='text' class="form-control" id='timepicker' />
-                    <span class="input-group-addon">
-                        <i class="fa fa-clock"></i>
-                    </span>
-                </div>
-                <div class='input-group date popover-task'>
-                    <input type='text' class="form-control" id='datepicker' />
-                    <span class="input-group-addon">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="input-group popover-task">
-                    <select class="form-control select-priority" id="selectPriority">
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
-                    </select>
-                    <span class="input-group-addon">
-                        <i class="fa fa-sort" aria-hidden="true"></i>
-                    </span>
-                </div>                
-                <br>
-                <button class="btn btn-primary" id="add-task">Add task</button>
-                <button class="btn btn-primary" id="show-tasks">Show tasks</button>
-            </div>
-            `,
-    });
-
-    $(el.target).popover("toggle");
-
-    // --- settings for the time- and date-pickers ---
-    var date = new Date();
-    var hours = date.getHours();
-    var minutes;
-    if (date.getMinutes() < 10) {
-        minutes = '0' + date.getMinutes();
-    } else {
-        minutes = date.getMinutes();
-    }
-    $('#timepicker').timepicker({
-        'timeFormat': 'H:i',
-        'step': 30,
-        'disableTimeRanges': [
-            ['00:00', hours + ':' + minutes],
-        ],
-    });
-    $("#datepicker").datepicker({
-        minDate: 0,
-        maxDate: "+1M +10D",
-    });
-    $("#datepicker").datepicker().datepicker("setDate", new Date());
-
-    // --- adds a task in the information object ---
-    $("#add-task").on("click", function () {
-        var badge = $('#badge_' + el.target.id)[0];
-        var currentTaskCount = +badge.innerHTML;
-        badge.innerHTML = +currentTaskCount + 1;
-
-        var task = $('#input-task').val();
-        var priority = $('#selectPriority').val();
-        var time = $('#timepicker').val();
-        var date = $('#datepicker').val();
-
-        if (task && priority && time && date) {
-            var taskInformation = {
-                "taskName": task,
-                "taskDueTime": time,
-                "taskDueDate": date,
-                "taskPriority": priority,
-            };
-            database.addTask(el.target.id, taskInformation);
-            $(el.target).popover("hide");
+    for (var i = 0; i < tasks.length; i += 1) {
+        if (counter === 3) {
+            row = document.createElement('div');
+            row.className = 'row';
+            document.getElementsByClassName('main')[0].appendChild(row)
+            counter = 0;
         }
-    });
+        var divCol = document.createElement('div');
+        var thumbnail = document.createElement('div');
+        var caption = document.createElement('div');
+        var htmlTaskName = document.createElement('h5');
+        var htmlTaskDueDate = document.createElement('h5');
+        var htmlTtaskDueTime = document.createElement('h5');
+        var htmlTaskPriority = document.createElement('h5');
 
-    // --- show all tasks in the category ---
-    $("#show-tasks").on("click", function () {
+        thumbnail.className = 'thumbnail';
+        caption.className = 'caption';
+        divCol.className = 'col-sm-4 col-md-4';
 
-    });
+        var taskname = tasks[i].taskName;
+        var taskduedate = tasks[i].taskDueDate;
+        var taskduetime = tasks[i].taskDueTime;
+        var taskpriority = tasks[i].taskPriority;
 
-    // --- hides the container if the user clicks outside it ---
-    $(document).mouseup(function (e) {
-        var container = $('.popover');
-        var calendar = $('.ui-datepicker');
-        var time = $('.ui-timepicker-wrapper');
+        htmlTaskName.innerHTML = taskname;
+        htmlTaskDueDate.innerHTML = taskduedate;
+        htmlTtaskDueTime.innerHTML = taskduetime;
+        htmlTaskPriority.innerHTML = taskpriority;
 
-        if (!container.is(e.target) && container.has(e.target).length === 0 &&
-            !calendar.is(e.target) && calendar.has(e.target).length === 0 &&
-            !time.is(e.target) && time.has(e.target).length === 0) {
-            $(el.target).popover("hide");
-        }
-    });
-});
+        row.appendChild(divCol);
+        divCol.appendChild(thumbnail);
+        thumbnail.appendChild(caption);
+        caption.appendChild(htmlTaskName);
+        caption.appendChild(htmlTaskDueDate);
+        caption.appendChild(htmlTtaskDueTime);
+        caption.appendChild(htmlTaskPriority);
+
+        counter += 1;
+    }
+}
 
 // !!! IMPORTANT - FOR SOME REASON THE CODE BELOW DOESN'T WORK FOR DYNAMICALLY CREATED ITEMS !!!!
 // $(".category").click(function (el) {

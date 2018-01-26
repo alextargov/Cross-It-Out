@@ -4,38 +4,38 @@
         "categories": [{
             "category-name": "Work",
             "tasks": [{
-                    "task-name": "task1",
-                    "task-due-time": "some time",
-                    "task-due-date": "some date",
-                    "task-priority": "high"
+                    "taskName": "task1",
+                    "taskDueTime": "some time",
+                    "taskDueDate": "some date",
+                    "taskPriority": "high"
                 },
                 {
-                    "task-name": "task2",
-                    "task-due-time": "some time",
-                    "task-due-date": "some date",
-                    "task-priority": "high"
+                    "taskName": "task2",
+                    "taskDueTime": "some time",
+                    "taskDueDate": "some date",
+                    "taskPriority": "high"
                 },
                 {
-                    "task-name": "task3",
-                    "task-due-time": "some time",
-                    "task-due-date": "some date",
-                    "task-priority": "high"
+                    "taskName": "task3",
+                    "taskDueTime": "some time",
+                    "taskDueDate": "some date",
+                    "taskPriority": "high"
                 }
             ]
         },
         {
             "category-name": "Tomorrow",
             "tasks": [{
-                    "task-name": "task1",
-                    "task-due-time": "some time",
-                    "task-due-date": "some date",
-                    "task-priority": "high"
+                    "taskName": "task1",
+                    "taskDueTime": "some time",
+                    "taskDueDate": "some date",
+                    "taskPriority": "high"
                 },
                 {
-                    "task-name": "task2",
-                    "task-due-time": "some time",
-                    "task-due-date": "some date",
-                    "task-priority": "high"
+                    "taskName": "task2",
+                    "taskDueTime": "some time",
+                    "taskDueDate": "some date",
+                    "taskPriority": "high"
                 }
             ]
         }]
@@ -45,22 +45,22 @@
         "categories": [{
             "category-name": "Birthday prep.",
             "tasks": [{
-                    "task-name": "task1",
-                    "task-due-time": "some time",
-                    "task-due-date": "some date",
-                    "task-priority": "high"
+                    "taskName": "task1",
+                    "taskDueTime": "some time",
+                    "taskDueDate": "some date",
+                    "taskPriority": "high"
                 },
                 {
-                    "task-name": "task2",
-                    "task-due-time": "some time",
-                    "task-due-date": "some date",
-                    "task-priority": "high"
+                    "taskName": "task2",
+                    "taskDueTime": "some time",
+                    "taskDueDate": "some date",
+                    "taskPriority": "high"
                 },
                 {
-                    "task-name": "task3",
-                    "task-due-time": "some time",
-                    "task-due-date": "some date",
-                    "task-priority": "high"
+                    "taskName": "task3",
+                    "taskDueTime": "some time",
+                    "taskDueDate": "some date",
+                    "taskPriority": "high"
                 }
             ]
         }]

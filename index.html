@@ -13,14 +13,11 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
 
     <title>X-It-Out</title>
-    
-
-    
 </head>
 
 <body>
     <div class="container">
-        <div class="row">            
+        <div class="row">
             <div class="el col-sm-3 col-md-3 sidebar">
                 <div class="mini-submenu">
                     <span class="icon-bar"></span>
@@ -28,13 +25,19 @@
                     <span class="icon-bar"></span>
                 </div>
                 <div id="category-list" class="el list-group">
-                    <span href="#" class="list-group-item active">
-                        <i class="fas fa-user"></i> Pesho Petrov
+                    <span id="user" href="#" class="list-group-item active">
+                        <i class="fas fa-user"></i>
                     </span>
-                    <a id="0" href="#" class="list-group-item category" data-toggle="popover">
-                        <i class="fa fa-plus"></i> My day
-                        <span id="badge_0" class="badge">0</span>
-                    </a>
+
+                    <div id="0" class='category input-group'>
+                        <span class="input-group-addon">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </span>
+                        <a href="#" class="list-group-item cat" data-toggle="popover">
+                            <span class="catName">My day</span>
+                            <span id="badge_0" class="badge">0</span>
+                        </a>
+                    </div>
 
                     <div id="category-input-container" class="list-group-item">
                         <div class="input-group">
@@ -47,17 +50,16 @@
                 </div>
             </div>
 
-            <div class="el col-sm-6 col-md-6">
+            <div class="el col-sm-9 col-md-9">
                 <div class="row">
                     <div class="el col-sm-12 col-md-12 header">
                         <h2>My Day</h2>
                         <h4>Friday, April 23</h4>
                     </div>
                 </div>
-            </div>
+                <div class="main col-sm-12 col-md-12">
 
-            <div class="el col-sm-3 col-md-3 sidebar">
-                somthing
+                </div>
             </div>
         </div>
     </div>
@@ -74,7 +76,8 @@
                         <div class="loginmodal-container">
                             <div class="wrapper">
                                 <form class="form-signin" onSubmit="return false;">
-                                    <input id="username" type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus=""/>
+                                    <input id="username" type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus=""
+                                    />
                                     <input type="password" class="form-control" name="password" placeholder="Password" />
                                     <button id="login-button" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
                                 </form>
@@ -98,11 +101,13 @@
             </div>
         </div>
     </div>
-    
+
     <script src="js/database.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/left-sidebar.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="js/jquery.timepicker.js"></script>
 </body>

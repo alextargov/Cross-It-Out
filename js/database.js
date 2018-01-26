@@ -10,7 +10,6 @@ var database = function () {
     }
 
     function addTask(catId, task) {
-        console.log(categories);
         categories[catId].push(task);
     }
 
@@ -21,7 +20,6 @@ var database = function () {
 
     function getAllTasks() {
         tasks = [];
-
         for (let i = 0; i < categories.length; i += 1) {
             if (typeof categories[i] === 'undefined') {
                 continue;

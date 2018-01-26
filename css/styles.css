@@ -12,6 +12,10 @@
     border-radius: 4px;
 }
 
+.category {
+    width: 100%;
+}
+
 body {
     background: #F7F7F7 !important;
 }
@@ -23,6 +27,14 @@ body {
 .popover-task {
     width: 100%;
     margin: 10px 0;
+}
+
+.input-group-addon {
+    cursor: pointer;
+}
+
+.input-group-addon:hover {
+    background:#e3e3e3 ;
 }
 
 .ui-datepicker {
