@@ -168,3 +168,47 @@ input[type="password"] {
 .form-control {
     margin-bottom: 5px
 }
+
+
+.btn-header {
+    float: right;
+}
+ul.active > li > a {
+    color: #FFF
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background: none !important;
+    text-decoration: none;
+} 
+
+#showRightPicker > div {
+    width: 150px;
+}
+
+
+.navbar-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.popover.left {
+    width: 170px;
+}
+
+.modal-sm h4 {
+    color:#000000;
+    text-align: center;
+}
+
+.modal-sm p {
+    color:#000000;
+}
+
+.modal-header.description   {
+    margin: 10px 10px;
+}
+
+.modal-body.description {
+    margin: 15px 15px;
+}
