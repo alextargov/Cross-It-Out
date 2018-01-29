@@ -162,3 +162,35 @@ var visualizeTasks = function(id) {
 // $(".category").click(function (el) {
 //     console.log(el)
 // });
+
+
+
+
+
+// var ONE_MINUTE = 60 * 1000;
+
+// function showTime() {
+//   console.log(new Date());
+// }
+
+// setInterval(showTime, ONE_MINUTE);
+
+// function repeatEvery(func, interval) {
+//     // Check current time and calculate the delay until next interval
+//     var now = new Date(),
+//         delay = interval - now % interval;
+
+//     function start() {
+//         // Execute function now...
+//         func();
+      
+//         // ... and every interval
+//         setInterval(func, interval);
+//     }
+ 
+
+//     // Delay execution until it's an even interval
+//     setTimeout(start, delay);
+// }
+
+// repeatEvery(showTime, ONE_MINUTE);
