@@ -2,36 +2,51 @@
 
 var database = function () {
 
-    var categories = [[]];
+    var _categories = [
+        []
+    ];
     var tasks;
 
     function addCategory(id) {
-        categories[id] = [];
+        _categories[id] = [];
     }
 
     function addTask(catId, task) {
-        categories[catId].push(task);
+        _categories[catId].push(task);
     }
 
-    // for the left side bar categories
     function getAllTasksInCategory(id) {
-        return categories[id];
+        return _categories[id];
     }
 
     function getAllTasks() {
-        tasks = [];
-        for (let i = 0; i < categories.length; i += 1) {
-            if (typeof categories[i] === 'undefined') {
+        var tasks = [];
+        for (let i = 0; i < _categories.length; i += 1) {
+            if (typeof _categories[i] === 'undefined') {
                 continue;
             }
-            var currentCat = categories[i];
+            var currentCat = _categories[i];
 
-            for (let j = 0; j < currentCat.length; j+=1) {
+            for (let j = 0; j < currentCat.length; j += 1) {
                 tasks.push(currentCat[j]);
             }
         }
 
         return tasks;
+    }
+
+    function deleteTask(id) {
+        for (let i = 0; i < _categories.length; i += 1) {
+            var currentCat = _categories[i];
+
+            for (let j = 0; j < currentCat.length; j += 1) {
+                if (_categories[i][j].taskId == id) {
+                    var spliced =_categories[i].splice(j, 1);
+                    return spliced;                    
+                }
+                
+            }
+        }
     }
 
     function findTask(name) {
@@ -46,6 +61,7 @@ var database = function () {
     return {
         addCategory,
         addTask,
+        deleteTask,
         findTask,
         getAllTasks,
         getAllTasksInCategory,

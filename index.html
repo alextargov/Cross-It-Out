@@ -33,8 +33,8 @@
                         <span class="input-group-addon">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </span>
-                        <a href="#" class="list-group-item cat" data-toggle="popover">
-                            <span class="catName">My day</span>
+                        <a href="#" class="list-group-item cat all-tasks" data-toggle="popover">
+                            <span class="catName">Аll tasks</span>
                             <span id="badge_0" class="badge">0</span>
                         </a>
                     </div>
@@ -67,46 +67,62 @@
                                             <div class="modal-content">
                                                 <div class="modal-header description">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title"><b>How to use</b></h4>
+                                                    <h4 class="modal-title">
+                                                        <b>How to use</b>
+                                                    </h4>
                                                 </div>
                                                 <div class="modal-body description">
-                                                    <p><b>Object:</b> The object of the game is collect points as possible as you can.</p>
-                                                    <p><b>Equipment:</b> Each account consist of starting 50 bonus points.</p>
-                                                    <p><b>Setup:</b> Choose name, time, date and priority of the task, then click add task into
-                                                        some of categories. </p>
-                                                    <p><b>Playing the Game:</b> Once the task is choosen your purpose is to finished it before end of the day.
-                                                       If your task is completed before end time you will win points based on priority(ps: you 
-                                                       will be able to receive more points if you finish high priority tasks). Else these points will be substracted 
-                                                       from accounts points.
-                                                       <p><span class="glyphicon glyphicon-pushpin"></span> Please note: Negative points are possible.</p>     
+                                                    <p>
+                                                        <b>Object:</b> The object of the game is collect points as possible
+                                                        as you can.</p>
+                                                    <p>
+                                                        <b>Equipment:</b> Each account consist of starting 50 bonus points.</p>
+                                                    <p>
+                                                        <b>Setup:</b> Choose name, time, date and priority of the task, then
+                                                        click add task into some of categories. </p>
+                                                    <p>
+                                                        <b>Playing the Game:</b> Once the task is choosen your purpose is to
+                                                        finished it before end of the day. If your task is completed before
+                                                        end time you will win points based on priority(ps: you will be able
+                                                        to receive more points if you finish high priority tasks). Else these
+                                                        points will be substracted from accounts points.
+                                                        <p>
+                                                            <span class="glyphicon glyphicon-pushpin"></span> Please note: Negative points are possible.</p>
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default btn-prev">Prev</button>
-                                                        <button type="button" class="btn btn-default btn-next">Next</button>
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-default btn-prev">Prev</button>
+                                                    <button type="button" class="btn btn-default btn-next">Next</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="descriptionForm2" class="modal fade" role="dialog">
-                                            <div class="modal-dialog modal-sm">
-                                                <div class="modal-content">
-                                                    <div class="modal-header description">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title"><b>Playing the game</b></h4>
-                                                    </div>
-                                                    <div class="modal-body description">
-                                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsa cum, incidunt fuga hic error ratione voluptate iusto dolore tempore molestias dolores, nemo eius accusamus repellendus fugiat molestiae corrupti itaque exercitationem! Deleniti ducimus, labore unde ipsa repudiandae debitis magnam fugit, aspernatur mollitia voluptatibus inventore alias incidunt nemo doloremque eos quos.</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default btn-prev">Prev</button>
-                                                            <button type="button" class="btn btn-default btn-next">Next</button>
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    </div>
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header description">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">
+                                                        <b>Playing the game</b>
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body description">
+                                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet ipsa
+                                                        cum, incidunt fuga hic error ratione voluptate iusto dolore tempore
+                                                        molestias dolores, nemo eius accusamus repellendus fugiat molestiae
+                                                        corrupti itaque exercitationem! Deleniti ducimus, labore unde ipsa
+                                                        repudiandae debitis magnam fugit, aspernatur mollitia voluptatibus
+                                                        inventore alias incidunt nemo doloremque eos quos.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default btn-prev">Prev</button>
+                                                    <button type="button" class="btn btn-default btn-next">Next</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -185,7 +201,9 @@
     <script src="js/database.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/visualizeTasks.js"></script>
     <script src="js/script.js"></script>
+
     <script src="js/login.js"></script>
     <script src="js/left-sidebar.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
