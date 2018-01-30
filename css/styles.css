@@ -70,9 +70,31 @@ body {
     padding: 0px !important;
 }
 
+.caption {
+    margin-top:20px;
+}
+
+.delete-icon {
+    color: #F00;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    border: 1px solid #ddd;
+    border-radius: 0px 4px 0px 4px;
+    width: 30px !important;
+    height: 20px;
+}
+
 .show-more {
     padding: 2px 5px !important;
     float: right;
+    margin: -4px 0px 0px 0px;
+    position: absolute;
+    top: 5px;
+    left: 16px;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
 }
 
 .form-signin {

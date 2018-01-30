@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-$(document).on("click", ".input-group-addon", function (el) {
+$('#category-list').on("click", ".input-group-addon", function (el) {
     var re = /\b[a-zA-Z0-9]\w+/g;
     var parent;
     var target;
@@ -80,15 +80,16 @@ $(document).on("click", ".input-group-addon", function (el) {
     $("#datepicker").datepicker().datepicker("setDate", new Date());
 
     // --- adds a task in the information object ---
-    $("#add-task").on("click", function () {
+    $("#add-task").on("click", function (el) {
         var id = target.parentElement.id
-        var badge = $('#badge_' + id)[0];
-        var currentTaskCount = +badge.innerHTML;    
+        var badge = document.getElementById('badge_' + id); 
 
         var task = $('#input-task').val();
         var priority = $('#selectPriority').val();
         var time = $('#timepicker').val();
         var date = $('#datepicker').val();
+        var allCurrentTasks = database.getAllTasks();
+        var lastTaskId = allCurrentTasks[allCurrentTasks.length - 1].taskId;
 
         if (task && priority && time && date) {
             var taskInformation = {
@@ -96,11 +97,13 @@ $(document).on("click", ".input-group-addon", function (el) {
                 "taskDueTime": time,
                 "taskDueDate": date,
                 "taskPriority": priority,
+                "taskId": lastTaskId + 1
             };
             database.addTask(id, taskInformation);
             $('div#' + parent.id).popover("hide");
-            visualizeTasks(id);
-            badge.innerHTML = +currentTaskCount + 1;
+            visualize.tasksInCategory(id);
+            var count = visualize.tasksInCategory(id).length;
+            badge.innerHTML = count;
         }
     });
 
@@ -118,24 +121,40 @@ $(document).on("click", ".input-group-addon", function (el) {
     });
 });
 
-$(document).on("click", ".cat", function (el) {
+$('#category-list').on("click", ".cat", function (el) {
     document.getElementsByClassName('main')[0].innerHTML = '';
-    var id = el.currentTarget.parentElement.id;
+    var catId = el.currentTarget.parentElement.id;
+
+    if (el.currentTarget.classList.value.includes('all-tasks')) {
+        console.log('fffffffff');
+        visualize.allTasks();
+        return;
+    }
 
     window.onresize = function(event) {
         if (window.innerWidth >= 992) {
             itemsToShow = 3;
-            visualizeTasks(id);
+            visualize.tasksInCategory(catId);
         } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
             itemsToShow = 2;
-            visualizeTasks(id);
+            visualize.tasksInCategory(catId);
         } else if (window.innerWidth < 768) {
             itemsToShow = 1;
-            visualizeTasks(id);
+            visualize.tasksInCategory(catId);
         }
     };
     
-    visualizeTasks(id);
+    visualize.tasksInCategory(catId);
+
+
+    $('.main').on('click', '.delete-icon', function(deleteEl) {
+        var buttonId = deleteEl.currentTarget.id;
+        var taskId = buttonId.slice(4);
+        database.deleteTask(taskId);
+        var currentCatLength = database.getAllTasksInCategory(catId).length;
+        el.currentTarget.childNodes[1].innerHTML = currentCatLength;
+        visualize.tasksInCategory(catId);
+    });
 });
 
 // --- adds a category in the UI and in the information object ---

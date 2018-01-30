@@ -51,6 +51,7 @@ $.ajax({
             badge.innerHTML = taskLength;
             getLastCategory.after(div);
         }
+        visualize.allTasks();
     },
     error: function (result, err, errorThrown) {
         console.log(result);
@@ -59,104 +60,7 @@ $.ajax({
     }
 });
 
-var visualizeTasks = function(id) {
-    document.getElementsByClassName('main')[0].innerHTML = '';
-    var tasks = database.getAllTasksInCategory(id);
-    var counter = 0;
-    var row = document.createElement('div');
-    row.className = 'row';
-    var itemsToShow;
-    
-    if (window.innerWidth >= 992) {
-        itemsToShow = 3;
-    } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
-        itemsToShow = 2;
-    } else if (window.innerWidth < 768) {
-        itemsToShow = 1;
-    }
 
-    document.getElementsByClassName('main')[0].appendChild(row); 
-    console.log(itemsToShow);
-    for (var i = 0; i < tasks.length; i += 1) {
-        if (counter === itemsToShow) {
-            row = document.createElement('div');
-            row.className = 'row';
-            document.getElementsByClassName('main')[0].appendChild(row)
-            counter = 0;
-        }
-        var divCol = document.createElement('div');
-        var thumbnail = document.createElement('div');
-        var caption = document.createElement('div');
-        var htmlTaskNameWrapper = document.createElement('div');
-        var htmlTaskName = document.createElement('h5');
-        var htmlTaskDueDate = document.createElement('h5');
-        var htmlTtaskDueTime = document.createElement('h5');
-        var htmlTaskPriority = document.createElement('h5');
-        var button = document.createElement('button');
-
-        htmlTaskName.style.display = 'inline';
-        
-        button.className = 'btn btn-primary show-more';
-        thumbnail.className = 'thumbnail';
-        caption.className = 'caption';
-        divCol.className = 'col-sm-6 col-md-4 col-lg-4 col-xl-4';
-        htmlTaskNameWrapper.className = 'taskNameWrapper';
-        htmlTaskName.className = 'taskName';
-
-        var taskname = tasks[i].taskName;
-        var taskduedate = tasks[i].taskDueDate;
-        var taskduetime = tasks[i].taskDueTime;
-        var taskpriority = tasks[i].taskPriority;
-
-        var substr;
-        if (window.innerWidth >= 1200) {
-            if (taskname.length > 25) {
-                substr = taskname.substr(0, 25);
-                substr += '...';
-                taskname = substr;
-                button.innerHTML = 'More';
-                htmlTaskNameWrapper.appendChild(button);
-            }
-        } else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
-            if (taskname.length > 20) {
-                substr = taskname.substr(0, 20);
-                substr += '...';
-                taskname = substr;
-                button.innerHTML = 'More';
-                htmlTaskNameWrapper.appendChild(button);
-            }
-        } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
-            if (taskname.length > 25) {
-                substr = taskname.substr(0, 25);
-                substr += '...';
-                taskname = substr;
-                button.innerHTML = 'More';
-                htmlTaskNameWrapper.appendChild(button);
-            }
-        }
-        htmlTaskName.innerHTML = taskname;
-        htmlTaskDueDate.innerHTML = taskduedate;
-        htmlTtaskDueTime.innerHTML = taskduetime;
-        htmlTaskPriority.innerHTML = taskpriority;
-        
-        htmlTaskNameWrapper.appendChild(htmlTaskName);
-        row.appendChild(divCol);
-        divCol.appendChild(thumbnail);
-        thumbnail.appendChild(caption);
-        caption.appendChild(htmlTaskNameWrapper);
-        caption.appendChild(htmlTaskDueDate);
-        caption.appendChild(htmlTtaskDueTime);
-        caption.appendChild(htmlTaskPriority);
-        //console.log(divCol.style)
-        // console.log($('.taskName'));
-        // console.log($('.taskName').innerWidth());
-
-        // if ($('.taskName')[0].scrollWidth > $('.taskName').outerWidth()) {
-        //     console.log('truee');
-        // }
-        counter += 1;
-    }
-}
 
 
 // !!! IMPORTANT - FOR SOME REASON THE CODE BELOW DOESN'T WORK FOR DYNAMICALLY CREATED ITEMS !!!!
