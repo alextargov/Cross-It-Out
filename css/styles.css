@@ -4,6 +4,7 @@
 
 .header {
     background: #337ab7;
+    /* background: #76e */
     color: #FFF;
     /* background: linear-gradient(-45deg,#ec5252 ,#6e1a52 ); */
 }
@@ -149,8 +150,6 @@ input[type="password"] {
     position: relative;
 }
 
-
-/****** Welcome MODAL ******/
 .modal-body, .modal-header {
     padding: 0px !important;
 }
@@ -212,6 +211,14 @@ ul.active > li > a {
 .navbar-nav>li>a {
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.nav>li {
+    border-right: 2px solid #F7F7F7;
+}
+
+.nav>li:nth-child(4) {
+    border: none;
 }
 
 .popover.left {

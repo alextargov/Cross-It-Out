@@ -51,7 +51,7 @@
                         },
                         {
                             "taskName": "Going to cinema",
-                            "taskDueTime": "19:30",
+                            "taskDueTime": "15:30",
                             "taskDueDate": "02/08/2018",
                             "taskPriority": "low",
                             "taskId": 7
