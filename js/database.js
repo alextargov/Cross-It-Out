@@ -8,7 +8,7 @@ var database = function () {
     var done = [];
     var tasks;
     var tasksLength = 0; // is zero because it will be increased after the ajax populates the database with json tasks.
-    var doneLength = 0; 
+    var doneLength = 0;
 
     function addCategory(id) {
         _categories[id] = [];
@@ -43,17 +43,17 @@ var database = function () {
         return tasks;
     }
 
-    function deleteTask(id) {        
+    function deleteTask(id) {
         for (let i = 0; i < _categories.length; i += 1) {
             var currentCat = _categories[i];
 
             for (let j = 0; j < currentCat.length; j += 1) {
                 if (_categories[i][j].taskId == id) {
-                    var spliced =_categories[i].splice(j, 1);
+                    var spliced = _categories[i].splice(j, 1);
                     this.tasksLength -= 1;
-                    return spliced;                    
+                    return spliced;
                 }
-                
+
             }
         }
     }
@@ -82,147 +82,114 @@ var database = function () {
         return tasks;
     }
 
-    var getSortedAlphabetically = function(isAscending) {
+    var getSortedAlphabetically = function (isAscending) {
         var compareIncr = function (a, b) {
             if (a.taskName < b.taskName) {
                 return -1;
-            } 
+            }
             if (a.taskName > b.taskName) {
                 return 1;
             }
-    
+
             return 0;
         }
         var compareDecr = function (b, a) {
             if (a.taskName < b.taskName) {
                 return -1;
-            } 
+            }
             if (a.taskName > b.taskName) {
                 return 1;
             }
-    
+
             return 0;
         }
         if (isAscending) {
             return getAllTasks().sort(compareIncr);
         } else {
             return getAllTasks().sort(compareDecr);
-        } 
+        }
     };
 
-    var getSortedAlphabeticallyInCategory = function(id, isAscending) {
+    var getSortedAlphabeticallyInCategory = function (id, isAscending) {
         var compareIncr = function (a, b) {
             if (a.taskName < b.taskName) {
                 return -1;
-            } 
+            }
             if (a.taskName > b.taskName) {
                 return 1;
             }
-    
+
             return 0;
         }
         var compareDecr = function (b, a) {
             if (a.taskName < b.taskName) {
                 return -1;
-            } 
+            }
             if (a.taskName > b.taskName) {
                 return 1;
             }
-    
+
             return 0;
         }
         if (isAscending) {
             return getAllTasksInCategory(id).sort(compareIncr);
         } else {
             return getAllTasksInCategory(id).sort(compareDecr);
-        } 
+        }
     }
 
-    var getSortedByTime = function(isAscending) {
+    var getSortedByDateAndTime = function (isAscending) {
+        var compareIncr = function (a, b) {
+            var endTime = "14:30";
 
-         if (isAscending) {
-            getAllTasks().sort(function (a, b) {
-                return new Date('1970/01/01 ' + a.taskDueDate) - new Date('1970/01/01 ' + a.taskDueDate);
-              });
-        } else {
-            return getAllTasks().sort(compareDecr);
+            if (a.taskDueDate < b.taskDueDate)
+                return -1
+
+            if (a.taskDueDate > b.taskDueDate)
+                return 1
+
+            if (a.taskDueDate === b.taskDueDate) {
+                if (a.taskDueTime < b.taskDueTime)
+                    return -1
+
+                if (a.taskDueTime > b.taskDueTime)
+                    return 1
+
+                return 0
+            }
         }
 
-      
-          
-        //   console.log(times);
-        // var compareIncr = function(a, b) {
-        //     var c = new Date('1970/01/01 ' + a.taskDueTime);
-        //     var d = new Date('1970/01/01 ' + b.taskDueTime);
+        var compareDecr = function (a, b) {
+            if (a.taskDueDate > b.taskDueDate)
+                return -1
 
-        //     if (c < d) {
-        //         return -1;
-        //     }
-        //     if (c > d) {
-        //         return 1;
-        //     }
-        //     return 0;
-        // }
+            if (a.taskDueDate < b.taskDueDate)
+                return 1
 
-        // var compareDecr = function(b, a) {
-        //     var c = new Date('1970/01/01 ' + a.taskDueTime);
-        //     var d = new Date('1970/01/01 ' + b.taskDueTime);
+            if (a.taskDueDate === b.taskDueDate) {
+                if (a.taskDueTime > b.taskDueTime)
+                    return -1
 
-        //     if (c > d) {
-        //         return -1;
-        //     }
-        //     if (c > d) {
-        //         return 1;
-        //     }
-        //     return 0;
-        // }
+                if (a.taskDueTime < b.taskDueTime)
+                    return 1
 
-        // if (isAscending) {
-        //     return getAllTasks().sort(compareIncr);
-        // } else {
-        //     return getAllTasks().sort(compareDecr);
-        // } 
-    }
-
-    var getSortedByDueDate = function(isAscending) {
-        var compareIncr = function(a, b) {
-            var c = new Date(a.taskDueDate);
-            var d = new Date(b.taskDueDate);
-
-            if (c < d) {
-                return -1;
+                return 0
             }
-            if (c > d) {
-                return 1;
-            }
-            return 0;
         }
 
-        var compareDecr = function (b, a) {
-            var c = new Date(a.taskDueDate);
-            var d = new Date(b.taskDueDate);
-
-            if (c > d) {
-                return -1;
-            }
-            if (c < d) {
-                return 1;
-            }
-            return 0;
-        }
         if (isAscending) {
             return getAllTasks().sort(compareIncr);
         } else {
             return getAllTasks().sort(compareDecr);
-        } 
+        }
     }
-    
-    var findTaskByDate = function(date) {
+
+    var findTaskByDate = function (date) {
         var tasks = [];
         var allTasks = getAllTasks();
         for (let i = 0; i < allTasks.length; i++) {
             if (allTasks[i].taskDueDate === date) {
-                tasks.push(allTasks[i]); 
+                tasks.push(allTasks[i]);
             }
         }
         return tasks;
@@ -239,9 +206,9 @@ var database = function () {
         getAllTasksInCategory,
         getSortedAlphabetically,
         getSortedAlphabeticallyInCategory,
-        getSortedByDueDate,
+        getSortedByDateAndTime,
         addToDone,
         getDone,
-        doneLength
+        doneLength,
     }
 }();

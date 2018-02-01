@@ -12,7 +12,6 @@ var sortAllTasks = function() {
             result = database.getSortedAlphabetically(false);
             $sort.removeClass('descending');
             $sort.addClass('ascending');
-    
         }
         visualize.customTasks(result);
     });
@@ -20,17 +19,11 @@ var sortAllTasks = function() {
 
 // Sorting by due date
 
-    $('#sort-due-date').on('click', function() {
+$('#sort-due-date').on('click', function() {
         var $sortDueDate = $('#sort-due-date');
         var result;
         if ($sortDueDate.hasClass('ascending')) {
-            result = database.getSortedByDueDate(true);
-            $sortDueDate.removeClass('ascending');
-            $sortDueDate.addClass('descending');
-        } else {
-            result = database.getSortedByDueDate(false);
-            $sortDueDate.removeClass('descending');
-            $sortDueDate.addClass('ascending');
+            result = database.getSortedByDateAndTime(true);
         }
-        visualize.customTasks(result);
-    });
+         visualize.customTasks(result);
+});
