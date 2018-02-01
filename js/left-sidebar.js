@@ -1,6 +1,7 @@
 /* eslint-disable */
+var sharedState = {};
 
-$('#category-list').on("click", ".input-group-addon", function (el) {
+$('#category-list').on("click", ".input-group-addon-custom", function (el) {
     var re = /\b[a-zA-Z0-9]\w+/g;
     var parent;
     var target;
@@ -30,7 +31,7 @@ $('#category-list').on("click", ".input-group-addon", function (el) {
                 <div class='input-group date popover-task'>
                     <input type='text' class="form-control" id='timepicker' />
                     <span class="input-group-addon popover-task-addon">
-                        <i class="fa fa-clock"></i>
+                        <i class="fa fa-clock-o"></i>
                     </span>
                 </div>
                 <div class='input-group date popover-task'>
@@ -82,7 +83,7 @@ $('#category-list').on("click", ".input-group-addon", function (el) {
     // --- adds a task in the information object ---
     $("#add-task").on("click", function (el) {
         var id = target.parentElement.id
-        var badge = document.getElementById('badge_' + id); 
+        var badge = document.getElementById('badge_' + id);
 
         var task = $('#input-task').val();
         var priority = $('#selectPriority').val();
@@ -101,10 +102,11 @@ $('#category-list').on("click", ".input-group-addon", function (el) {
             };
             database.addTask(id, taskInformation);
             $('div#' + parent.id).popover("hide");
-            visualize.tasksInCategory(id);
-            var count = visualize.tasksInCategory(id).length;
+            var count = visualize.categoryLength(id);
+            console.log(count)
             badge.innerHTML = count;
         }
+        visualize.tasksInCategory(id);
     });
 
     // --- hides the container if the user clicks outside it ---
@@ -121,40 +123,92 @@ $('#category-list').on("click", ".input-group-addon", function (el) {
     });
 });
 
-$('#category-list').on("click", ".cat", function (el) {
-    document.getElementsByClassName('main')[0].innerHTML = '';
-    var catId = el.currentTarget.parentElement.id;
-
-    if (el.currentTarget.classList.value.includes('all-tasks')) {
-        console.log('fffffffff');
-        visualize.allTasks();
-        return;
-    }
-
-    window.onresize = function(event) {
-        if (window.innerWidth >= 992) {
-            itemsToShow = 3;
-            visualize.tasksInCategory(catId);
-        } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
-            itemsToShow = 2;
-            visualize.tasksInCategory(catId);
-        } else if (window.innerWidth < 768) {
-            itemsToShow = 1;
-            visualize.tasksInCategory(catId);
+var updateBadges = function () {
+    var categories = database.getAllCategories();
+    $.each(categories, function (index, value) {
+        if (index === 0) {
+            return;
         }
-    };
-    
-    visualize.tasksInCategory(catId);
+        var length = value.length;
+        $('#badge_' + index).html(length);
+    });
+};
 
-
-    $('.main').on('click', '.delete-icon', function(deleteEl) {
+var deleteTaskListener = function (el, isAll, catId) {
+    $('.main').on('click', '.delete-icon', function (deleteEl) {
         var buttonId = deleteEl.currentTarget.id;
         var taskId = buttonId.slice(4);
         database.deleteTask(taskId);
-        var currentCatLength = database.getAllTasksInCategory(catId).length;
-        el.currentTarget.childNodes[1].innerHTML = currentCatLength;
-        visualize.tasksInCategory(catId);
+        if (isAll) {
+            var currentCatLength = database.getAllTasks().length;
+            visualize.allTasks();
+        } else {
+            var currentCatLength = database.getAllTasksInCategory(catId).length;
+            visualize.tasksInCategory(catId);
+        }
+        el.currentTarget.children[1].innerHTML = currentCatLength;
+        updateBadges();
     });
+};
+
+var addToDoneListener = function(el, isAll, catId) {
+    $('.main').on('click', '.done-icon', function (doneElement) {
+        var buttonId = doneElement.currentTarget.id;
+        var taskId = buttonId.slice(5);
+        database.addToDone(taskId);
+        if (isAll) {
+            var currentCatLength = database.getAllTasks().length;
+            visualize.allTasks();
+        } else {
+            var currentCatLength = database.getAllTasksInCategory(catId).length;
+            visualize.tasksInCategory(catId);
+        }
+        el.currentTarget.children[1].innerHTML = currentCatLength;
+        updateBadges();
+        $('#badge_done').html(database.doneLength);
+    });
+}
+
+$('#category-list').on("click", ".all-tasks", function (el) {
+    visualize.allTasks();
+    addToDoneListener(el, true);
+    deleteTaskListener(el, true);
+    sortAllTasks(true);
+});
+
+$('#category-list').on("click", ".cat", function (el) {
+    
+    document.getElementsByClassName('main')[0].innerHTML = '';
+    var catId = el.currentTarget.parentElement.id;
+    sharedState.categoryId = catId;
+    visualize.tasksInCategory(catId);
+
+    addToDoneListener(el, false, catId);
+    deleteTaskListener(el, false, catId);
+});
+
+// ==== sorting events ==== 
+
+$('#sort-alphabeth-in-cat').on('click', function() {
+    var catId = sharedState.categoryId;
+    console.log('clicked ' + catId);
+    var $sort = $('#sort-alphabeth-in-cat');
+    var result;
+    if ($sort.hasClass('ascending')) {
+        result = database.getSortedAlphabeticallyInCategory(catId, true);
+        $sort.removeClass('ascending');
+        $sort.addClass('descending');
+    } else {
+        result = database.getSortedAlphabeticallyInCategory(catId, false);
+        $sort.removeClass('descending');
+        $sort.addClass('ascending');
+
+    }
+    visualize.customTasks(result);
+});
+
+$('#category-list').on("click", ".done-tasks", function (el) {
+    visualize.allDoneTasks();
 });
 
 // --- adds a category in the UI and in the information object ---
@@ -170,7 +224,7 @@ $(".add-category").click(function () {
         var div = document.createElement("div");
 
         div.className = "category input-group";
-        addon.className = "input-group-addon";
+        addon.className = "input-group-addon input-group-addon-custom";
         icon.className += " fa fa-plus";
         anchor.className += " cat list-group-item";
         badge.className += " badge";
@@ -196,4 +250,18 @@ $(".add-category").click(function () {
         database.addCategory(nextId);
         $(".category-input").val("");
     }
+});
+
+$('.search').on('click', function () {
+    $('.search-input').val('');
+    $('.username').toggle();
+    $('.search-div').toggle();
+    $('.search-input').focus();
+});
+
+$(".search-input").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    var tasks = database.findTask(value);
+
+    visualize.customTasks(tasks);
 });

@@ -2,8 +2,11 @@
     margin: 10px 0;
 }
 
-.header {
+.navbar.header {
+    min-height: 44px !important;
     background: #337ab7;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     /* background: #76e */
     color: #FFF;
     /* background: linear-gradient(-45deg,#ec5252 ,#6e1a52 ); */
@@ -11,6 +14,55 @@
 
 .el {
     border-radius: 4px;
+}
+
+#user {
+    height: 44px;
+    padding: 4px;
+}
+
+.search-div {
+    float: left;
+    margin-left: 13px;
+    display: none;
+}
+
+.search-input {
+    background: none !important;
+    border-radius: 4px !important;
+    color: #FFF !important;
+}
+
+.search-input::placeholder {
+    color: #FFF !important;
+    opacity: 0.8;
+}
+
+.search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #FFF;
+}
+
+.search-input::-ms-input-placeholder { /* Microsoft Edge */
+    color: #FFF;
+}
+
+.icon-user {
+    margin: 10px 0px 10px 9px;
+    float: left;
+}
+
+.username {
+    height: 100%;
+    margin-left: 35px;
+    margin-top: 7px;
+}
+
+.search,
+.search:hover {
+    float: right;
+    color: #FFF;
+    cursor: pointer;
+    margin-right: 10px
 }
 
 .category {
@@ -35,7 +87,7 @@ body {
 }
 
 .input-group-addon:hover {
-    background:#e3e3e3 ;
+    background: #e3e3e3;
 }
 
 .popover-task-addon {
@@ -70,20 +122,49 @@ body {
     padding: 0px !important;
 }
 
+.thumbnail:hover .done-icon,
+.thumbnail:hover .delete-icon {
+    display: block;
+}
+
 .caption {
-    margin-top:20px;
+    margin-top: 20px;
+}
+
+.delete-icon,
+.done-icon {
+    cursor: pointer;
+    position: absolute;
+    border: 1px solid #ddd;
+    width: 30px !important;
+    height: 24px;
+    display: none;
+    font-size: 20px;
+    text-align: center;
 }
 
 .delete-icon {
     color: #F00;
-    cursor: pointer;
-    position: absolute;
     right: 15px;
     top: 0px;
-    border: 1px solid #ddd;
-    border-radius: 0px 4px 0px 4px;
-    width: 30px !important;
-    height: 20px;
+    border-radius: 0px 4px 0px 0px;
+}
+
+.delete-icon:hover {
+    background: #F7F7F7;
+    color: #ce0101
+}
+
+.done-icon {
+    color: #0eb511;
+    right: 15px;
+    top: 23px;
+    border-radius: 0px 0px 0px 4px;
+}
+
+.done-icon:hover {
+    background: #F7F7F7;
+    color: #0b8b0d;
 }
 
 .show-more {
@@ -150,7 +231,8 @@ input[type="password"] {
     position: relative;
 }
 
-.modal-body, .modal-header {
+.modal-body,
+.modal-header {
     padding: 0px !important;
 }
 
@@ -158,6 +240,7 @@ input[type="password"] {
     height: 235px !important;
     width: 450px !important;
 }
+
 .greetings {
     text-align: center;
     width: 600px !important;
@@ -190,27 +273,32 @@ input[type="password"] {
     margin-bottom: 5px
 }
 
-
 .btn-header {
     float: right;
 }
-ul.active > li > a {
+
+ul.active>li>a {
     color: #FFF
 }
 
-.nav>li>a:focus, .nav>li>a:hover {
+.nav>li>a:focus,
+.nav>li>a:hover {
     background: none !important;
     text-decoration: none;
-} 
-
-#showRightPicker > div {
-    width: 150px;
 }
 
+#showRightPicker>div {
+    width: 150px;
+}
 
 .navbar-nav>li>a {
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.navbar-right li a {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 
 .nav>li {
@@ -226,15 +314,15 @@ ul.active > li > a {
 }
 
 .modal-sm h4 {
-    color:#000000;
+    color: #000000;
     text-align: center;
 }
 
 .modal-sm p {
-    color:#000000;
+    color: #000000;
 }
 
-.modal-header.description   {
+.modal-header.description {
     margin: 10px 10px;
 }
 

@@ -1,59 +1,44 @@
-var getSortedAlphabeticallyIncr = (function() {
+/* eslint-disable */
 
-    var tasks = database.getAllTasks();
-
-    function sortedTasks(tasks, descending) {
-        var vals = [];
-
-        for(let i = 0; i < tasks.length; tasks+=1) {
-            vals.push(tasks[i]);
+var sortAllTasks = function() {
+    $('#sort-alphabeth-all').on('click', function() {
+        var $sort = $('#sort-alphabeth-all');
+        var result;
+        if ($sort.hasClass('ascending')) {
+            result = database.getSortedAlphabetically(true);
+            $sort.removeClass('ascending');
+            $sort.addClass('descending');
+        } else {
+            result = database.getSortedAlphabetically(false);
+            $sort.removeClass('descending');
+            $sort.addClass('ascending');
+    
         }
+        visualize.customTasks(result);
+    });
+}
 
-        vals.sort();
-
-        for(let j = 0; j < tasks.length; j+=1) {
-            tasks[i] = vals[i];
+var sortCategory = function(catId) {
+    // $('#sort-alphabeth-in-cat').on('click');
+    $('#sort-alphabeth-in-cat').on('click', function() {
+        console.log('clicked ' + catId);
+        var $sort = $('#sort-alphabeth-in-cat');
+        var result;
+        if ($sort.hasClass('ascending')) {
+            result = database.getSortedAlphabeticallyInCategory(catId, true);
+            $sort.removeClass('ascending');
+            $sort.addClass('descending');
+        } else {
+            result = database.getSortedAlphabeticallyInCategory(catId, false);
+            $sort.removeClass('descending');
+            $sort.addClass('ascending');
+    
         }
-    }
+        visualize.customTasks(result);
+       // $('#sort-alphabeth-in-cat').off('click');
+    });
 
-    // window.onload = function() {
-    //     var desc = false;
-    //     document.getElementsById("test").onclick = function() {
-    //         sortUnorderedList("list", desc);
-    //         desc = !desc;
-    //         return false;
-    //     };
-    // }
-
-    return {
-        tasks: tasks
-    }
-})();
+    
+}
 
 
-var getSortedAlphabeticallyDecr = (function() {
-    var tasks = database.getAllTasks();
-    var descending = true;
-
-    function sortedTasks(tasks, descending) {
-        var vals = [];
-
-        for(let i = 0; i < tasks.length; tasks+=1) {
-            vals.push(tasks[i]);
-        }
-
-        vals.sort();
-
-        if (descending) {
-            vals.reverse();
-        }
-
-        for(let j = 0; j < tasks.length; j+=1) {
-            tasks[i] = vals[i];
-        }
-    }
-
-    return {
-        tasks: tasks
-    }
-})();

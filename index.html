@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="asset/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script> -->
     <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
 
     <title>X-It-Out</title>
@@ -25,19 +26,34 @@
                     <span class="icon-bar"></span>
                 </div>
                 <div id="category-list" class="el list-group">
-                    <span id="user" href="#" class="list-group-item active">
-                        <i class="fas fa-user"></i>
-                    </span>
+                    <div id="user" href="#" class="list-group-item active">
+                        <i class="fa fa-user icon-user"></i>
+                        <div class='input-group search-div'>
+                            <input class= "form-control search-input" type='text' class='form-control' placeholder='Search for a task...'>
+                        </div>
+                        <a class="search">
+                            <i class="fa fa-search icon-user" aria-hidden="true"></i>
+                        </a>
+                    </div>
 
                     <div id="0" class='category input-group'>
                         <span class="input-group-addon">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fa fa-list" aria-hidden="true"></i>
                         </span>
-                        <a href="#" class="list-group-item cat all-tasks" data-toggle="popover">
+                        <a href="#" class="list-group-item all-tasks" data-toggle="popover">
                             <span class="catName">Аll tasks</span>
-                            <span id="badge_0" class="badge">0</span>
+                            <span id="badge_0" class="badge">12</span>
                         </a>
                     </div>
+                    <div class='category input-group'>
+                            <span class="input-group-addon">
+                                <i class="fa fa-check-square" aria-hidden="true"></i>
+                            </span>
+                            <a href="#" class="list-group-item done-tasks" data-toggle="popover">
+                                <span class="catName">Done</span>
+                                <span id="badge_done" class="badge">0</span>
+                            </a>
+                        </div>
 
                     <div id="category-input-container" class="list-group-item">
                         <div class="input-group">
@@ -51,70 +67,40 @@
             </div>
 
             <div class="el col-sm-9 col-md-9">
-                <div class="row">
-                    <nav class="navbar navbar header">
-                        <div class="container-fluid">
-                            <ul class="active nav navbar-nav navbar-right">
-                                <li>
-                                    <a id="showRightPicker" href="#" data-toggle="popover">
-                                        <span class="glyphicon glyphicon-calendar"></span> Calendar</a>
-                                </li>
-                                <li>
-                                    <a id="points" href="#">
-                                        <span class="glyphicon glyphicon-piggy-bank"></span> Pts.</a>
-                                </li>
-                                <li>
-                                    <a id="description" href="#" data-toggle="modal" data-target="#descriptionForm">
-                                        <span class="glyphicon glyphicon-cog"></span> How to use</a>
-                                    <div id="descriptionForm" class="modal fade" role="dialog">
-                                        <div class="modal-dialog modal-sm">
-                                            <div class="modal-content">
-                                                <div class="modal-header description">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title"><b>How to use</b></h4>
-                                                </div>
-                                                <div class="modal-body description">
-                                                    <p><b>Object:</b> The object of the game is collect points as possible as you can, while
-                                                    performing your daily tasks.</p>
-                                                    <p><b>Equipment:</b> Each account consist of starting 50 bonus points.</p>
-                                                    <p><b>Setup:</b> Choose name, time, date and priority of the task, then click add task into
-                                                        some of categories. </p>
-                                                    <p><b>Playing the Game:</b> Once the task is choosen your purpose is to finished it before end of the day.
-                                                       If your task is completed before deadline you will win points based on priority(ps: you 
-                                                       will be able to receive more points if you finish each task with highest priority). Else these points will be substracted 
-                                                       from accounts points.
-                                                       <p><span class="glyphicon glyphicon-pushpin"></span> Please note: Negative points are possible.</p>     
-                                                    </p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default btn-prev">Prev</button>
-                                                        <button type="button" class="btn btn-default btn-next">Next</button>
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="descriptionForm2" class="modal fade" role="dialog">
+                    <div class="row">
+                        <nav class="navbar navbar header">
+                            <div class="container-fluid">
+                                <ul class="active nav navbar-nav navbar-right">
+                                    <li>
+                                        <a id="showRightPicker" href="#" data-toggle="popover">
+                                            <span class="glyphicon glyphicon-calendar"></span> Calendar</a>
+                                    </li>
+                                    <li>
+                                        <a id="points" href="#">
+                                            <span class="glyphicon glyphicon-piggy-bank"></span> Pts.</a>
+                                    </li>
+                                    <li>
+                                        <a id="description" href="#" data-toggle="modal" data-target="#descriptionForm">
+                                            <span class="glyphicon glyphicon-cog"></span> How to use</a>
+                                        <div id="descriptionForm" class="modal fade" role="dialog">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
                                                     <div class="modal-header description">
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title"><b>Playing the game</b></h4>
+                                                        <h4 class="modal-title"><b>How to use</b></h4>
                                                     </div>
                                                     <div class="modal-body description">
-                                                        <p>1. Choose some of categories on left sider bar and click on <b>"Add"</b> button.</p>
-                                                        <p>2. My day form
-                                                            <p>2.1 Choose <b>name</b> of category.</p>
-                                                            <p>2.2 Choose <b>due time</b>.</p>
-                                                            <p>2.3 Choose <b>due date</b>.</p>
-                                                            <p>2.4 Choose <b>priority</b>,</p>
-                                                       <p> then click on <b>"Add task"</b> button. </p>
+                                                        <p><b>Object:</b> The object of the game is collect points as possible as you can, while
+                                                        performing your daily tasks.</p>
+                                                        <p><b>Equipment:</b> Each account consist of starting 50 bonus points.</p>
+                                                        <p><b>Setup:</b> Choose name, time, date and priority of the task, then click add task into
+                                                            some of categories. </p>
+                                                        <p><b>Playing the Game:</b> Once the task is choosen your purpose is to finished it before end of the day.
+                                                           If your task is completed before deadline you will win points based on priority(ps: you 
+                                                           will be able to receive more points if you finish each task with highest priority). Else these points will be substracted 
+                                                           from accounts points.
+                                                           <p><span class="glyphicon glyphicon-pushpin"></span> Please note: Negative points are possible.</p>     
                                                         </p>
-                                                        <p>3. Choose button <b>"Calendar"</b> if you want to see all tasks for particular day.</p>
-                                                        <p>4. Check your current points on <b>"Pts."</b></p>
-                                                        <p>5. Use <b>"Sort"</b> for filtering tasks (alphabetically, due date, etc.)</p>
-                                                        <p>6. Use <b>"How to use"</b> button for more information.</p>
-                                                       
                                                     </div>
                                                     <div class="modal-footer">
                                                             <button type="button" class="btn btn-default btn-prev">Prev</button>
@@ -124,32 +110,68 @@
                                                 </div>
                                             </div>
                                         </div>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-sort"></span> Sort</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a id = "sort-alphabeth" class="ascending" href="#">
-                                                <span class="glyphicon glyphicon-sort-by-alphabet"></span> Alphabetically
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="glyphicon glyphicon-calendar"></span> Due Date</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="glyphicon glyphicon-ok-circle"></span> Completed</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                                        <div id="descriptionForm2" class="modal fade" role="dialog">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header description">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title"><b>Playing the game</b></h4>
+                                                        </div>
+                                                        <div class="modal-body description">
+                                                            <p>1. Choose <b>some of categories</b> on left sider bar and click on <b>"Add"</b> button.</p>
+                                                            <p>2. All tasks form
+                                                                <p>2.1 Choose <b>name</b> of category.</p>
+                                                                <p>2.2 Choose <b>due time</b>.</p>
+                                                                <p>2.3 Choose <b>due date</b>.</p>
+                                                                <p>2.4 Choose <b>priority</b>,</p>
+                                                           <p> then click on <b>"Add task"</b> button. </p>
+                                                            </p>
+                                                            <p>3. Choose button <b>"Calendar"</b> if you want to see all tasks for particular day.</p>
+                                                            <p>4. Check your current points on <b>"Pts."</b></p>
+                                                            <p>5. Use <b>"Sort"</b> for filtering tasks (alphabetically, due date, etc.)</p>
+                                                            <p>6. Use <b>"How to use"</b> button for more information.</p>
+                                                           
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default btn-prev">Prev</button>
+                                                                <button type="button" class="btn btn-default btn-next">Next</button>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="glyphicon glyphicon-sort"></span> Sort</a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a id="sort-alphabeth-all" class="ascending" href="#">
+                                                    <span class="glyphicon glyphicon-sort-by-alphabet"></span> All tasks
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a id="sort-alphabeth-in-cat" class="ascending" href="#" >
+                                                    <span class="glyphicon glyphicon-sort-by-alphabet"></span> In Category
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="glyphicon glyphicon-calendar"></span> Due Date
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="glyphicon glyphicon-ok-circle"></span> Completed</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
                 <div class="main col-sm-12 col-md-12">
-
+                    <p>Choose a category...</p>
                 </div>
             </div>
         </div>
@@ -171,7 +193,7 @@
                                     <label for="username">
                                         <span class="glyphicon glyphicon-user"></span> Username</label>
                                     <input id="username" type="text" class="form-control" name="username" id="username" placeholder="Email Address" required=""
-                                        autofocus=""/>
+                                        autofocus="" />
                                     <br>
                                     <label for="psw">
                                         <span class="glyphicon glyphicon-eye-open"></span> Password</label>
@@ -207,6 +229,7 @@
     <script src="js/script.js"></script>
 
     <script src="js/login.js"></script>
+    <script src="js/sort.js"></script>
     <script src="js/left-sidebar.js"></script>
     <script src="js/top-bar.js"></script>
     <!-- <script src="js/sort.js"></script> -->

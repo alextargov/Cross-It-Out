@@ -1,10 +1,9 @@
 /* eslint-disable */
 
 var visualize = (function () {
-    function visualizeLogic(tasks) {
+    function _visualizeLogic(tasks, isDoneCategory) {
         var counter = 0;
         var row = document.createElement('div');
-        row.className = 'row';
         var itemsToShow;
 
         if (window.innerWidth >= 992) {
@@ -20,7 +19,6 @@ var visualize = (function () {
         for (var i = 0; i < tasks.length; i += 1) {
             if (counter === itemsToShow) {
                 row = document.createElement('div');
-                row.className = 'row';
                 document.getElementsByClassName('main')[0].appendChild(row)
                 counter = 0;
             }
@@ -36,6 +34,7 @@ var visualize = (function () {
             var button = document.createElement('button');
             var deleteIcon = document.createElement('i');
             var icon = document.createElement('i');
+            var done = document.createElement('i');
 
             button.className = 'btn btn-primary show-more';
             thumbnail.className = 'thumbnail';
@@ -43,9 +42,11 @@ var visualize = (function () {
             divCol.className = 'col-sm-6 col-md-4 col-lg-4 col-xl-4';
             htmlTaskNameWrapper.className = 'taskNameWrapper';
             htmlTaskName.className = 'taskName';
-            icon.className = 'fa fa-check-circle';
+            icon.className = 'fa fa-minus-square';
+            done.className = 'fa fa-check-square done-icon';
             deleteIcon.className = 'fa fa-times delete-icon';
             deleteIcon.id = 'del-' + tasks[i].taskId;
+            done.id = 'done-' + tasks[i].taskId;
 
             htmlTaskName.style.wordWrap = 'normal';
             htmlTaskName.style.display = 'inline';
@@ -106,11 +107,14 @@ var visualize = (function () {
                 icon.style.color = '#0eb511';
             }
 
+            if (!isDoneCategory) {
+                caption.appendChild(deleteIcon);
+                caption.appendChild(done);
+            }
+
             footer.appendChild(icon);
             footer.appendChild(htmlTaskPriority);
-            footer.appendChild(deleteIcon);
-            htmlTaskNameWrapper.appendChild(htmlTaskName);
-            caption.appendChild(deleteIcon);
+            htmlTaskNameWrapper.appendChild(htmlTaskName);     
             row.appendChild(divCol);
             divCol.appendChild(thumbnail);
             thumbnail.appendChild(caption);
@@ -126,18 +130,36 @@ var visualize = (function () {
     function allTasks() {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasks();
-        visualizeLogic(tasks);
+        _visualizeLogic(tasks, true);
     }
 
     function tasksInCategory(id) {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasksInCategory(id);
-        visualizeLogic(tasks);
+        _visualizeLogic(tasks);
         return tasks;
     }
 
+    function allDoneTasks() {
+        document.getElementsByClassName('main')[0].innerHTML = '';
+        var tasks = database.getDone();
+        _visualizeLogic(tasks, true);
+    }
+
+    function categoryLength(id) {
+        return database.getAllTasksInCategory(id).length;
+    }
+
+    function customTasks(tasks) {
+        document.getElementsByClassName('main')[0].innerHTML = '';
+        _visualizeLogic(tasks);
+    }
+ 
     return {
         allTasks,
-        tasksInCategory
+        tasksInCategory,
+        categoryLength,
+        customTasks,
+        allDoneTasks
     }
 })();

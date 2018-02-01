@@ -13,7 +13,8 @@ $(document).on("click", "#login-button", function () {
     wrapper.getElementsByClassName("modal-content-heading")[0].innerHTML = "Welcome to X-it-out, " + userName + " !!!"
     wrapper.getElementsByClassName("modal-content-body")[0].innerText = "We're glad that you're with us, let's start :)";
     $('#greetings-modal').modal('show');
-    var userHTML = document.createElement('span');
+    var userHTML = document.createElement('p');
+    userHTML.className = 'username';
     userHTML.innerHTML = userName;
     document.getElementById('user').appendChild(userHTML);
 });

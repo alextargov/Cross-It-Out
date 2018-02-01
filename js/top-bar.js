@@ -1,4 +1,5 @@
 /****** Right side ******/
+/* eslint-disable */
 
 var selectedDate;
 
@@ -69,3 +70,7 @@ $("div[id^='descriptionForm']").each(function() {
         currentModal.closest("div[id^='descriptionForm']").prevAll("div[id^='descriptionForm']").first().modal('show');
     });
 });
+
+
+    sortAllTasks(true);
+
