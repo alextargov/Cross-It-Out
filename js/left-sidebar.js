@@ -82,7 +82,7 @@ $('#category-list').on("click", ".input-group-addon", function (el) {
     // --- adds a task in the information object ---
     $("#add-task").on("click", function (el) {
         var id = target.parentElement.id
-        var badge = document.getElementById('badge_' + id); 
+        var badge = document.getElementById('badge_' + id);
 
         var task = $('#input-task').val();
         var priority = $('#selectPriority').val();
@@ -121,40 +121,50 @@ $('#category-list').on("click", ".input-group-addon", function (el) {
     });
 });
 
-$('#category-list').on("click", ".cat", function (el) {
-    document.getElementsByClassName('main')[0].innerHTML = '';
-    var catId = el.currentTarget.parentElement.id;
-
-    if (el.currentTarget.classList.value.includes('all-tasks')) {
-        console.log('fffffffff');
-        visualize.allTasks();
-        return;
-    }
-
-    window.onresize = function(event) {
-        if (window.innerWidth >= 992) {
-            itemsToShow = 3;
-            visualize.tasksInCategory(catId);
-        } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
-            itemsToShow = 2;
-            visualize.tasksInCategory(catId);
-        } else if (window.innerWidth < 768) {
-            itemsToShow = 1;
-            visualize.tasksInCategory(catId);
+var updateBadges = function() {
+    var categories = database.getAllCategories();
+    $.each(categories, function(index, value) {
+        if (index === 0) {
+            return;
         }
-    };
-    
-    visualize.tasksInCategory(catId);
+        var length = value.length;
+        $('#badge_' + index).html(length);
+    });
+};
 
-
-    $('.main').on('click', '.delete-icon', function(deleteEl) {
+var deleteTask = function(el, isAll, catId) {
+    $('.main').on('click', '.delete-icon', function (deleteEl) {
         var buttonId = deleteEl.currentTarget.id;
         var taskId = buttonId.slice(4);
         database.deleteTask(taskId);
-        var currentCatLength = database.getAllTasksInCategory(catId).length;
-        el.currentTarget.childNodes[1].innerHTML = currentCatLength;
-        visualize.tasksInCategory(catId);
+        if (isAll) {
+            var currentCatLength = database.getAllTasks().length;
+            visualize.allTasks();
+            
+        } else {
+            var currentCatLength = database.getAllTasksInCategory(catId).length;
+            visualize.tasksInCategory(catId);
+            //el.currentTarget.children[1].innerHTML = currentCatLength;
+        }
+        
+        el.currentTarget.children[1].innerHTML = currentCatLength;
+        updateBadges();        
     });
+};
+
+$('#category-list').on("click", ".all-tasks", function (el) {
+    visualize.allTasks();
+    alert();
+    deleteTask(el, true)
+});
+
+$('#category-list').on("click", ".cat", function (el) {
+    document.getElementsByClassName('main')[0].innerHTML = '';
+    var catId = el.currentTarget.parentElement.id;
+    
+    visualize.tasksInCategory(catId);
+    sortCategory(catId);
+    deleteTask(el, false, catId);
 });
 
 // --- adds a category in the UI and in the information object ---

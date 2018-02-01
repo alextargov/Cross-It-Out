@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+$('.search-div').hide();
 // --- gets the info from the JSON file and appends it to the UI ---
 $.ajax({
     type: "GET",
@@ -20,7 +20,7 @@ $.ajax({
             var div = document.createElement("div");
 
             var nextId = +getLastCategory.id + 1;
-            //console.log(getLastCategory);
+
             database.addCategory(nextId);
 
             $.each(cat.tasks, function (index, value) {
@@ -28,9 +28,9 @@ $.ajax({
             });
 
             div.className = "category input-group";
-            addon.className = "input-group-addon";
+            addon.className = "input-group-addon input-group-addon-custom";
             icon.className += " fa fa-plus";
-            anchor.className += " cat list-group-item";
+            anchor.className += "cat list-group-item";
             badge.className += " badge";
             catName.className = "catName";
             anchor.setAttribute("href", "#");
@@ -47,11 +47,9 @@ $.ajax({
             anchor.appendChild(catName);
             anchor.appendChild(badge);
 
-            //anchor.innerHTML += " " + cat["category-name"];
             badge.innerHTML = taskLength;
             getLastCategory.after(div);
         }
-        visualize.allTasks();
     },
     error: function (result, err, errorThrown) {
         console.log(result);
