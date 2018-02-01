@@ -114,7 +114,6 @@ $('#category-list').on("click", ".input-group-addon-custom", function (el) {
         var container = $('.popover');
         var calendar = $('.ui-datepicker');
         var time = $('.ui-timepicker-wrapper');
-
         if (!container.is(e.target) && container.has(e.target).length === 0 &&
             !calendar.is(e.target) && calendar.has(e.target).length === 0 &&
             !time.is(e.target) && time.has(e.target).length === 0) {
@@ -134,62 +133,63 @@ var updateBadges = function () {
     });
 };
 
-var deleteTaskListener = function (el, isAll, catId) {
-    $('.main').on('click', '.delete-icon', function (deleteEl) {
-        var buttonId = deleteEl.currentTarget.id;
-        var taskId = buttonId.slice(4);
-        database.deleteTask(taskId);
-        if (isAll) {
-            var currentCatLength = database.getAllTasks().length;
-            visualize.allTasks();
-        } else {
-            var currentCatLength = database.getAllTasksInCategory(catId).length;
-            visualize.tasksInCategory(catId);
-        }
-        el.currentTarget.children[1].innerHTML = currentCatLength;
-        updateBadges();
-    });
-};
-
-var addToDoneListener = function(el, isAll, catId) {
-    $('.main').on('click', '.done-icon', function (doneElement) {
-        var buttonId = doneElement.currentTarget.id;
-        var taskId = buttonId.slice(5);
-        database.addToDone(taskId);
-        if (isAll) {
-            var currentCatLength = database.getAllTasks().length;
-            visualize.allTasks();
-        } else {
-            var currentCatLength = database.getAllTasksInCategory(catId).length;
-            visualize.tasksInCategory(catId);
-        }
-        el.currentTarget.children[1].innerHTML = currentCatLength;
-        updateBadges();
-        $('#badge_done').html(database.doneLength);
-    });
-}
+$('.main').on('click', '.delete-icon', function (deleteEl) {
+    var el = sharedState.categoryElement;
+    var isAll = sharedState.isAll;
+    var catId = sharedState.categoryId;
+    var buttonId = deleteEl.currentTarget.id;
+    var taskId = buttonId.slice(4);
+    database.deleteTask(taskId);
+    if (isAll) {
+        var currentCatLength = database.getAllTasks().length;
+        visualize.allTasks();
+    } else {
+        var currentCatLength = database.getAllTasksInCategory(catId).length;
+        visualize.tasksInCategory(catId);
+    }
+    el.currentTarget.children[1].innerHTML = currentCatLength;
+    updateBadges();
+});
 
 $('#category-list').on("click", ".all-tasks", function (el) {
     visualize.allTasks();
-    addToDoneListener(el, true);
-    deleteTaskListener(el, true);
+    sharedState.categoryElement = el;
+    sharedState.isAll = true;
     sortAllTasks(true);
 });
 
 $('#category-list').on("click", ".cat", function (el) {
-    
     document.getElementsByClassName('main')[0].innerHTML = '';
     var catId = el.currentTarget.parentElement.id;
     sharedState.categoryId = catId;
+    sharedState.categoryElement = el;
+    sharedState.isAll = false;
     visualize.tasksInCategory(catId);
+});
 
-    addToDoneListener(el, false, catId);
-    deleteTaskListener(el, false, catId);
+$('.main').on('click', '.done-icon', function (doneElement) {
+    console.log(sharedState.categoryId);
+    var el = sharedState.categoryElement;
+    var isAll = sharedState.isAll;
+    var catId = sharedState.categoryId;
+    var buttonId = doneElement.currentTarget.id;
+    var taskId = buttonId.slice(5);
+    database.addToDone(taskId);
+    if (isAll) {
+        var currentCatLength = database.getAllTasks().length;
+        visualize.allTasks();
+    } else {
+        var currentCatLength = database.getAllTasksInCategory(catId).length;
+        visualize.tasksInCategory(catId);
+    }
+    el.currentTarget.children[1].innerHTML = currentCatLength;
+    updateBadges();
+    $('#badge_done').html(database.doneLength);
 });
 
 // ==== sorting events ==== 
 
-$('#sort-alphabeth-in-cat').on('click', function() {
+$('#sort-alphabeth-in-cat').on('click', function () {
     var catId = sharedState.categoryId;
     console.log('clicked ' + catId);
     var $sort = $('#sort-alphabeth-in-cat');
