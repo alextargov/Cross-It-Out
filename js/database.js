@@ -137,6 +137,85 @@ var database = function () {
             return getAllTasksInCategory(id).sort(compareDecr);
         } 
     }
+
+    var getSortedByTime = function(isAscending) {
+
+         if (isAscending) {
+            getAllTasks().sort(function (a, b) {
+                return new Date('1970/01/01 ' + a.taskDueDate) - new Date('1970/01/01 ' + a.taskDueDate);
+              });
+        } else {
+            return getAllTasks().sort(compareDecr);
+        }
+
+      
+          
+        //   console.log(times);
+        // var compareIncr = function(a, b) {
+        //     var c = new Date('1970/01/01 ' + a.taskDueTime);
+        //     var d = new Date('1970/01/01 ' + b.taskDueTime);
+
+        //     if (c < d) {
+        //         return -1;
+        //     }
+        //     if (c > d) {
+        //         return 1;
+        //     }
+        //     return 0;
+        // }
+
+        // var compareDecr = function(b, a) {
+        //     var c = new Date('1970/01/01 ' + a.taskDueTime);
+        //     var d = new Date('1970/01/01 ' + b.taskDueTime);
+
+        //     if (c > d) {
+        //         return -1;
+        //     }
+        //     if (c > d) {
+        //         return 1;
+        //     }
+        //     return 0;
+        // }
+
+        // if (isAscending) {
+        //     return getAllTasks().sort(compareIncr);
+        // } else {
+        //     return getAllTasks().sort(compareDecr);
+        // } 
+    }
+
+    var getSortedByDueDate = function(isAscending) {
+        var compareIncr = function(a, b) {
+            var c = new Date(a.taskDueDate);
+            var d = new Date(b.taskDueDate);
+
+            if (c < d) {
+                return -1;
+            }
+            if (c > d) {
+                return 1;
+            }
+            return 0;
+        }
+
+        var compareDecr = function (b, a) {
+            var c = new Date(a.taskDueDate);
+            var d = new Date(b.taskDueDate);
+
+            if (c > d) {
+                return -1;
+            }
+            if (c < d) {
+                return 1;
+            }
+            return 0;
+        }
+        if (isAscending) {
+            return getAllTasks().sort(compareIncr);
+        } else {
+            return getAllTasks().sort(compareDecr);
+        } 
+    }
     
     var findTaskByDate = function(date) {
         var tasks = [];
@@ -149,57 +228,6 @@ var database = function () {
         return tasks;
     }
 
-    var getSortedAlphabetically = function(isAscending) {
-        var compareIncr = function (a, b) {
-            if (a.taskName < b.taskName) {
-                return -1;
-            } 
-            if (a.taskName > b.taskName) {
-                return 1;
-            }
-            return 0;
-        }
-        var compareDecr = function (b, a) {
-            if (a.taskName < b.taskName) {
-                return -1;
-            } 
-            if (a.taskName > b.taskName) {
-                return 1;
-            }
-            return 0;
-        }
-        if (isAscending) {
-            return getAllTasks().sort(compareIncr);
-        } else {
-            return getAllTasks().sort(compareDecr);
-        } 
-    };
-
-    var getSortedAlphabeticallyInCategory = function(id, isAscending) {
-        var compareIncr = function (a, b) {
-            if (a.taskName < b.taskName) {
-                return -1;
-            } 
-            if (a.taskName > b.taskName) {
-                return 1;
-            }
-            return 0;
-        }
-        var compareDecr = function (b, a) {
-            if (a.taskName < b.taskName) {
-                return -1;
-            } 
-            if (a.taskName > b.taskName) {
-                return 1;
-            }
-            return 0;
-        }
-        if (isAscending) {
-            return getAllTasksInCategory(id).sort(compareIncr);
-        } else {
-            return getAllTasksInCategory(id).sort(compareDecr);
-        } 
-    }
     return {
         tasksLength,
         addCategory,
@@ -211,6 +239,7 @@ var database = function () {
         getAllTasksInCategory,
         getSortedAlphabetically,
         getSortedAlphabeticallyInCategory,
+        getSortedByDueDate,
         addToDone,
         getDone,
         doneLength
