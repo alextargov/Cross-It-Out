@@ -138,6 +138,26 @@ var database = function () {
         } 
     }
 
+    var getSortedAlphabetically = function(isAscending) {
+        var compare = function (a, b) {
+            if (a.taskName < b.taskName) {
+                return -1;
+            } 
+            if (a.taskName > b.taskName) {
+                return 1;
+            }
+    
+            return 0;
+        }
+
+        if (isAscending) {
+            return getAllTasks().sort(compare);
+        } else {
+            return (getAllTasks().sort(compare)).reverse();
+        } 
+    };
+    
+
     return {
         tasksLength,
         addCategory,
@@ -153,7 +173,4 @@ var database = function () {
         getDone,
         doneLength
     }
-    // function sortAlphabetically() {
-
-    // }
 }();
