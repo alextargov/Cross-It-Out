@@ -1,4 +1,3 @@
-/****** Right side ******/
 /* eslint-disable */
 
 var selectedDate;
@@ -28,10 +27,6 @@ $(document).on('click', '#showRightPicker', function(el) {
     var interval = setInterval(function() {
         if ( $( "#rightPicker" ).val() !== '') {
             selectedDate = $( "#rightPicker" ).val();
-
-            // !!!!!!!! INVOKE HERE THE FUNCTION THAT GETS THE TASKS FROM THE CURRENT DATE !!!!!!!!
-            // E.X.: getTasksByDate(selectedDate);
-
             clearInterval(interval);
             $(".popover").popover("hide");
         }
@@ -46,7 +41,6 @@ $(document).mouseup(function (e) {
         !calendarRightSide.is(e.target) && calendarRightSide.has(e.target).length === 0) {
         $(containerRightSide).popover("hide");
     }
-    
 });
 
 /****** How-to-use / pop-up MODAL ******/
@@ -71,6 +65,5 @@ $("div[id^='descriptionForm']").each(function() {
     });
 });
 
-
-    sortAllTasks(true);
+sortAllTasks(true);
 

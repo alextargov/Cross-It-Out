@@ -18,6 +18,10 @@
     margin: 10px 0;
 }
 
+.font-bold {
+    font-weight: bold;
+}
+
 .navbar.header {
     min-height: 44px !important;
     background: #337ab7;
@@ -86,7 +90,8 @@
 }
 
 body {
-    background: #F7F7F7 !important;
+    background: #f7f5fa !important;
+    /* background: #F7F7F7 !important; */
 }
 
 .popover {
