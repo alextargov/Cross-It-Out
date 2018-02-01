@@ -37,6 +37,8 @@ var sortCategory = function(catId) {
         visualize.customTasks(result);
        // $('#sort-alphabeth-in-cat').off('click');
     });
+
+    
 }
 
 

@@ -130,7 +130,7 @@ var visualize = (function () {
     function allTasks() {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasks();
-        _visualizeLogic(tasks, true);
+        _visualizeLogic(tasks, false);
     }
 
     function tasksInCategory(id) {
