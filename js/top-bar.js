@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
     Using jQuery click method to show datepicker, take value from picked cell
     and store it into variable(selectedDate).
@@ -41,7 +42,7 @@ $(document).on('click', '#showRightPicker', function(el) {
             visualize.customTasks(result);
         }
     }, 3000);
-})
+});
 
 $(document).mouseup(function (e) {
     var containerRightSide = $('.popover.left');
@@ -79,4 +80,3 @@ $("div[id^='descriptionForm']").each(function() {
 });
 
 sortAllTasks(true);
-

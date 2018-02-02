@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 /*
     This function hide login form, get username's content and show HTML body content.
 */

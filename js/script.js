@@ -58,42 +58,34 @@ $.ajax({
     }
 });
 
-
-
-
 // !!! IMPORTANT - FOR SOME REASON THE CODE BELOW DOESN'T WORK FOR DYNAMICALLY CREATED ITEMS !!!!
 // $(".category").click(function (el) {
 //     console.log(el)
 // });
 
 
+var ONE_MINUTE = 60 * 1000;
+var counter = 0;
+function showTime() {
+  if (counter % 2 === 0) {
+    console.log(new Date())
+  }
+  counter += 1;
+}
 
+setInterval(showTime, ONE_MINUTE);
 
-
-// var ONE_MINUTE = 60 * 1000;
-
-// function showTime() {
-//   console.log(new Date());
-// }
-
-// setInterval(showTime, ONE_MINUTE);
-
-// function repeatEvery(func, interval) {
-//     // Check current time and calculate the delay until next interval
-//     var now = new Date(),
-//         delay = interval - now % interval;
-
-//     function start() {
-//         // Execute function now...
-//         func();
-      
-//         // ... and every interval
-//         setInterval(func, interval);
-//     }
- 
-
-//     // Delay execution until it's an even interval
-//     setTimeout(start, delay);
-// }
-
-// repeatEvery(showTime, ONE_MINUTE);
+function repeatEvery(func, interval) {
+    // Check current time and calculate the delay until next interval
+    var now = new Date(),
+        delay = interval - now % interval;
+    function start() {
+        // Execute function now...
+        func();
+        // ... and every interval
+        repeatEvery(func, interval);
+    }
+    // Delay execution until it's an even interval
+    setTimeout(start, delay);
+}
+repeatEvery(showTime, ONE_MINUTE);

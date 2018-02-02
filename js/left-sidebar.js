@@ -77,11 +77,13 @@ $('#category-list').on("click", ".input-group-addon-custom", function (el) {
     var date = new Date();
     var hours = date.getHours();
     var minutes;
-    if (date.getMinutes() < 10) {
+
+    if (date.getMinutes() < 10 ) {
         minutes = '0' + date.getMinutes();
     } else {
         minutes = date.getMinutes();
     }
+
     $('#timepicker').timepicker({
         'timeFormat': 'H:i',
         'step': 30,
@@ -89,6 +91,7 @@ $('#category-list').on("click", ".input-group-addon-custom", function (el) {
             ['00:00', hours + ':' + minutes],
         ],
     });
+
     $("#datepicker").datepicker({
         minDate: 0,
         maxDate: "+1M +10D",
