@@ -1,7 +1,11 @@
-/* eslint-disable */
+/*
+    Add class 'ascending' to sort button ('#sort-alphabeth-all') and remove it with 'descending'
+    after function (getSortedAlphabetically) is executed.
+    Based on boolean true and false into this getSortedAlphabetically() sorting order is changed.
+*/
 
-var sortAllTasks = function() {
-    $('#sort-alphabeth-all').on('click', function() {
+var sortAllTasks = function () {
+    $('#sort-alphabeth-all').on('click', function () {
         var $sort = $('#sort-alphabeth-all');
         var result;
         if ($sort.hasClass('ascending')) {
@@ -17,13 +21,11 @@ var sortAllTasks = function() {
     });
 }
 
-// Sorting by due date
+/*
+    Sorting by dateTime and visualize all tasks
+*/
 
-$('#sort-due-date').on('click', function() {
-        var $sortDueDate = $('#sort-due-date');
-        var result;
-        if ($sortDueDate.hasClass('ascending')) {
-            result = database.getSortedByDateAndTime(true);
-        }
-         visualize.customTasks(result);
-});
+($('#sort-due-date').on('click', function () {
+    var result = database.getSortedByDateAndTime();
+    visualize.customTasks(result);
+}))();
