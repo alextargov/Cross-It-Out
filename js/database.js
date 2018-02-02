@@ -2,7 +2,7 @@
         *** Database ***
 */
 
-var database = function() {
+var database = (function() {
 
     var _categories = [
         []
@@ -215,4 +215,4 @@ var database = function() {
         getSortedByDateAndTime,
         getSortedAlphabeticallyInCategory,
     }
-}();
+})();
