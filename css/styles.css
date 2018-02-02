@@ -27,9 +27,7 @@
     background: #337ab7;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    /* background: #76e */
     color: #FFF;
-    /* background: linear-gradient(-45deg,#ec5252 ,#6e1a52 ); */
 }
 
 .el {
@@ -94,7 +92,6 @@
 
 body {
     background: #f7f5fa !important;
-    /* background: #F7F7F7 !important; */
 }
 
 .popover {
@@ -204,14 +201,17 @@ body {
 
 .form-signin {
     max-width: 380px;
-    padding: 15px 35px 45px;
+    padding: 5px 50px 45px;
     margin: 0 auto;
     background-color: #fff;
 }
 
 .form-signin-heading,
 .checkbox {
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 }
 
 .form-signin-heading h2 {
@@ -240,6 +240,22 @@ input[type="password"] {
     margin-bottom: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.glyphicon-lock {
+    color: #337ab7;
+}
+
+.glyphicon-user {
+    color: #337ab7;
+}
+
+.glyphicon-eye-open {
+    color: #337ab7;
+}
+
+#loginButton {
+    color: #337ab7;
 }
 
 .loginmodal-container-header {
