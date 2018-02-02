@@ -35,8 +35,10 @@ $(document).on('click', '#showRightPicker', function(el) {
     var interval = setInterval(function() {
         if ( $( "#rightPicker" ).val() !== '') {
             selectedDate = $( "#rightPicker" ).val();
+            var result = database.findTaskByDate(selectedDate);
             clearInterval(interval);
             $(".popover").popover("hide");
+            visualize.customTasks(result);
         }
     }, 3000);
 })

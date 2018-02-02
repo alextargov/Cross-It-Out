@@ -191,9 +191,9 @@ var database = function() {
         var tasks = [];
         var allTasks = getAllTasks();
         for (let i = 0; i < allTasks.length; i++) {
-            if (allTasks[i].taskDueDate === date) {
+            if (allTasks[i].taskDueDate == date) {
                 tasks.push(allTasks[i]);
-            }
+            } 
         }
         return tasks;
     }
@@ -206,6 +206,7 @@ var database = function() {
         getDone,
         doneLength,
         deleteTask,
+        findTaskByDate,
         findTask,
         getAllTasks,
         getAllCategories,

@@ -25,7 +25,7 @@ var sortAllTasks = function () {
     Sorting by dateTime and visualize all tasks
 */
 
-($('#sort-due-date').on('click', function () {
+$('#sort-due-date').on('click', function () {
     var result = database.getSortedByDateAndTime();
     visualize.customTasks(result);
-}))();
+});
