@@ -45,6 +45,7 @@
     float: left;
     margin-left: 13px;
     display: none;
+    width: 70%;
 }
 
 .search-input {

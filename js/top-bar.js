@@ -3,7 +3,7 @@
 var selectedDate;
 
 $(document).on('click', '#showRightPicker', function(el) {
-   
+    var tasks;
     // console.log(el.target);
     $(el.target).popover({
         trigger: "manual",
@@ -31,7 +31,7 @@ $(document).on('click', '#showRightPicker', function(el) {
             $(".popover").popover("hide");
         }
     }, 3000);
-})
+});
 
 $(document).mouseup(function (e) {
     var containerRightSide = $('.popover.left');
@@ -66,4 +66,3 @@ $("div[id^='descriptionForm']").each(function() {
 });
 
 sortAllTasks(true);
-

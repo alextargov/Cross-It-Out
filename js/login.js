@@ -1,4 +1,5 @@
 /****** Greetings login value ******/
+/* eslint-disable */
 var userName = $('#username');
 userName.val('');
 

@@ -7,7 +7,8 @@ var database = function () {
     ];
     var done = [];
     var tasks;
-    var tasksLength = 0; // is zero because it will be increased after the ajax populates the database with json tasks.
+    // is zero because it will be increased after the ajax populates the database with json tasks.
+    var tasksLength = 0; 
     var doneLength = 0;
 
     function addCategory(id) {
@@ -188,7 +189,7 @@ var database = function () {
         var tasks = [];
         var allTasks = getAllTasks();
         for (let i = 0; i < allTasks.length; i++) {
-            if (allTasks[i].taskDueDate === date) {
+            if (allTasks[i].taskDueDate == date) {
                 tasks.push(allTasks[i]);
             }
         }
@@ -210,5 +211,6 @@ var database = function () {
         addToDone,
         getDone,
         doneLength,
+        findTaskByDate,
     }
 }();
