@@ -1,10 +1,13 @@
 /* eslint-disable */
-
+/*
+    Using jQuery click method to show datepicker, take value from picked cell
+    and store it into variable(selectedDate).
+*/
 var selectedDate;
-
 $(document).on('click', '#showRightPicker', function(el) {
-    var tasks;
-    // console.log(el.target);
+   
+    /*  Dynamically created div showing popover */
+    
     $(el.target).popover({
         trigger: "manual",
         placement: "left",
@@ -21,14 +24,22 @@ $(document).on('click', '#showRightPicker', function(el) {
             `,
     });
 
+    /*  Hidding element by clicking */
+
     $(el.target).popover("toggle");
+
+    // invoke datepicker
     $( "#rightPicker" ).datepicker();
-        
+    
+    /*  Set interval, take datepicker's value and hiding datepicker */
+
     var interval = setInterval(function() {
         if ( $( "#rightPicker" ).val() !== '') {
             selectedDate = $( "#rightPicker" ).val();
+            var result = database.findTaskByDate(selectedDate);
             clearInterval(interval);
             $(".popover").popover("hide");
+            visualize.customTasks(result);
         }
     }, 3000);
 });
@@ -43,7 +54,10 @@ $(document).mouseup(function (e) {
     }
 });
 
-/****** How-to-use / pop-up MODAL ******/
+/*
+    Show information from both modal forms and hide each one after next or prev buttons
+    are executed.
+*/
 
 $(document).on('click', '#modalDescription', function() {
     $('#modalDescriptionBlock').modal('show');

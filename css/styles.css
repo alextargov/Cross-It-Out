@@ -59,11 +59,13 @@
     opacity: 0.8;
 }
 
-.search-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.search-input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
     color: #FFF;
 }
 
-.search-input::-ms-input-placeholder { /* Microsoft Edge */
+.search-input::-ms-input-placeholder {
+    /* Microsoft Edge */
     color: #FFF;
 }
 

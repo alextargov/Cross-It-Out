@@ -1,13 +1,18 @@
-/* eslint-disable */
+ /* eslint-disable */
+ /*
+        *** Database ***
+*/
 
-var database = function () {
+var database = (function() {
 
     var _categories = [
         []
     ];
     var done = [];
     var tasks;
+
     // is zero because it will be increased after the ajax populates the database with json tasks.
+
     var tasksLength = 0; 
     var doneLength = 0;
 
@@ -59,6 +64,29 @@ var database = function () {
         }
     }
 
+    /*
+        Used by getSortedByDateAndTime() and getDone()
+    */
+
+    var compareFuncByDateAndTime = function (a, b) {
+
+        if (a.taskDueDate < b.taskDueDate)
+            return -1
+
+        if (a.taskDueDate > b.taskDueDate)
+            return 1
+
+        if (a.taskDueDate === b.taskDueDate) {
+            if (a.taskDueTime < b.taskDueTime)
+                return -1
+
+            if (a.taskDueTime > b.taskDueTime)
+                return 1
+
+            return 0
+        }
+    }
+
     function addToDone(id) {
         var task = deleteTask(id);
         done.push(task[0]);
@@ -67,7 +95,7 @@ var database = function () {
     }
 
     function getDone() {
-        return done;
+        return done.sort(compareFuncByDateAndTime);
     }
 
     function findTask(name) {
@@ -139,27 +167,7 @@ var database = function () {
         }
     }
 
-    var getSortedByDateAndTime = function (isAscending) {
-        var compareIncr = function (a, b) {
-            var endTime = "14:30";
-
-            if (a.taskDueDate < b.taskDueDate)
-                return -1
-
-            if (a.taskDueDate > b.taskDueDate)
-                return 1
-
-            if (a.taskDueDate === b.taskDueDate) {
-                if (a.taskDueTime < b.taskDueTime)
-                    return -1
-
-                if (a.taskDueTime > b.taskDueTime)
-                    return 1
-
-                return 0
-            }
-        }
-
+    var getSortedByDateAndTime = function () {
         var compareDecr = function (a, b) {
             if (a.taskDueDate > b.taskDueDate)
                 return -1
@@ -177,12 +185,7 @@ var database = function () {
                 return 0
             }
         }
-
-        if (isAscending) {
-            return getAllTasks().sort(compareIncr);
-        } else {
-            return getAllTasks().sort(compareDecr);
-        }
+        return getAllTasks().sort(compareFuncByDateAndTime);
     }
 
     var findTaskByDate = function (date) {
@@ -191,7 +194,7 @@ var database = function () {
         for (let i = 0; i < allTasks.length; i++) {
             if (allTasks[i].taskDueDate == date) {
                 tasks.push(allTasks[i]);
-            }
+            } 
         }
         return tasks;
     }
@@ -199,18 +202,18 @@ var database = function () {
     return {
         tasksLength,
         addCategory,
-        getAllCategories,
         addTask,
-        deleteTask,
-        findTask,
-        getAllTasks,
-        getAllTasksInCategory,
-        getSortedAlphabetically,
-        getSortedAlphabeticallyInCategory,
-        getSortedByDateAndTime,
         addToDone,
         getDone,
         doneLength,
+        deleteTask,
         findTaskByDate,
+        findTask,
+        getAllTasks,
+        getAllCategories,
+        getAllTasksInCategory,
+        getSortedAlphabetically,
+        getSortedByDateAndTime,
+        getSortedAlphabeticallyInCategory,
     }
-}();
+})();
