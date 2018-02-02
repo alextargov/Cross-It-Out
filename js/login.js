@@ -1,13 +1,10 @@
-/* eslint-disable */
-
-/****** Login MODAL ******/
-$('#loginModal').modal('show');
 /****** Greetings login value ******/
 var userName = $('#username');
 userName.val('');
 
 $(document).on("click", "#login-button", function () {
     $('#loginModal').modal('hide');
+    $('.container').show();
     userName = userName.val();
     var wrapper = document.getElementById("greeetings-content");
     wrapper.getElementsByClassName("modal-content-heading")[0].innerHTML = "Welcome to X-it-out, " + userName + " !!!"

@@ -12,33 +12,18 @@ var sortAllTasks = function() {
             result = database.getSortedAlphabetically(false);
             $sort.removeClass('descending');
             $sort.addClass('ascending');
-    
         }
         visualize.customTasks(result);
     });
 }
 
-var sortCategory = function(catId) {
-    // $('#sort-alphabeth-in-cat').on('click');
-    $('#sort-alphabeth-in-cat').on('click', function() {
-        console.log('clicked ' + catId);
-        var $sort = $('#sort-alphabeth-in-cat');
+// Sorting by due date
+
+$('#sort-due-date').on('click', function() {
+        var $sortDueDate = $('#sort-due-date');
         var result;
-        if ($sort.hasClass('ascending')) {
-            result = database.getSortedAlphabeticallyInCategory(catId, true);
-            $sort.removeClass('ascending');
-            $sort.addClass('descending');
-        } else {
-            result = database.getSortedAlphabeticallyInCategory(catId, false);
-            $sort.removeClass('descending');
-            $sort.addClass('ascending');
-    
+        if ($sortDueDate.hasClass('ascending')) {
+            result = database.getSortedByDateAndTime(true);
         }
-        visualize.customTasks(result);
-       // $('#sort-alphabeth-in-cat').off('click');
-    });
-
-    
-}
-
-
+         visualize.customTasks(result);
+});
