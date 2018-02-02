@@ -60,8 +60,8 @@ var database = function () {
 
     function addToDone(id) {
         var task = deleteTask(id);
-        console.log(task)
         done.push(task[0]);
+        this.tasksLength -= 1;
         this.doneLength += 1;
     }
 

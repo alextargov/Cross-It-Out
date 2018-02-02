@@ -1,8 +1,21 @@
 /* eslint-disable */
 var sharedState = {};
 
+var updateBadges = function () {
+    var categories = database.getAllCategories();
+    $.each(categories, function (index, value) {
+
+        // update All tasks
+        if (index === 0) {
+            $('#badge_' + index).html(database.tasksLength);
+            return;
+        }
+        var length = value.length;
+        $('#badge_' + index).html(length);
+    });
+};
+
 $('#category-list').on("click", ".input-group-addon-custom", function (el) {
-    var re = /\b[a-zA-Z0-9]\w+/g;
     var parent;
     var target;
     if (el.currentTarget.tagName === 'svg') {
@@ -15,45 +28,47 @@ $('#category-list').on("click", ".input-group-addon-custom", function (el) {
 
     var title = $('div#' + parent.id + ' span.catName')[0].innerHTML.trim();
 
+    // think it's xss vaulnerable
+    var popoverContent =  `
+    <div class="form-group">
+        <div class='input-group popover-task'>
+            <input id='input-task' type='text' class='form-control'>
+            <span class="input-group-addon popover-task-addon">
+                <i class="fa fa-th-list" aria-hidden="true"></i>
+            </span>
+        </div>
+        <div class='input-group date popover-task'>
+            <input type='text' class="form-control" id='datepicker' />
+            <span class="input-group-addon popover-task-addon">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+        </div>
+        <div class='input-group date popover-task'>
+            <input type='text' class="form-control" id='timepicker' />
+            <span class="input-group-addon popover-task-addon">
+                <i class="fa fa-clock-o"></i>
+            </span>
+        </div>
+        <div class="input-group popover-task">
+            <select class="form-control select-priority" id="selectPriority">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <span class="input-group-addon popover-task-addon">
+                <i class="fa fa-sort" aria-hidden="true"></i>
+            </span>
+        </div>                
+        <br>
+        <button class="btn btn-primary" id="add-task">Add task</button>
+    </div>
+    `;
     $('div#' + parent.id).popover({
         trigger: "manual",
         placement: "bottom",
         html: true,
         title: title,
-        content: `<!-- think it's xss vaulnerable -->
-            <div class="form-group">
-                <div class='input-group popover-task'>
-                    <input id='input-task' type='text' class='form-control'>
-                    <span class="input-group-addon popover-task-addon">
-                        <i class="fa fa-th-list" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class='input-group date popover-task'>
-                    <input type='text' class="form-control" id='timepicker' />
-                    <span class="input-group-addon popover-task-addon">
-                        <i class="fa fa-clock-o"></i>
-                    </span>
-                </div>
-                <div class='input-group date popover-task'>
-                    <input type='text' class="form-control" id='datepicker' />
-                    <span class="input-group-addon popover-task-addon">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="input-group popover-task">
-                    <select class="form-control select-priority" id="selectPriority">
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
-                    </select>
-                    <span class="input-group-addon popover-task-addon">
-                        <i class="fa fa-sort" aria-hidden="true"></i>
-                    </span>
-                </div>                
-                <br>
-                <button class="btn btn-primary" id="add-task">Add task</button>
-            </div>
-            `,
+        content: popoverContent,
     });
 
     $('div#' + parent.id).popover("toggle");
@@ -82,16 +97,15 @@ $('#category-list').on("click", ".input-group-addon-custom", function (el) {
 
     // --- adds a task in the information object ---
     $("#add-task").on("click", function (el) {
-        var id = target.parentElement.id
-        var badge = document.getElementById('badge_' + id);
-
+        var id = target.parentElement.id;
         var task = $('#input-task').val();
         var priority = $('#selectPriority').val();
         var time = $('#timepicker').val();
         var date = $('#datepicker').val();
         var allCurrentTasks = database.getAllTasks();
         var lastTaskId = allCurrentTasks[allCurrentTasks.length - 1].taskId;
-
+        console.log(task);
+        console.log(database.getAllCategories())
         if (task && priority && time && date) {
             var taskInformation = {
                 "taskName": task,
@@ -103,8 +117,8 @@ $('#category-list').on("click", ".input-group-addon-custom", function (el) {
             database.addTask(id, taskInformation);
             $('div#' + parent.id).popover("hide");
             var count = visualize.categoryLength(id);
-            console.log(count)
-            badge.innerHTML = count;
+
+            updateBadges();
         }
         visualize.tasksInCategory(id);
     });
@@ -121,17 +135,6 @@ $('#category-list').on("click", ".input-group-addon-custom", function (el) {
         }
     });
 });
-
-var updateBadges = function () {
-    var categories = database.getAllCategories();
-    $.each(categories, function (index, value) {
-        if (index === 0) {
-            return;
-        }
-        var length = value.length;
-        $('#badge_' + index).html(length);
-    });
-};
 
 $('.main').on('click', '.delete-icon', function (deleteEl) {
     var el = sharedState.categoryElement;
@@ -248,7 +251,7 @@ $(".add-category").click(function () {
 
         var nextId = +getLastCategory.id + 1;
         database.addCategory(nextId);
-        $(".category-input").val("");
+        $(".category-input").val("");        
     }
 });
 
