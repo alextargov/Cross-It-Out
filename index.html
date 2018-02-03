@@ -19,7 +19,7 @@
     <span>
         <i id="spinner" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
     </span>
-</div>
+</div>  
 
 <!-- Container Modal (Login form) -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -27,7 +27,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="loginmodal-container-header">
-                    <h2 class="form-signin-heading"><span class="glyphicon glyphicon-lock lock"></span> Login</h2>
+                    <h2 class="form-signin-heading font-bold login-header"><img class="logo" src="img/logo-monkey.png" alt="Missing logo"> Login</h2>
                 </div>
             </div>
             <div class="modal-body">
@@ -35,11 +35,11 @@
                     <div class="loginmodal-container">
                         <div class="wrapper">
                             <form class="form-signin" onSubmit="return false;">
-                                <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+                                <label for="username"><i class="fa fa-user login"></i> Username</label>
                                 <input id="username" type="text" class="form-control" name="username" id="username" 
                                 placeholder="Username" required="" autofocus=""/><br>
-                        
-                                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+
+                                <label for="psw"><i class="fa fa-lock login"></i> Password</label>
                                 <input type="password" class="form-control" id="psw" name="password" placeholder="Password"/>
 
                                 <button id="login-button" class="btn btn-lg btn-primary btn-block" type="submit">
@@ -90,8 +90,8 @@
                     </div>
 
                     <div id="0" class='category input-group'>
-                        <span class="input-group-addon">
-                            <i class="fa fa-list" aria-hidden="true"></i>
+                        <span id="sort-alphabeth-all" class="input-group-addon ascending">
+                            <i class="fa fa-sort" aria-hidden="true"></i>
                         </span>
                         <a href="#" class="list-group-item all-tasks" data-toggle="popover">
                             <span class="catName">Аll tasks</span>
@@ -128,15 +128,11 @@
                             <ul class="active nav navbar-nav navbar-right">
                                 <li>
                                     <a id="showRightPicker" href="#" data-toggle="popover">
-                                        <span class="glyphicon glyphicon-calendar"></span> Search by day</a>
-                                </li>
-                                <li>
-                                    <a id="points" href="#">
-                                        <span class="glyphicon glyphicon-piggy-bank"></span> Pts.</a>
+                                        <i class="fa fa-calendar" aria-hidden="true"></i> Search by day</a>
                                 </li>
                                 <li>
                                     <a id="description" href="#" data-toggle="modal" data-target="#descriptionForm">
-                                        <span class="glyphicon glyphicon-cog"></span> How to use</a>
+                                        <i class="fa fa-cog" aria-hidden="true"></i> How to use</a>
 
                                     <!-- Container (Modal-Description) -->
                                     <div id="descriptionForm" class="modal fade" role="dialog">
@@ -219,23 +215,27 @@
                                     </div>
                                 </li>
                                 <li>
+                                    <a id="points" href="#">
+                                        <i class="fa fa-balance-scale"></i> Pts: 120</a>
+                                </li>
+                                <li>
                                     <!-- Container (Dropdown-menu) -->
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-sort"></span> Sort</a>
+                                        <i class="fa fa-sort-desc" aria-hidden="true"></i> Sort</a>
                                     <ul class="dropdown-menu">
-                                        <li>
+                                        <!-- <li>
                                             <a id="sort-alphabeth-all" class="ascending" href="#">
                                                 <span class="glyphicon glyphicon-sort-by-attributes"></span> All tasks
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                             <a id="sort-alphabeth-in-cat" class="ascending" href="#">
-                                                <span class="glyphicon glyphicon-sort-by-alphabet"></span> Alphabetically in category
+                                                <i class="fa fa-sort-alpha-asc"></i> Alphabetically in category
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#" id="sort-due-date">
-                                                <span id="sort-due-date" class="glyphicon glyphicon-calendar"></span> Due Date
+                                                <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Due Date
                                             </a>
                                         </li>
                                     </ul>

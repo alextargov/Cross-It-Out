@@ -17,7 +17,7 @@ $(document).on('click', '#showRightPicker', function(el) {
                 <div class='input-group'>
                     <input id='rightPicker' type='text' class='form-control'>
                     <span class="input-group-addon">
-                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
                     </span>
                 </div>
             </div>

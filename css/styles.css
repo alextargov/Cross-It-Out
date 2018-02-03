@@ -25,6 +25,7 @@
 .navbar.header {
     min-height: 44px !important;
     background: #337ab7;
+    /* background-image: url("../img/logo-monkey.png"); */
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     color: #FFF;
@@ -39,11 +40,31 @@
     padding: 4px;
 }
 
+.logo {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 118px;
+    top: 3px;
+}
+
+.nav-logo {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: -462px;
+    top: 3.5px;
+}
+
+.login-header {
+    color: rgb(89, 81, 81);
+}
+
 .search-div {
     float: left;
     margin-left: 13px;
     display: none;
-    width: 70%;
+    width: 65%;
 }
 
 .search-input {
@@ -242,15 +263,11 @@ input[type="password"] {
     border-top-right-radius: 0;
 }
 
-.glyphicon-lock {
+.fa-lock.login {
     color: #337ab7;
 }
 
-.glyphicon-user {
-    color: #337ab7;
-}
-
-.glyphicon-eye-open {
+.fa-user.login {
     color: #337ab7;
 }
 
