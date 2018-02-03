@@ -75,11 +75,6 @@
         <div class="row">
             <!-- Container (Left Sidebar) -->
             <div class="el col-sm-3 col-md-3 sidebar">
-                <div class="mini-submenu">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </div>
                 <div id="category-list" class="el list-group">
                     <div id="user" href="#" class="list-group-item active">
                         <i class="fa fa-user icon-user"></i>
@@ -105,8 +100,18 @@
                             <i class="fa fa-check-square" aria-hidden="true"></i>
                         </span>
                         <a href="#" class="list-group-item done-tasks" data-toggle="popover">
-                            <span class="catName">Done</span>
+                            <span class="catName">Completed</span>
                             <span id="badge_done" class="badge">0</span>
+                        </a>
+                    </div>
+
+                    <div class='category input-group'>
+                        <span class="input-group-addon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </span>
+                        <a href="#" class="list-group-item incompleted-tasks" data-toggle="popover">
+                            <span class="catName">Incompleted</span>
+                            <span id="badge_incompleted" class="badge">0</span>
                         </a>
                     </div>
 
@@ -258,6 +263,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/preloader.js"></script>
     <script src="js/visualize-tasks.js"></script>
+    <script src="js/visualize-points.js"></script>
     <script src="js/script.js"></script>
     <script src="js/login.js"></script>
     <script src="js/sort.js"></script>

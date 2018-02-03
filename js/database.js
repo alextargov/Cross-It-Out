@@ -9,12 +9,14 @@ var database = (function() {
         []
     ];
     var done = [];
+    var incompleted = [];
     var tasks;
 
     // is zero because it will be increased after the ajax populates the database with json tasks.
 
     var tasksLength = 0; 
     var doneLength = 0;
+    var incompletedLength = 0;
 
     function addCategory(id) {
         _categories[id] = [];
@@ -56,10 +58,12 @@ var database = (function() {
             for (let j = 0; j < currentCat.length; j += 1) {
                 if (_categories[i][j].taskId == id) {
                     var spliced = _categories[i].splice(j, 1);
-                    this.tasksLength -= 1;
+                    // this.tasksLength -= 1;
+                    
+                    
+
                     return spliced;
                 }
-
             }
         }
     }
@@ -87,6 +91,13 @@ var database = (function() {
         }
     }
 
+    function addtoIncompleted(id) {
+        var task = deleteTask(id);
+        incompleted.push(task[0]);
+        this.tasksLength -= 1;
+        this.incompletedLength += 1;
+    }
+
     function addToDone(id) {
         var task = deleteTask(id);
         done.push(task[0]);
@@ -96,6 +107,11 @@ var database = (function() {
 
     function getDone() {
         return done.sort(compareFuncByDateAndTime);
+    }
+
+    function getIncompleted() {
+        console.log(incompleted);
+        return incompleted.sort(compareFuncByDateAndTime);
     }
 
     function findTask(name) {
@@ -204,9 +220,12 @@ var database = (function() {
         addCategory,
         addTask,
         addToDone,
+        addtoIncompleted,
         getDone,
         doneLength,
         deleteTask,
+        getIncompleted,
+        incompletedLength,
         findTaskByDate,
         findTask,
         getAllTasks,

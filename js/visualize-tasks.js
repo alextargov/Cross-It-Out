@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 var visualize = (function () {
-    function _visualizeLogic(tasks, isDoneCategory) {
+    function _visualizeLogic(tasks, isDoneCategory, isIncompleted) {
         var counter = 0;
         var row = document.createElement('div');
         var itemsToShow;
@@ -34,7 +34,7 @@ var visualize = (function () {
             var button = document.createElement('button');
             var deleteIcon = document.createElement('i');
             var icon = document.createElement('i');
-            var done = document.createElement('i');
+            var doneIcon = document.createElement('i');
 
             button.className = 'btn btn-primary show-more';
             thumbnail.className = 'thumbnail';
@@ -43,10 +43,10 @@ var visualize = (function () {
             htmlTaskNameWrapper.className = 'taskNameWrapper';
             htmlTaskName.className = 'taskName';
             icon.className = 'fa fa-minus-square';
-            done.className = 'fa fa-check-square done-icon';
+            doneIcon.className = 'fa fa-check-square done-icon';
             deleteIcon.className = 'fa fa-times delete-icon';
             deleteIcon.id = 'del-' + tasks[i].taskId;
-            done.id = 'done-' + tasks[i].taskId;
+            doneIcon.id = 'done-' + tasks[i].taskId;
 
             htmlTaskName.style.wordWrap = 'normal';
             htmlTaskName.style.display = 'inline';
@@ -107,9 +107,28 @@ var visualize = (function () {
                 icon.style.color = '#0eb511';
             }
 
+            if (isDoneCategory && !isIncompleted) {
+                deleteIcon.style.display = 'block';
+                deleteIcon.style.color = '#0eb511';
+                deleteIcon.className = 'fa fa-check-square delete-icon';
+                caption.appendChild(deleteIcon);
+                $(deleteIcon).off('click');
+            }
+
+            if (isIncompleted && !isDoneCategory) {
+                deleteIcon.style.display = 'block';
+                doneIcon.style.display = 'none';
+                deleteIcon.style.color = '#F00';
+                $(thumbnail).hover(function() {
+                   
+                    deleteIcon.style.color = '#F00';
+                })
+                caption.appendChild(deleteIcon);    
+            }
+
             if (!isDoneCategory) {
                 caption.appendChild(deleteIcon);
-                caption.appendChild(done);
+                caption.appendChild(doneIcon);
             }
 
             footer.appendChild(icon);
@@ -143,7 +162,13 @@ var visualize = (function () {
     function allDoneTasks() {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getDone();
-        _visualizeLogic(tasks, true);
+        _visualizeLogic(tasks, true, false);
+    }
+
+    function allIncompledTasks() {
+        document.getElementsByClassName('main')[0].innerHTML = '';
+        var tasks = database.getIncompleted();
+        _visualizeLogic(tasks, false, true);
     }
 
     function categoryLength(id) {
@@ -160,6 +185,7 @@ var visualize = (function () {
         tasksInCategory,
         categoryLength,
         customTasks,
-        allDoneTasks
+        allDoneTasks,
+        allIncompledTasks
     }
 })();
