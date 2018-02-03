@@ -25,11 +25,10 @@
 .navbar.header {
     min-height: 44px !important;
     background: #337ab7;
+    /* background-image: url("../img/logo-monkey.png"); */
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    /* background: #76e */
     color: #FFF;
-    /* background: linear-gradient(-45deg,#ec5252 ,#6e1a52 ); */
 }
 
 .el {
@@ -41,11 +40,31 @@
     padding: 4px;
 }
 
+.logo {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 118px;
+    top: 3px;
+}
+
+.nav-logo {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: -462px;
+    top: 3.5px;
+}
+
+.login-header {
+    color: rgb(89, 81, 81);
+}
+
 .search-div {
     float: left;
     margin-left: 13px;
     display: none;
-    width: 70%;
+    width: 65%;
 }
 
 .search-input {
@@ -94,7 +113,6 @@
 
 body {
     background: #f7f5fa !important;
-    /* background: #F7F7F7 !important; */
 }
 
 .popover {
@@ -204,14 +222,17 @@ body {
 
 .form-signin {
     max-width: 380px;
-    padding: 15px 35px 45px;
+    padding: 5px 50px 45px;
     margin: 0 auto;
     background-color: #fff;
 }
 
 .form-signin-heading,
 .checkbox {
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 }
 
 .form-signin-heading h2 {
@@ -240,6 +261,18 @@ input[type="password"] {
     margin-bottom: 20px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.fa-lock.login {
+    color: #337ab7;
+}
+
+.fa-user.login {
+    color: #337ab7;
+}
+
+#loginButton {
+    color: #337ab7;
 }
 
 .loginmodal-container-header {

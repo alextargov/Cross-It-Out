@@ -68,7 +68,7 @@ var ONE_MINUTE = 60 * 1000;
 var counter = 0;
 function showTime() {
   if (counter % 2 === 0) {
-    console.log(new Date())
+    //console.log(new Date())
   }
   counter += 1;
 }
