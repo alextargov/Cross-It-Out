@@ -7,8 +7,8 @@ functionalities which help him finish his duties in time.
 
 ## Team Members
 
-..* Zhitomir Nedyalkow
-..* Alexander Targov
++Zhitomir Nedyalkow
+...Alexander Targov
 
 ## App Description
 
@@ -39,19 +39,19 @@ The event of substraction will occur also if a task's deadline is not met.
 
 ## Libraries
 
-<dt> Bootstrap </dt>
+### Bootstrap 
 
-<dd> Bootstrap - is a free an open source toolkit for developing with HTML, CSS and JS. </dd>
+	Bootstrap - is a free an open source toolkit for developing with HTML, CSS and JS. </dd>
 
 ### JQuery
 
-#### JQuery - is a cross-platform JavaScript library designed to simplify the client-side.
+	JQuery - is a cross-platform JavaScript library designed to simplify the client-side.
 
 ### JQuery UI
 
-#### JQuery UI - is a collection of GUI widgets, animated visual effects and themes implemented with jQuery (a JavaScript library), CSS and HTML.
+	JQuery UI - is a collection of GUI widgets, animated visual effects and themes implemented with jQuery (a JavaScript library), CSS and HTML.
 
 ### Time picker
  
-#### Time picker is plugin for JQuery.
+	Time picker is plugin for JQuery.
 
