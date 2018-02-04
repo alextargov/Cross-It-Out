@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 var visualize = (function () {
-    function _visualizeLogic(tasks, isDoneCategory, isIncompleted) {
+    function _visualizeLogic(tasks, isDoneCategory, isIncompleted, inputSearch) {
         var counter = 0;
         var row = document.createElement('div');
         var itemsToShow;
@@ -93,8 +93,41 @@ var visualize = (function () {
                 html: true,
                 content: `<p style='padding: 0px; word-wrap: break-word'>${fullTaskname}</p>`,
             });
+           
+            if (inputSearch) {
+                var spanBold = document.createElement('span');
+                spanBold.style.fontWeight = 'bold';
+                spanBold.style.color = '#337ab7';
+                var startHTML = document.createElement('span');
+                var endHTML = document.createElement('span');
+                var tempName = taskname.toLowerCase();
+                inputSearch = inputSearch.toLowerCase();
+                var startIndex = tempName.indexOf(inputSearch);
+                if (startIndex !== -1) {
+                    if (startIndex !== 0) {
+                        var start = taskname.substr(0, startIndex);
+                    } else {
+                        var start = '';
+                    }
 
-            htmlTaskName.innerHTML = taskname;
+                    var end = taskname.substr(startIndex + inputSearch.length, taskname.length);
+                    startHTML.innerHTML = start;
+                    spanBold.innerHTML = taskname.substr(startIndex, inputSearch.length);
+                    endHTML.innerHTML = end;
+                    htmlTaskName.appendChild(startHTML);
+                    htmlTaskName.appendChild(spanBold);
+                    htmlTaskName.appendChild(endHTML);
+                    htmlTaskNameWrapper.appendChild(htmlTaskName)
+                } else {
+                    htmlTaskName.innerHTML = taskname;
+                    htmlTaskNameWrapper.appendChild(htmlTaskName); 
+                }
+                
+            } else {
+                htmlTaskName.innerHTML = taskname;
+                htmlTaskNameWrapper.appendChild(htmlTaskName);  
+            }
+
             htmlTaskDueDate.innerHTML = taskduedate;
             htmlTtaskDueTime.innerHTML = taskduetime;
             htmlTaskPriority.innerHTML = taskpriority;
@@ -133,7 +166,7 @@ var visualize = (function () {
 
             footer.appendChild(icon);
             footer.appendChild(htmlTaskPriority);
-            htmlTaskNameWrapper.appendChild(htmlTaskName);     
+               
             row.appendChild(divCol);
             divCol.appendChild(thumbnail);
             thumbnail.appendChild(caption);
@@ -149,13 +182,13 @@ var visualize = (function () {
     function allTasks() {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasks();
-        _visualizeLogic(tasks, false);
+        _visualizeLogic(tasks, false, false);
     }
 
     function tasksInCategory(id) {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasksInCategory(id);
-        _visualizeLogic(tasks);
+        _visualizeLogic(tasks, false, false);
         return tasks;
     }
 
@@ -175,9 +208,9 @@ var visualize = (function () {
         return database.getAllTasksInCategory(id).length;
     }
 
-    function customTasks(tasks) {
+    function customTasks(tasks, inputSearch) {
         document.getElementsByClassName('main')[0].innerHTML = '';
-        _visualizeLogic(tasks);
+        _visualizeLogic(tasks, false, false, inputSearch);
     }
  
     return {

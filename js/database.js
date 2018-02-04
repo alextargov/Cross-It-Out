@@ -124,7 +124,10 @@ var database = (function() {
             }
         }
 
-        return tasks;
+        return {
+            tasks, 
+            name
+        };
     }
 
     var getSortedAlphabetically = function (isAscending) {
@@ -183,7 +186,13 @@ var database = (function() {
         }
     }
 
-    var getSortedByDateAndTime = function () {
+    var getSortedByDateAndTime = function (catId) {
+        var tasks;
+        if (catId) {
+            tasks = getAllTasksInCategory(catId);
+        } else {
+            tasks = getAllTasks();
+        }
         var compareDecr = function (a, b) {
             if (a.taskDueDate > b.taskDueDate)
                 return -1
@@ -201,7 +210,7 @@ var database = (function() {
                 return 0
             }
         }
-        return getAllTasks().sort(compareFuncByDateAndTime);
+        return tasks.sort(compareFuncByDateAndTime);
     }
 
     var findTaskByDate = function (date) {

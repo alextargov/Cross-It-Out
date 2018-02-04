@@ -55,20 +55,23 @@ $.ajax({
         console.log(result);
         console.log(err);
         console.log(errorThrown);
+<<<<<<< HEAD
     }, beforeSend: function () {
+=======
+    }, beforeSend: function() {
 
-        /*
-             Preloader function: hides HTML body content, preloader and show login form.
-        */
+        
         var preLoader = (function() {
             $('#preloader').show();
             $('.container').hide();
             // Set timeout during loading html content
             setTimeout(function () {
+                $('.logo').show();
                 $('#preloader').hide();
-                $('.login-logo').show();
                 $('#loginModal').modal('show');
             }, 500);
         })();
     }
 });
+>>>>>>> 4185c2da860b0af26be419b6995c31f1dc23a520
+
