@@ -25,9 +25,6 @@
 .navbar.header {
     min-height: 44px !important;
     background: #337ab7;
-    /* background-image: url("../img/logo-monkey.png"); */
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
     color: #FFF;
 }
 
@@ -41,11 +38,17 @@
 }
 
 .logo {
+    width: 35px;
+    position: relative;
+    top: 4px;
+}
+
+.img-login-logo {
     width: 60px;
     height: 60px;
     position: absolute;
-    left: 118px;
-    top: 3px;
+    top: 10px;
+    left: 115px;
 }
 
 .nav-logo {
@@ -229,10 +232,8 @@ body {
 
 .form-signin-heading,
 .checkbox {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .form-signin-heading h2 {
@@ -275,6 +276,10 @@ input[type="password"] {
     color: #337ab7;
 }
 
+#loginModal .modal-dialog {
+    margin: 20px auto;
+}
+
 .loginmodal-container-header {
     text-align: center;
     font-size: 1.8em;
@@ -300,30 +305,37 @@ input[type="password"] {
 
 .greetings {
     text-align: center;
-    width: 600px !important;
-    height: 300px !important;
     margin-top: 100px;
 }
 
 #greeetings-content>.modal-content-heading {
-    font-size: 1.7em;
+    font-size: 1.3em;
     font-weight: bold;
     text-align: center;
-    margin-top: 30px;
+    margin: 15px auto;
 }
 
 #greeetings-content>.modal-content-body {
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-weight: bold;
     text-align: center;
-    margin-top: 50px;
+    margin: 15px auto;
+}
+
+#greetings-modal .logo {
+    width: 300px;
+    position: relative;
+}
+
+#greetings-modal .modal-smile {
+    color: #337ab7;
 }
 
 .btn-primary.confirm {
-    margin-top: 50px;
     width: 100px;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin: 15px auto;
 }
 
 .form-control {

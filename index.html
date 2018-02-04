@@ -19,7 +19,7 @@
     <span>
         <i id="spinner" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
     </span>
-</div>  
+</div>
 
 <!-- Container Modal (Login form) -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -27,7 +27,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="loginmodal-container-header">
-                    <h2 class="form-signin-heading font-bold login-header"><img class="logo" src="img/logo-monkey.png" alt="Missing logo"> Login</h2>
+                    <h2 class="form-signin-heading font-bold login-header">
+                        <img class="img-login-logo" src="img/logo-monkey.png" alt="Missing logo"> Login</h2>
                 </div>
             </div>
             <div class="modal-body">
@@ -35,13 +36,14 @@
                     <div class="loginmodal-container">
                         <div class="wrapper">
                             <form class="form-signin" onSubmit="return false;">
-                                <label for="username"><i class="fa fa-user login"></i> Username</label>
-                                <input id="username" type="text" class="form-control" name="username" id="username" 
-                                placeholder="Username" required="" autofocus=""/><br>
-
-                                <label for="psw"><i class="fa fa-lock login"></i> Password</label>
-                                <input type="password" class="form-control" id="psw" name="password" placeholder="Password"/>
-
+                                <label for="username">
+                                    <i class="fa fa-user login"></i> Username</label>
+                                <input id="username" type="text" class="form-control" name="username" id="username" placeholder="Username" required="" autofocus=""
+                                />
+                                <br>
+                                <label for="psw">
+                                    <i class="fa fa-lock login"></i> Password</label>
+                                <input type="password" class="form-control" id="psw" name="password" placeholder="Password" />
                                 <button id="login-button" class="btn btn-lg btn-primary btn-block" type="submit">
                                     <span class="glyphicon glyphicon-off"></span> Sign in</button>
                             </form>
@@ -61,6 +63,7 @@
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content greetings" id="greeetings-content">
+            <img class="logo" src="img/logo.png" alt="Missing logo">
             <p class="modal-content-heading"></p>
             <p class="modal-content-body"></p>
             <button type="button" id="btn_ok" class="btn btn-primary confirm">OK</button>
@@ -125,6 +128,7 @@
                     <!-- Container (Navbar) -->
                     <nav class="navbar navbar header">
                         <div class="container-fluid">
+                            <img class="logo" src="img/logo-monkey.png" alt="Missing logo">
                             <ul class="active nav navbar-nav navbar-right">
                                 <li>
                                     <a id="showRightPicker" href="#" data-toggle="popover">
@@ -216,18 +220,15 @@
                                 </li>
                                 <li>
                                     <a id="points" href="#">
-                                        <i class="fa fa-balance-scale"></i> Pts: 120</a>
+                                        <i class="fa fa-balance-scale"></i> Pts: 120
+                                    </a>
                                 </li>
                                 <li>
                                     <!-- Container (Dropdown-menu) -->
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-sort-desc" aria-hidden="true"></i> Sort</a>
+                                        <i class="fa fa-sort-desc" aria-hidden="true"></i> Sort
+                                    </a>
                                     <ul class="dropdown-menu">
-                                        <!-- <li>
-                                            <a id="sort-alphabeth-all" class="ascending" href="#">
-                                                <span class="glyphicon glyphicon-sort-by-attributes"></span> All tasks
-                                            </a>
-                                        </li> -->
                                         <li>
                                             <a id="sort-alphabeth-in-cat" class="ascending" href="#">
                                                 <i class="fa fa-sort-alpha-asc"></i> Alphabetically in category
