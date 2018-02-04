@@ -2,7 +2,7 @@
     "clients": [{
             "name": "John Doe",
             "categories": [{
-                    "category-name": "Tomorrow",
+                    "categoryName": "Tomorrow",
                     "tasks": [{
                             "taskName": "English lesson",
                             "taskDueTime": "14:30",
@@ -27,7 +27,7 @@
                     ]
                 },
                 {
-                    "category-name": "Personal",
+                    "categoryName": "Personal",
                     "tasks": [{
                             "taskName": "Making a breakfast",
                             "taskDueTime": "07:00",
@@ -60,7 +60,7 @@
                     ]
                 },
                 {
-                    "category-name": "Work",
+                    "categoryName": "Work",
                     "tasks": [{
                             "taskName": "Designing a new website",
                             "taskDueTime": "09:30",
@@ -78,7 +78,7 @@
                     ]
                 },
                 {
-                    "category-name": "Study",
+                    "categoryName": "Study",
                     "tasks": [{
                             "taskName": "Defending the project",
                             "taskDueTime": "10:30",
@@ -96,7 +96,7 @@
                     ]
                 },
                 {
-                    "category-name": "Hobbies",
+                    "categoryName": "Hobbies",
                     "tasks": [{
                         "taskName": "Playing football",
                         "taskDueTime": "19:30",
@@ -110,7 +110,7 @@
         {
             "name": "Jane Doe",
             "categories": [{
-                "category-name": "Birthday prep.",
+                "categoryName": "Birthday prep.",
                 "tasks": [{
                         "taskName": "task1",
                         "taskDueTime": "some time",

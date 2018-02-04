@@ -58,10 +58,6 @@ var database = (function() {
             for (let j = 0; j < currentCat.length; j += 1) {
                 if (_categories[i][j].taskId == id) {
                     var spliced = _categories[i].splice(j, 1);
-                    // this.tasksLength -= 1;
-                    
-                    
-
                     return spliced;
                 }
             }
@@ -91,9 +87,14 @@ var database = (function() {
         }
     }
 
-    function addtoIncompleted(id) {
-        var task = deleteTask(id);
-        incompleted.push(task[0]);
+    function addtoIncompleted(id, incomingTask) {
+        if (incomingTask) {
+            incompleted.push(incomingTask);
+            deleteTask(incomingTask.taskId)
+        } else {
+            var task = deleteTask(id);
+            incompleted.push(task[0]);
+        }
         this.tasksLength -= 1;
         this.incompletedLength += 1;
     }
@@ -110,7 +111,6 @@ var database = (function() {
     }
 
     function getIncompleted() {
-        console.log(incompleted);
         return incompleted.sort(compareFuncByDateAndTime);
     }
 
@@ -215,6 +215,43 @@ var database = (function() {
         return tasks;
     }
 
+    var checkDueTasks = function() {
+        var allTasks = getAllTasks();
+        var date = new Date();
+        var day = date.getDate().toString();
+        var month = (date.getMonth() + 1).toString();
+        var year = date.getFullYear().toString();
+        var hours = date.getHours().toString();
+        var minutes = date.getMinutes().toString();
+        var tasks = [];
+        if (day.length === 1) {
+            day = '0' + day;
+        }
+        if (month.length === 1) {
+            month = '0' + month;
+        }
+        if (hours.length === 1) {
+            hours = '0' + hours;
+        }
+        if (minutes.length === 1) {
+            minutes = '0' + minutes;
+        }
+
+        var currentDate = month + '/' + day +  '/' + year;
+        var currentTime = hours + ':' + minutes;
+
+        for (var i = 0; i < allTasks.length; i += 1) {
+            if (allTasks[i].taskDueDate ===  currentDate) {
+                if (allTasks[i].taskDueTime ===  currentTime) {
+                    tasks.push(allTasks[i]);
+                }
+            } else {
+                continue;
+            }
+        }
+        return tasks;
+    }
+
     return {
         tasksLength,
         addCategory,
@@ -234,5 +271,6 @@ var database = (function() {
         getSortedAlphabetically,
         getSortedByDateAndTime,
         getSortedAlphabeticallyInCategory,
+        checkDueTasks
     }
 })();

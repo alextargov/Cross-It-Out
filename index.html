@@ -12,22 +12,24 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
+
+    <script src="js/jquery.js"></script>
 </head>
 
 <!-- Container (Loader) -->
-<div id="preloader">
+<div id="preloader" style="display: none">
     <span>
         <i id="spinner" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
     </span>
 </div>  
 
 <!-- Container Modal (Login form) -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" style="display: none" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="loginmodal-container-header">
-                    <h2 class="form-signin-heading font-bold login-header"><img class="logo" src="img/logo-monkey.png" alt="Missing logo"> Login</h2>
+                    <h2 class="form-signin-heading font-bold login-header"><img class="logo" src="img/logo-monkey.png" style="display:none"alt="Missing logo"> Login</h2>
                 </div>
             </div>
             <div class="modal-body">
@@ -58,7 +60,7 @@
 
 <!-- Container Modal (Greetings) -->
 <div id="greetings-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+    aria-hidden="true" style="display: none">
     <div class="modal-dialog modal-lg">
         <div class="modal-content greetings" id="greeetings-content">
             <p class="modal-content-heading"></p>
@@ -69,10 +71,14 @@
 </div>
 
 <body>
+    
     <div class="container">
+
+        <script src="js/preloader.js"></script>  
+
         <div class="row">
             <!-- Container (Left Sidebar) -->
-            <div class="el col-sm-3 col-md-3 sidebar">
+            <div class="el col-sm-4 col-md-3 sidebar">
                 <div id="category-list" class="el list-group">
                     <div id="user" href="#" class="list-group-item active">
                         <i class="fa fa-user icon-user"></i>
@@ -124,7 +130,7 @@
                 </div>
             </div>
 
-            <div class="el col-sm-9 col-md-9">
+            <div class="el col-sm-8 col-md-9">
                 <div class="row">
 
                     <!-- Container (Navbar) -->
@@ -132,11 +138,11 @@
                         <div class="container-fluid">
                             <ul class="active nav navbar-nav navbar-right">
                                 <li>
-                                    <a id="showRightPicker" href="#" data-toggle="popover">
+                                    <a id="showRightPicker" data-toggle="popover">
                                         <i class="fa fa-calendar" aria-hidden="true"></i> Search by day</a>
                                 </li>
                                 <li>
-                                    <a id="description" href="#" data-toggle="modal" data-target="#descriptionForm">
+                                    <a id="description" data-toggle="modal" data-target="#descriptionForm">
                                         <i class="fa fa-cog" aria-hidden="true"></i> How to use</a>
 
                                     <!-- Container (Modal-Description) -->
@@ -220,12 +226,12 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <a id="points" href="#">
-                                        <i class="fa fa-balance-scale"></i> Pts: 120</a>
+                                    <a id="points">
+                                        <i class="fa fa-balance-scale"></i> Pts: <span id="calculated-points">0</span></a>
                                 </li>
                                 <li>
                                     <!-- Container (Dropdown-menu) -->
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-sort-desc" aria-hidden="true"></i> Sort</a>
                                     <ul class="dropdown-menu">
                                         <!-- <li>
@@ -258,14 +264,11 @@
     </div>
 
     <script src="js/database.js"></script>
-    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/preloader.js"></script>
     <script src="js/visualize-tasks.js"></script>
-    <script src="js/visualize-points.js"></script>
+    <script src="js/points-logic.js"></script>
     <script src="js/script.js"></script>
     <script src="js/login.js"></script>
-    <script src="js/sort.js"></script>
     <script src="js/left-sidebar.js"></script>
     <script src="js/top-bar.js"></script>
     <script src="js/sort.js"></script>

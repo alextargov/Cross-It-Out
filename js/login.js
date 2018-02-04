@@ -15,9 +15,8 @@
         $('#loginModal').modal('hide');
         $('.container').show();
 
-         // Getting username value
+        // Getting username value
         userName = userName.val();
-        console.log(userName);
         // Adding username value and appending information to '#username'
         var wrapper = document.getElementById("greeetings-content");
         wrapper.getElementsByClassName("modal-content-heading")[0].innerHTML = "Welcome to Check-it-out, " + userName + " !!!"

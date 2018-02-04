@@ -9,8 +9,8 @@ $(document).on('click', '#showRightPicker', function(el) {
     /*  Dynamically created div showing popover */
     
     $(el.target).popover({
-        trigger: "manual",
-        placement: "left",
+        trigger: 'manual',
+        placement: 'left',
         html: true,
         content: `<!-- think it's xss vaulnerable -->
             <div class="calendar-right-side form-group">
@@ -26,19 +26,19 @@ $(document).on('click', '#showRightPicker', function(el) {
 
     /*  Hidding element by clicking */
 
-    $(el.target).popover("toggle");
+    $(el.target).popover('toggle');
 
     // invoke datepicker
-    $( "#rightPicker" ).datepicker();
+    $( '#rightPicker' ).datepicker();
     
     /*  Set interval, take datepicker's value and hiding datepicker */
 
     var interval = setInterval(function() {
-        if ( $( "#rightPicker" ).val() !== '') {
-            selectedDate = $( "#rightPicker" ).val();
+        if ( $( '#rightPicker' ).val() !== '') {
+            selectedDate = $( '#rightPicker' ).val();
             var result = database.findTaskByDate(selectedDate);
             clearInterval(interval);
-            $(".popover").popover("hide");
+            $('.popover').popover('hide');
             visualize.customTasks(result);
         }
     }, 3000);
@@ -50,7 +50,7 @@ $(document).mouseup(function (e) {
 
     if (!containerRightSide.is(e.target) && containerRightSide.has(e.target).length === 0 &&
         !calendarRightSide.is(e.target) && calendarRightSide.has(e.target).length === 0) {
-        $(containerRightSide).popover("hide");
+        $(containerRightSide).popover('hide');
     }
 });
 
@@ -78,5 +78,3 @@ $("div[id^='descriptionForm']").each(function() {
         currentModal.closest("div[id^='descriptionForm']").prevAll("div[id^='descriptionForm']").first().modal('show');
     });
 });
-
-sortAllTasks(true);
