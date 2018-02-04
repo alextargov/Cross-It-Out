@@ -22,7 +22,7 @@
         userName = userName.val();
         // Adding username value and appending information to '#username'
         var wrapper = document.getElementById("greeetings-content");
-        wrapper.getElementsByClassName("modal-content-heading")[0].innerHTML = "Welcome to Check-it-out, " + userName + " !"
+        wrapper.getElementsByClassName("modal-content-heading")[0].innerHTML = "Welcome to Cross-it-out, " + userName + " !"
         wrapper.getElementsByClassName("modal-content-body")[0].innerText = "We're glad that you're with us, let's start ";
         wrapper.getElementsByClassName("modal-content-body")[0].appendChild(iSmile);
 

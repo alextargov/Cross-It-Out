@@ -55,25 +55,7 @@ $.ajax({
         console.log(result);
         console.log(err);
         console.log(errorThrown);
-<<<<<<< HEAD
     }, beforeSend: function () {
-=======
-    }, beforeSend: function() {
-
-        
-        var preLoader = (function() {
-            $('#preloader').show();
-            $('.container').hide();
-            // Set timeout during loading html content
-            setTimeout(function () {
-                $('.logo').show();
-                $('#preloader').hide();
-                $('#loginModal').modal('show');
-            }, 500);
-        })();
-    }
-});
->>>>>>> ef6bd9e06ce6e8d010044837a483be3ef49a6fc4
 
         /*
              Preloader function: hides HTML body content, preloader and show login form.
