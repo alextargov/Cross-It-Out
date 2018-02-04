@@ -75,9 +75,6 @@
 <body>
     
     <div class="container">
-
-        <script src="js/preloader.js"></script>  
-
         <div class="row">
             <!-- Container (Left Sidebar) -->
             <div class="el col-sm-4 col-md-3 sidebar">
@@ -93,7 +90,7 @@
                     </div>
 
                     <div id="0" class='category input-group'>
-                        <span id="sort-alphabeth-all" class="input-group-addon ascending">
+                        <span class="input-group-addon ascending sort-alphabeth-all">
                             <i class="fa fa-sort" aria-hidden="true"></i>
                         </span>
                         <a href="#" class="list-group-item all-tasks" data-toggle="popover">
@@ -234,18 +231,28 @@
                                 </li>
                                 <li>
                                     <!-- Container (Dropdown-menu) -->
-                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                    <a id="parent-toggle" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="fa fa-sort-desc" aria-hidden="true"></i> Sort</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a id="sort-alphabeth-in-cat" class="ascending" href="#">
-                                                <i class="fa fa-sort-alpha-asc"></i> Alphabetically in category
+                                    <ul id="parent-dropdown" class="dropdown-menu">
+                                        <li class="dropdown-submenu drop-alpha">
+                                            <a class="ascending" href="#">
+                                                <i class="fa fa-sort-alpha-asc"></i> Alphabetically
+                                                <span class="caret"></span>
                                             </a>
+                                            <ul class="dropdown-menu">
+                                                <li class="sub-option"><a id="sort-alphabeth-in-cat" href="#"><i class="fa fa-angle-right"></i> In category</a></li>
+                                                <li class="sub-option"><a class="sort-alphabeth-all" href="#"><i class="fa fa-angle-right"></i> All tasks</a></li>
+                                            </ul>
                                         </li>
-                                        <li>
-                                            <a href="#" id="sort-due-date">
+                                        <li class="dropdown-submenu drop-date">
+                                            <a href="#">
                                                 <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Due Date
+                                                <span class="caret"></span>
                                             </a>
+                                            <ul class="dropdown-menu">
+                                                <li class="sub-option"><a  href="#"><i class="fa fa-angle-right"></i> In category</a></li>
+                                                <li class="sub-option"><a id="sort-due-date" href="#"><i class="fa fa-angle-right"></i> All tasks</a></li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </li>
@@ -271,7 +278,7 @@
     <script src="js/top-bar.js"></script>
     <script src="js/sort.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/jquery.timepicker.js"></script>
+    <script type="text/javascript" src="js/jquery.timepicker.js"></script> 
 </body>
 
 </html>
