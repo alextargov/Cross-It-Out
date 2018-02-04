@@ -1,14 +1,16 @@
 # Cross-it-out
 
 The first team project @ Telerik Alpha Academy
-***
+
 X-it-out is a single-page-application that manages its user's tasks and provides different
 functionalities which help him finish his duties in time.
 
 ## Team Members
 
-+Zhitomir Nedyalkow
-...Alexander Targov
+| #        | Name      | Family     |       
+| -------- | --------- | ---------- |
+| 1.	   | Alexander | Targov	    |
+| 2.	   | Zhitomir  | Oreshenski |
 
 ## App Description
 
@@ -24,9 +26,9 @@ would be in grant assistance for our users.
 
 As we already said the app contains points implementation. When the user creates a task he
 selects its priority - *high*, *medium* or *low*. The points for each of them are as follows - 10,
-5, and 2. Of the user assumes that he completed his task, he should mark it as done. By doing
+5, and 2. If the user assumes that he completed his task, he should mark it as done. By doing
 so he would be rewarder with points. If he assumes that he cannot complete the task, he should 
-mark it as incompleted and points for this task will be substracted from the total amount. 
+mark it as incompleted and points for this task will be subtracted from the total amount. 
 The event of substraction will occur also if a task's deadline is not met.
 
 
@@ -41,7 +43,7 @@ The event of substraction will occur also if a task's deadline is not met.
 
 ### Bootstrap 
 
-	Bootstrap - is a free an open source toolkit for developing with HTML, CSS and JS. </dd>
+	Bootstrap - is a free an open source toolkit for developing with HTML, CSS and JS.
 
 ### JQuery
 
@@ -49,7 +51,8 @@ The event of substraction will occur also if a task's deadline is not met.
 
 ### JQuery UI
 
-	JQuery UI - is a collection of GUI widgets, animated visual effects and themes implemented with jQuery (a JavaScript library), CSS and HTML.
+	JQuery UI - is a collection of GUI widgets, animated visual effects and themes implemented 
+	with jQuery (a JavaScript library), CSS and HTML.
 
 ### Time picker
  
