@@ -5,9 +5,7 @@
 */
 
 $('.sort-alphabeth-all').on('click', function () {
-    console.log(this);
     var $sort = $(this);
-
     var result;
     if ($sort.hasClass('ascending')) {
         result = database.getSortedAlphabetically(true);
@@ -23,8 +21,7 @@ $('.sort-alphabeth-all').on('click', function () {
 
 $('#sort-alphabeth-in-cat').on('click', function () {
     var catId = sharedState.categoryId;
-    console.log(sharedState)
-    var $sort = $('#sort-alphabeth-in-cat');
+    var $sort = $(this);
     var result;
     if ($sort.hasClass('ascending')) {
         result = database.getSortedAlphabeticallyInCategory(catId, true);
@@ -39,9 +36,8 @@ $('#sort-alphabeth-in-cat').on('click', function () {
     visualize.customTasks(result);
 });
 
-
 /*
-    Sorting by dateTime and visualize all tasks
+    Sorting by dateTime and visualize
 */
 
 $('#sort-due-date').on('click', function () {
@@ -49,9 +45,8 @@ $('#sort-due-date').on('click', function () {
     visualize.customTasks(result);
 });
 
-$('.drop-alpha a').on("click", function (e) {
-    $('.drop-date ul').hide();
-    $(this).next('ul').toggle();
-    e.stopPropagation();
-    e.preventDefault();
+$('#sort-due-date-in-cat').on('click', function () {
+    var catId = sharedState.categoryId;
+    var result = database.getSortedByDateAndTime(catId);
+    visualize.customTasks(result);
 });

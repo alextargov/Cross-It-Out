@@ -87,6 +87,13 @@ $('.drop-date a').on("click", function (e) {
     e.preventDefault();
 });
 
+$('.drop-alpha a').on("click", function (e) {
+    $('.drop-date ul').hide();
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+});
+
 $('.sub-option a').on('click', function () {
     $('#parent-dropdown').toggle();
     $('.drop-alpha ul').hide();

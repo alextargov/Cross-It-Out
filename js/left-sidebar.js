@@ -10,8 +10,10 @@ $('.search').on('click', function () {
 
 $('.search-input').on('keyup', function () {
     var value = $(this).val().toLowerCase();
-    var tasks = database.findTask(value);
-    visualize.customTasks(tasks);
+    var result = database.findTask(value)
+    var tasks = result.tasks;
+    var searchInput = result.name;
+    visualize.customTasks(tasks, searchInput);
 });
 
 var updateBadges = function () {
