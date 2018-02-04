@@ -145,7 +145,7 @@ $('.main').on('click', '.delete-icon', function (deleteEl) {
     var catId = sharedState.categoryId;
     var buttonId = deleteEl.currentTarget.id;
     var taskId = buttonId.slice(4);
-    database.deleteTask(taskId);
+    database.addtoIncompleted(taskId);
     if (isAll) {
         var currentCatLength = database.getAllTasks().length;
         visualize.allTasks();
@@ -155,6 +155,11 @@ $('.main').on('click', '.delete-icon', function (deleteEl) {
     }
     el.currentTarget.children[1].innerHTML = currentCatLength;
     updateBadges();
+    $('#badge_incompleted').html(database.incompletedLength);
+
+    var incompletedSum = calculatePoints().incompletedSum;
+    var doneSum = calculatePoints().doneSum;
+    var pointsResult = doneSum + incompletedSum;
 });
 
 $('#category-list').on("click", ".all-tasks", function (el) {
@@ -191,13 +196,16 @@ $('.main').on('click', '.done-icon', function (doneElement) {
     el.currentTarget.children[1].innerHTML = currentCatLength;
     updateBadges();
     $('#badge_done').html(database.doneLength);
+
+    var incompletedSum = calculatePoints().incompletedSum;
+    var doneSum = calculatePoints().doneSum;
+    var pointsResult = doneSum + incompletedSum;
 });
 
 // ==== sorting events ==== 
 
 $('#sort-alphabeth-in-cat').on('click', function () {
     var catId = sharedState.categoryId;
-    console.log('clicked ' + catId);
     var $sort = $('#sort-alphabeth-in-cat');
     var result;
     if ($sort.hasClass('ascending')) {
@@ -215,6 +223,9 @@ $('#sort-alphabeth-in-cat').on('click', function () {
 
 $('#category-list').on("click", ".done-tasks", function (el) {
     visualize.allDoneTasks();
+});
+$('#category-list').on("click", ".incompleted-tasks", function (el) {
+    visualize.allIncompledTasks();
 });
 
 // --- adds a category in the UI and in the information object ---

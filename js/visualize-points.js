@@ -1,3 +1,42 @@
+/* eslint-disable */
+
+var calculatePoints = function () {
+    var done = database.getDone();
+    var incompleted = database.getIncompleted();
+    var doneSum = 0;
+    var incompletedSum = 0;
+    var low = 2;
+    var medium = 5;
+    var high = 10;
+
+    for (var i = 0; i < done.length; i += 1) {
+        var priority = done[i].taskPriority;
+        if (priority === 'low') {
+            doneSum += low;
+        } else if (priority === 'medium') {
+            doneSum += medium;
+        } else if (priority === 'high') {
+            doneSum += high;
+        }
+    }
+
+    for (var i = 0; i < incompleted.length; i += 1) {
+        var priority = incompleted[i].taskPriority;
+        if (priority === 'low') {
+            incompletedSum += low;
+        } else if (priority === 'medium') {
+            incompletedSum += medium;
+        } else if (priority === 'high') {
+            incompletedSum += high;
+        }
+    }
+
+    return {
+        doneSum,
+        incompletedSum
+    }
+}
+
 // var ONE_MINUTE = 60 * 1000;
 
 // function showTime() {

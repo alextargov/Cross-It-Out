@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 $('.search-div').hide();
 // --- gets the info from the JSON file and appends it to the UI ---
 $.ajax({
