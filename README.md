@@ -1,13 +1,14 @@
 # Cross-it-out
-The first team project @ Telerik Alpha Academy
 
+The first team project @ Telerik Alpha Academy
+***
 X-it-out is a single-page-application that manages its user's tasks and provides different
 functionalities which help him finish his duties in time.
 
 ## Team Members
 
- Zhitomir Nedyalkow
- Alexander Targov
+..* Zhitomir Nedyalkow
+..* Alexander Targov
 
 ## App Description
 
@@ -22,18 +23,25 @@ would be in grant assistance for our users.
 ## Rules
 
 As we already said the app contains points implementation. When the user creates a task he
-selects its priority - high, medium or low. The points for each of them are as follows - 10,
+selects its priority - *high*, *medium* or *low*. The points for each of them are as follows - 10,
 5, and 2. Of the user assumes that he completed his task, he should mark it as done. By doing
 so he would be rewarder with points. If he assumes that he cannot complete the task, he should 
 mark it as incompleted and points for this task will be substracted from the total amount. 
 The event of substraction will occur also if a task's deadline is not met.
 
 
+| Priority | Points |
+| -------- | ------ |
+| low	   | 2	    |
+| medium   | 5	    |
+| height   | 10	    |
+
+
 ## Libraries
 
-### Bootstrap
+<dt> Bootstrap </dt>
 
-#### Bootstrap - is a free an open source toolkit for developing with HTML, CSS and JS.
+<dd> Bootstrap - is a free an open source toolkit for developing with HTML, CSS and JS. </dd>
 
 ### JQuery
 
