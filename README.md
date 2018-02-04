@@ -6,8 +6,8 @@ functionalities which help him finish his duties in time.
 
 ## Team Members
 
-### Zhitomir Nedyalkow
-### Alexander Targov
+ Zhitomir Nedyalkow
+ Alexander Targov
 
 ## App Description
 
