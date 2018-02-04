@@ -5,8 +5,9 @@ X-it-out is a single-page-application that manages its user's tasks and provides
 functionalities which help him finish his duties in time.
 
 ## Team Members
-	### Zhitomir Nedyalkow
-	### Alexander Targov
+
+### Zhitomir Nedyalkow
+### Alexander Targov
 
 ## App Description
 
@@ -40,10 +41,9 @@ The event of substraction will occur also if a task's deadline is not met.
 
 ### JQuery UI
 
-#### JQuery UI - is a collection of GUI widgets, animated visual effects and themes implemented 
-with jQuery (a JavaScript library), CSS and HTML.
+#### JQuery UI - is a collection of GUI widgets, animated visual effects and themes implemented with jQuery (a JavaScript library), CSS and HTML.
 
 ### Time picker
  
-#####Time picker is plugin for JQuery.
+#### Time picker is plugin for JQuery.
 

@@ -55,12 +55,8 @@ $.ajax({
         console.log(result);
         console.log(err);
         console.log(errorThrown);
-<<<<<<< HEAD
-    }, beforeSend: function () {
-=======
-    }, beforeSend: function() {
 
-        
+    }, beforeSend: function() {    
         var preLoader = (function() {
             $('#preloader').show();
             $('.container').hide();
@@ -73,5 +69,4 @@ $.ajax({
         })();
     }
 });
->>>>>>> 4185c2da860b0af26be419b6995c31f1dc23a520
 
