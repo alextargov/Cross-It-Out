@@ -32,6 +32,10 @@ a.dropdown-toggle {
     color: #FFF;
 }
 
+.navbar.header ul.navbar-right li a {
+    cursor: pointer;
+}
+
 .el {
     border-radius: 4px;
 }
@@ -143,7 +147,7 @@ body {
     background: #e3e3e3;
 }
 
-.input-group-addon i {
+.input-group-addon i, #parent-dropdown i {
     color: #337ab7;
 }
 
@@ -186,6 +190,17 @@ body {
 
 .caption {
     margin-top: 20px;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    position: absolute;
+    top: 40px;
+    left: 0 !important;
+    right: 0 !important;
 }
 
 .delete-icon,
