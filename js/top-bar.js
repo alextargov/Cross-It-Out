@@ -78,3 +78,40 @@ $("div[id^='descriptionForm']").each(function() {
         currentModal.closest("div[id^='descriptionForm']").prevAll("div[id^='descriptionForm']").first().modal('show');
     });
 });
+
+// controlling navbar dropdowns
+$('.drop-date a').on("click", function (e) {
+    $('.drop-alpha ul').hide();
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+});
+
+$('.sub-option a').on('click', function () {
+    $('#parent-dropdown').toggle();
+    $('.drop-alpha ul').hide();
+    $('.drop-date ul').hide();
+});
+
+$('#parent-toggle').on('click', function () {
+    $('#parent-dropdown').toggle();
+});
+
+$(document).mouseup(function (e) {
+    var container1 = $('.drop-alpha a');
+    var container2 = $('.drop-date a');
+    if (!container1.is(e.target) && container1.has(e.target).length === 0 &&
+        !container2.is(e.target) && container2.has(e.target).length === 0) {
+        $('.drop-alpha ul').hide();
+        $('.drop-date ul').hide();
+    }
+});
+$(document).mouseup(function (e) {
+    var container = $('#parent-dropdown');
+
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        container.hide();
+    }
+});
+
+
