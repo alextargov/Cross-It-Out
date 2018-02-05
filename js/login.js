@@ -1,6 +1,9 @@
 /* eslint-disable */
-/*
-    This function hide login form, get username's content and show HTML body content.
+
+/**
+  * @desc hides login form, get username's value and show HTML <body> content.
+  * @param string wrapper - element that contains displayed message
+  * @return 
 */
 
 (function () {

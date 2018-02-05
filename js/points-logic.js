@@ -1,4 +1,9 @@
 /* eslint-disable */
+/**
+     * @description Get completed and incompleted tasks and calculate their sum based on different priorities.
+     * @param {Object[]} 
+     * @returns {number} doneSum, incompletedSum
+*/
 
 var calculatePoints = function () {
     var done = database.getDone();
