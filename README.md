@@ -18,7 +18,7 @@ functionalities which help him finish his duties in time.
 
 X-it-out is a simple JavaScript single-page application that helps users to manage their
 daily chores and tasks. The user chooses his tasks priority. Based on them the user gains
-or loses points. That stimulates him to accomplish his duties in time. Doing so he would
+or loses points. That stimulates him to accomplish his duties in time.By doing so he would
 be more productive and better organized.
 In order to be more helpful, we implemented some algorithms - sorting tasks either by
 name or by due date, searching by name or selected date. We think that functionalities
