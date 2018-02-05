@@ -2,8 +2,6 @@
 
 The first team project @ Telerik Alpha Academy
 
-[logo]: E:\JS-Alpha\To-Do app\img\logo.png "Logo X-it-out"
-
 X-it-out is a single-page-application that manages its user's tasks and provides different
 functionalities which help him finish his duties in time.
 

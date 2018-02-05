@@ -1,8 +1,10 @@
 /* eslint-disable */
-/*
-    Add class 'ascending' to sort button ('#sort-alphabeth-all') and remove it with 'descending'
-    after function (getSortedAlphabetically) is executed.
-    Based on boolean true and false into this getSortedAlphabetically() sorting order is changed.
+
+/**
+  * @desc By clicking $('.sort-alphabeth-all') execute sorting in increasing or decreasing order. 
+  * By so class 'ascending' in sort button is changed with 'descending'.
+  * @param bool - true or false in getSortedAlphabetically() or getSortedAlphabeticallyInCategory(catId).
+  * @return visualize.customTasks().
 */
 
 (function () {
