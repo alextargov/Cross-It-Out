@@ -74,6 +74,7 @@ setInterval(showTime, ONE_MINUTE);
 function repeatEvery(func, interval) {
     var now = new Date();
     var delay = interval - now % interval;
+
     function start() {
         func();
         repeatEvery(func, interval);

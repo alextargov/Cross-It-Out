@@ -1,9 +1,9 @@
- /* eslint-disable */
- /*
-        *** Database ***
-*/
+/* eslint-disable */
+/*
+ *** Database ***
+ */
 
-var database = (function() {
+var database = (function () {
 
     var _categories = [
         []
@@ -14,7 +14,7 @@ var database = (function() {
 
     // is zero because it will be increased after the ajax populates the database with json tasks.
 
-    var tasksLength = 0; 
+    var tasksLength = 0;
     var doneLength = 0;
     var incompletedLength = 0;
 
@@ -34,7 +34,10 @@ var database = (function() {
     function getAllTasksInCategory(id) {
         return _categories[id];
     }
-
+    /**
+     * @description Get all tasks and returns them
+     * @returns {Object[]}
+     */
     function getAllTasks() {
         var tasks = [];
         for (let i = 0; i < _categories.length; i += 1) {
@@ -50,11 +53,14 @@ var database = (function() {
 
         return tasks;
     }
-
+    /**
+     * @description Finds a task by given id and deletes it out.
+     * @param {number} id
+     * @returns {Object[]}
+     */
     function deleteTask(id) {
         for (let i = 0; i < _categories.length; i += 1) {
             var currentCat = _categories[i];
-
             for (let j = 0; j < currentCat.length; j += 1) {
                 if (_categories[i][j].taskId == id) {
                     var spliced = _categories[i].splice(j, 1);
@@ -67,26 +73,35 @@ var database = (function() {
     /*
         Used by getSortedByDateAndTime() and getDone()
     */
+    var _compareFuncByDateAndTime = function (a, b) {
+        if (a.taskDueDate < b.taskDueDate) {
+            return -1;
+        }
 
-    var compareFuncByDateAndTime = function (a, b) {
-
-        if (a.taskDueDate < b.taskDueDate)
-            return -1
-
-        if (a.taskDueDate > b.taskDueDate)
-            return 1
+        if (a.taskDueDate > b.taskDueDate) {
+            return 1;
+        }
 
         if (a.taskDueDate === b.taskDueDate) {
-            if (a.taskDueTime < b.taskDueTime)
-                return -1
-
-            if (a.taskDueTime > b.taskDueTime)
-                return 1
+            if (a.taskDueTime < b.taskDueTime) {
+                return -1;
+            }
+            if (a.taskDueTime > b.taskDueTime) {
+                return 1;
+            }
 
             return 0
         }
     }
-
+    /**
+     * @description Adds a task to the incompleted array.
+     * @description  If an id is provided, the task is deleted and pushed to the array
+     * @description If a task is provided, it is pushed to the array and deleted.
+     * @description All active tasks' length is decremented. All incopmleted tasks' length is incremented
+     * @param {number} id 
+     * @param {Object} incomingTask 
+     * @returns {void}
+     */
     function addtoIncompleted(id, incomingTask) {
         if (incomingTask) {
             incompleted.push(incomingTask);
@@ -98,7 +113,12 @@ var database = (function() {
         this.tasksLength -= 1;
         this.incompletedLength += 1;
     }
-
+    /**
+     * @description Deletes a task by given id and adds it to the done array. 
+     * @description All active tasks' length is decremented. All done tasks' length is incremented
+     * @param {number} id 
+     * @returns {void}
+     */
     function addToDone(id) {
         var task = deleteTask(id);
         done.push(task[0]);
@@ -107,13 +127,18 @@ var database = (function() {
     }
 
     function getDone() {
-        return done.sort(compareFuncByDateAndTime);
+        return done.sort(_compareFuncByDateAndTime);
     }
 
     function getIncompleted() {
-        return incompleted.sort(compareFuncByDateAndTime);
+        return incompleted.sort(_compareFuncByDateAndTime);
     }
 
+    /**
+     * @description Finds a task by given name and returns and array of tasks and the given name
+     * @param {string} name 
+     * @returns {Object}
+     */
     function findTask(name) {
         var tasks = [];
         var allTasks = getAllTasks();
@@ -123,13 +148,16 @@ var database = (function() {
                 tasks.push(allTasks[i]);
             }
         }
-
         return {
-            tasks, 
+            tasks,
             name
         };
     }
-
+    /**
+     * @description Sorts all tasks alphabetically and returns an array of objects
+     * @param {boolean} isAscending 
+     * @returns {Object[]}
+     */
     var getSortedAlphabetically = function (isAscending) {
         var compareIncr = function (a, b) {
             if (a.taskName < b.taskName) {
@@ -157,7 +185,12 @@ var database = (function() {
             return getAllTasks().sort(compareDecr);
         }
     };
-
+    /**
+     * @description Sorts taks in a category alphabetically and returns an array of objects
+     * @param {number} id
+     * @param {boolean} isAscending 
+     * @returns {Object[]}
+     */
     var getSortedAlphabeticallyInCategory = function (id, isAscending) {
         var compareIncr = function (a, b) {
             if (a.taskName < b.taskName) {
@@ -185,7 +218,11 @@ var database = (function() {
             return getAllTasksInCategory(id).sort(compareDecr);
         }
     }
-
+    /**
+     * @description Sorts tasks in a category both by date and time and return an array of objects
+     * @param {number} catId 
+     * @returns {Object[]}
+     */
     var getSortedByDateAndTime = function (catId) {
         var tasks;
         if (catId) {
@@ -210,21 +247,28 @@ var database = (function() {
                 return 0
             }
         }
-        return tasks.sort(compareFuncByDateAndTime);
+        return tasks.sort(_compareFuncByDateAndTime);
     }
-
+    /**
+     * @description Searches tasks by given date and returns an array of objects
+     * @param {string} date 
+     * @returns {Object[]}
+     */
     var findTaskByDate = function (date) {
         var tasks = [];
         var allTasks = getAllTasks();
         for (let i = 0; i < allTasks.length; i++) {
             if (allTasks[i].taskDueDate == date) {
                 tasks.push(allTasks[i]);
-            } 
+            }
         }
         return tasks;
     }
-
-    var checkDueTasks = function() {
+    /**
+     * @description Gets current date and time, compares all tasks with the current date. If a task is due, it is pushed to an array of objects.
+     * @returns {Object[]}
+     */
+    var checkDueTasks = function () {
         var allTasks = getAllTasks();
         var date = new Date();
         var day = date.getDate().toString();
@@ -246,12 +290,12 @@ var database = (function() {
             minutes = '0' + minutes;
         }
 
-        var currentDate = month + '/' + day +  '/' + year;
+        var currentDate = month + '/' + day + '/' + year;
         var currentTime = hours + ':' + minutes;
 
         for (var i = 0; i < allTasks.length; i += 1) {
-            if (allTasks[i].taskDueDate ===  currentDate) {
-                if (allTasks[i].taskDueTime ===  currentTime) {
+            if (allTasks[i].taskDueDate === currentDate) {
+                if (allTasks[i].taskDueTime === currentTime) {
                     tasks.push(allTasks[i]);
                 }
             } else {
