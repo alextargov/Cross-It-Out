@@ -7,32 +7,36 @@
 
 (function () {
     $('.sort-alphabeth-all').on('click', function () {
-        var $sort = $(this);
         var result;
-        if ($sort.hasClass('ascending')) {
+        if ($(this).hasClass('ascending')) {
             result = database.getSortedAlphabetically(true);
-            $sort.removeClass('ascending');
-            $sort.addClass('descending');
+            $(this).removeClass('ascending');
+            $(this).addClass('descending');
         } else {
             result = database.getSortedAlphabetically(false);
-            $sort.removeClass('descending');
-            $sort.addClass('ascending');
+            $(this).removeClass('descending');
+            $(this).addClass('ascending');
         }
         visualize.customTasks(result);
     });
     
     $('#sort-alphabeth-in-cat').on('click', function () {
         var catId = sharedState.categoryId;
-        var $sort = $(this);
+        
+        if (!catId) {
+            visualize.noTasks();
+            return;
+        }
+
         var result;
-        if ($sort.hasClass('ascending')) {
+        if ($(this).hasClass('ascending')) {
             result = database.getSortedAlphabeticallyInCategory(catId, true);
-            $sort.removeClass('ascending');
-            $sort.addClass('descending');
+            $(this).removeClass('ascending');
+            $(this).addClass('descending');
         } else {
             result = database.getSortedAlphabeticallyInCategory(catId, false);
-            $sort.removeClass('descending');
-            $sort.addClass('ascending');
+            $(this).removeClass('descending');
+            $(this).addClass('ascending');
     
         }
         visualize.customTasks(result);
@@ -49,6 +53,10 @@
     
     $('#sort-due-date-in-cat').on('click', function () {
         var catId = sharedState.categoryId;
+        if (!catId) {
+            visualize.noTasks();
+            return;
+        }
         var result = database.getSortedByDateAndTime(catId);
         visualize.customTasks(result);
     });

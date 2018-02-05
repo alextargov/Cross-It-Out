@@ -14,14 +14,14 @@ var visualize = (function () {
             itemsToShow = 1;
         }
 
-        document.getElementsByClassName('main')[0].appendChild(row);
+        //document.getElementsByClassName('main')[0].appendChild(row);
 
         for (var i = 0; i < tasks.length; i += 1) {
-            if (counter === itemsToShow) {
-                row = document.createElement('div');
-                document.getElementsByClassName('main')[0].appendChild(row)
-                counter = 0;
-            }
+            // if (counter === itemsToShow) {
+            //     row = document.createElement('div');
+            //     document.getElementsByClassName('main')[0].appendChild(row)
+            //     counter = 0;
+            // }
             var divCol = document.createElement('div');
             var thumbnail = document.createElement('div');
             var caption = document.createElement('div');
@@ -141,24 +141,22 @@ var visualize = (function () {
             }
 
             if (isDoneCategory && !isIncompleted) {
-                console.log('only in done')
                 deleteIcon.style.display = 'block';
                 deleteIcon.style.color = '#0eb511';
                 deleteIcon.className = 'fa fa-check-square delete-icon-completed';
+                deleteIcon.style.cursor = 'initial';
                 caption.appendChild(deleteIcon);
-                $(deleteIcon).off('click');
             }
 
             if (isIncompleted && !isDoneCategory) {
-                console.log('only in incompleted')
                 deleteIcon.style.display = 'block';
                 deleteIcon.className = 'fa fa-times delete-icon-incompleted';
                 doneIcon.style.display = 'none';
                 deleteIcon.style.color = '#F00';
+                deleteIcon.style.cursor = 'initial';
                 $(thumbnail).hover(function () {
-
                     deleteIcon.style.color = '#F00';
-                })
+                });
                 caption.appendChild(deleteIcon);
             }
 
@@ -170,7 +168,7 @@ var visualize = (function () {
             footer.appendChild(icon);
             footer.appendChild(htmlTaskPriority);
 
-            row.appendChild(divCol);
+            document.getElementsByClassName('main')[0].appendChild(divCol);
             divCol.appendChild(thumbnail);
             thumbnail.appendChild(caption);
             caption.appendChild(htmlTaskNameWrapper);
@@ -182,38 +180,87 @@ var visualize = (function () {
         }
     }
 
+    /**
+     * @description Clears the main block out, gets all tasks and visualize them
+     * @description Visualization parameters: tasks, is not in 'Done' category, is not in 'Incompleted' category, no input search string provided
+     */
     function allTasks() {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasks();
-        _visualizeLogic(tasks, false, false);
+        if (tasks.length > 0) {
+            _visualizeLogic(tasks, false, false, false);
+        } else {
+            document.getElementsByClassName('main')[0].innerHTML = 'No tasks found.';
+        }
     }
 
+    /**
+     * @description Clears the main block out, gets all tasks in a category and visualize them
+     * @description Visualization parameters: tasks, is not in 'Done' category, is not in 'Incompleted' category, no input search string provided
+     * @param {number} id
+     * @returns {Object[]}
+     */
     function tasksInCategory(id) {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasksInCategory(id);
-        _visualizeLogic(tasks, false, false);
+        if (tasks.length > 0) {
+            _visualizeLogic(tasks, false, false, false);
+        } else {
+            document.getElementsByClassName('main')[0].innerHTML = 'No tasks found.';
+        }
         return tasks;
     }
 
+    /**
+     * @description Clears the main block out, gets all tasks in 'Done' category and visualize them
+     * @description Visualization parameters: tasks, is in 'Done' category, is not in 'Incompleted' category, no input search string provided
+     */
     function allDoneTasks() {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getDone();
-        _visualizeLogic(tasks, true, false);
+        if (tasks.length > 0) {
+            _visualizeLogic(tasks, true, false, false);
+        } else {
+            document.getElementsByClassName('main')[0].innerHTML = 'No tasks found.';
+        }
+
     }
 
+    /**
+     * @description Clears the main block out, gets all tasks in 'Incompleted' category and visualize them
+     * @description Visualization parameters: tasks, is not in 'Done' category, is in 'Incompleted' category, no input search string provided
+     */
     function allIncompledTasks() {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getIncompleted();
-        _visualizeLogic(tasks, false, true);
+        if (tasks.length > 0) {
+            _visualizeLogic(tasks, false, true, false);
+        } else {
+            document.getElementsByClassName('main')[0].innerHTML = 'No tasks found.';
+        }
     }
 
     function categoryLength(id) {
         return database.getAllTasksInCategory(id).length;
     }
 
+    /**
+     * @description Clears the main block out, gets all tasks in 'Done' category and visualize them
+     * @description Visualization parameters: tasks, is not in 'Done' category, is not in 'Incompleted' category, input search string provided
+     * @param {Object[]} tasks
+     * @param {string} inputSearch
+     */
     function customTasks(tasks, inputSearch) {
         document.getElementsByClassName('main')[0].innerHTML = '';
-        _visualizeLogic(tasks, false, false, inputSearch);
+        if (tasks.length > 0) {
+            _visualizeLogic(tasks, false, false, inputSearch);
+        } else {
+            document.getElementsByClassName('main')[0].innerHTML = 'No tasks found.';
+        }
+    }
+
+    function noTasks() {
+        document.getElementsByClassName('main')[0].innerHTML = 'You have not selected a category yet.';
     }
 
     return {
@@ -222,6 +269,7 @@ var visualize = (function () {
         categoryLength,
         customTasks,
         allDoneTasks,
-        allIncompledTasks
+        allIncompledTasks,
+        noTasks
     }
 })();

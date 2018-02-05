@@ -72,7 +72,7 @@ $('.main').on('click', '.done-icon, .delete-icon', function (doneElement) {
     var el = sharedState.categoryElement;
     var isAll = sharedState.isAll;
     var catId = sharedState.categoryId;
-    var buttonId = doneElement.currentTarget.id;
+    var buttonId = $(this).attr('id');
 
     if ($(this).hasClass('delete-icon')) {
         var taskId = buttonId.slice(4);

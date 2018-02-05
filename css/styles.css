@@ -89,6 +89,11 @@ a.dropdown-toggle {
     width: 170px;
 }
 
+.nav .popover.bottom {
+    position: absolute;
+    left: 0;
+}
+
 /* end navigation */
 
 /* search task by name */
@@ -145,10 +150,22 @@ a.dropdown-toggle {
     margin-right: 10px
 }
 
+.collapse-button {
+    float: right;
+    vertical-align: middle;
+    line-height: 33px;
+    padding: 0px !important;
+    margin: 0px !important;
+    background: transparent;
+}
+
 /* end search task by name */
 
 /* categories */
 
+#allCategories {
+    padding: 0px;
+}
 .el {
     border-radius: 4px;
 }
@@ -156,6 +173,10 @@ a.dropdown-toggle {
 .category,
 .popover {
     width: 100%;
+}
+
+.category .cat {
+    padding-left: 10px;
 }
 
 .icon-plus {
@@ -443,3 +464,9 @@ ul.active>li>a {
 }
 
 /* end login and  greetings containers*/
+@media (max-width: 767px) {
+    .nav > li {
+        border-right: none;
+        border-bottom: 2px solid #FFF;
+    }
+}

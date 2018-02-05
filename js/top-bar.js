@@ -5,11 +5,10 @@
 */
 (function () {
     var selectedDate;
-    $(document).on('click', '#showRightPicker', function(el) {
-       
+    $(document).on('click', '#showRightPicker', function (el) {
+
         /*  Dynamically created div showing popover */
         var placement = 'left';
-        console.log(window.innerWidth)
         if (window.innerWidth <= 767) {
             placement = 'bottom';
         }
@@ -28,65 +27,68 @@
                 </div>
                 `,
         });
-    
-        /*  Hidding element by clicking */
-    
+
+        /*  Showing element by clicking */
+
         $(this).popover('toggle');
-    
+
         // invoke datepicker
-        $( '#rightPicker' ).datepicker();
-        
+        $('#rightPicker').datepicker();
+
         /*  Set interval, take datepicker's value and hiding datepicker */
-    
-        var interval = setInterval(function() {
-            var date = $( '#rightPicker' ).val();
+        var self = this;
+        var interval = setInterval(function () {
+            var date = $('#rightPicker').val();
             if (date) {
-                selectedDate = $( '#rightPicker' ).val();
+                selectedDate = $('#rightPicker').val();
                 var result = database.findTaskByDate(selectedDate);
                 clearInterval(interval);
-                $('.popover').popover('hide');
+                $(self).popover('hide');
                 visualize.customTasks(result);
+                $(self).popover('destroy');
             }
-        }, 3000);
+        }, 2000);
+
+        $(document).mouseup(function (e) {
+            var containerRightSide = $('.popover.left');
+            var containerBottomSide = $('.popover.bottom');
+            var calendarRightSide = $('.ui-datepicker');
+            var right = $('#showRightPicker')
+            if (!containerRightSide.is(e.target) && containerRightSide.has(e.target).length === 0 &&
+                !calendarRightSide.is(e.target) && calendarRightSide.has(e.target).length === 0 &&
+                !containerBottomSide.is(e.target) && containerBottomSide.has(e.target).length === 0 &&
+                !right.is(e.target) && right.has(e.target).length === 0) {
+
+                $(self).popover('destroy');
+            }
+        });
     });
-    
-    $(document).mouseup(function (e) {
-        var containerRightSide = $('.popover.left');
-        var containerBottomSide = $('.popover.bottom');
-        var calendarRightSide = $('.ui-datepicker');
-    
-        if (!containerRightSide.is(e.target) && containerRightSide.has(e.target).length === 0 &&
-            !calendarRightSide.is(e.target) && calendarRightSide.has(e.target).length === 0) {
-                containerRightSide.hide();
-                containerBottomSide.hide();
-        }
-    });
-    
+
     /*
         Show information from both modal forms and hide each one after next or prev buttons
         are executed.
     */
-    
-    $(document).on('click', '#modalDescription', function() {
+
+    $(document).on('click', '#modalDescription', function () {
         $('#modalDescriptionBlock').modal('show');
     });
-    
-    $("div[id^='descriptionForm']").each(function() {
+
+    $("div[id^='descriptionForm']").each(function () {
         var currentModal = $(this);
-    
+
         // click next
-        currentModal.find('.btn-next').click(function() {
+        currentModal.find('.btn-next').click(function () {
             currentModal.modal('hide');
             currentModal.closest("div[id^='descriptionForm']").nextAll("div[id^='descriptionForm']").first().modal('show')
         });
-    
+
         // click prev
-        currentModal.find('.btn-prev').click(function() {
+        currentModal.find('.btn-prev').click(function () {
             currentModal.modal('hide');
             currentModal.closest("div[id^='descriptionForm']").prevAll("div[id^='descriptionForm']").first().modal('show');
         });
     });
-    
+
     // controlling navbar dropdowns
     $('.drop-date a').on("click", function (e) {
         $('.drop-alpha ul').hide();
@@ -94,31 +96,26 @@
         e.stopPropagation();
         e.preventDefault();
     });
-    
+
     $('.drop-alpha a').on("click", function (e) {
         $('.drop-date ul').hide();
         $(this).next('ul').toggle();
         e.stopPropagation();
         e.preventDefault();
     });
-    
+
     $('.sub-option a').on('click', function () {
         $('#parent-dropdown').toggle();
         $('.drop-alpha ul').hide();
         $('.drop-date ul').hide();
+        $('#parent-toggle').removeClass('opened');
     });
 
-    // using a counter as a workaround
     var counter = 0;
-    $('#parent-toggle').on('click', function () {
-        if (counter % 2 === 0) {
-            $('#parent-dropdown').show();
-        } else {
-            $('#parent-dropdown').hide();
-        }
-        counter +=1;
+    $(document).on('click', '#parent-toggle', function () {
+        $('#parent-dropdown').toggle();
     });
-    
+
     $(document).mouseup(function (e) {
         var container1 = $('.drop-alpha a');
         var container2 = $('.drop-date a');
@@ -133,5 +130,5 @@
         if (!container.is(e.target) && container.has(e.target).length === 0) {
             container.hide();
         }
-    });    
+    });
 })();
