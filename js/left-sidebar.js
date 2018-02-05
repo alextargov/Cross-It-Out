@@ -1,21 +1,5 @@
 /* eslint-disable */
 var sharedState = {};
-
-$('.search').on('click', function () {
-    $('.search-input').val('');
-    $('.username').toggle();
-    $('.search-div').toggle();
-    $('.search-input').focus();
-});
-
-$('.search-input').on('keyup', function () {
-    var value = $(this).val().toLowerCase();
-    var result = database.findTask(value)
-    var tasks = result.tasks;
-    var searchInput = result.name;
-    visualize.customTasks(tasks, searchInput);
-});
-
 var updateBadges = function () {
     var categories = database.getAllCategories();
     $.each(categories, function (index, value) {
@@ -32,6 +16,23 @@ var updateBadges = function () {
     $('#badge_done').html(database.doneLength);
 };
 
+(function () {
+    $('.search-div').hide();
+    $('.search').on('click', function () {
+        $('.search-input').val('');
+        $('.username').toggle();
+        $('.search-div').toggle();
+        $('.search-input').focus();
+    });
+    
+    $('.search-input').on('keyup', function () {
+        var value = $(this).val().toLowerCase();
+        var result = database.findTask(value)
+        var tasks = result.tasks;
+        var searchInput = result.name;
+        visualize.customTasks(tasks, searchInput);
+    });
+    
 // creating a task event. 
 // includes popover, timepicker, datepicker and the 'add task' event
 
@@ -42,7 +43,7 @@ $('#category-list').on('click', '.input-group-addon-custom', function (el) {
     var title = $('div#' + parent.id + ' span.catName')[0].innerHTML.trim();
 
     // think it's xss vaulnerable
-    var popoverContent =  `
+    var popoverContent = `
     <div class="form-group">
         <div class='input-group popover-task'>
             <input id='input-task' type='text' class='form-control'>
@@ -88,13 +89,18 @@ $('#category-list').on('click', '.input-group-addon-custom', function (el) {
 
     // --- settings for the time- and date-pickers ---
     var date = new Date();
-    var hours = date.getHours();
+    var hours;
     var minutes;
 
-    if (date.getMinutes() < 10 ) {
+    if (date.getMinutes() < 10) {
         minutes = '0' + date.getMinutes();
     } else {
         minutes = date.getMinutes();
+    }
+    if (date.getHours() < 10) {
+        hours = '0' + date.getMinutes();
+    } else {
+        hours = date.getMinutes();
     }
 
     $('#timepicker').timepicker({
@@ -143,52 +149,6 @@ $('#category-list').on('click', '.input-group-addon-custom', function (el) {
             $(parent).popover('hide');
         }
     });
-});
-
-$('.main').on('click', '.delete-icon', function (deleteEl) {
-    var el = sharedState.categoryElement;
-    var isAll = sharedState.isAll;
-    var catId = sharedState.categoryId;
-    var buttonId = deleteEl.currentTarget.id;
-    var taskId = buttonId.slice(4);
-    database.addtoIncompleted(taskId);
-    if (isAll) {
-        var currentCatLength = database.getAllTasks().length;
-        visualize.allTasks();
-    } else {
-        var currentCatLength = database.getAllTasksInCategory(catId).length;
-        visualize.tasksInCategory(catId);
-    }
-    el.currentTarget.children[1].innerHTML = currentCatLength;
-    updateBadges();
-
-    var incompletedSum = calculatePoints().incompletedSum;
-    var doneSum = calculatePoints().doneSum;
-    var pointsResult = doneSum + incompletedSum;
-    $('#calculated-points').text(pointsResult);
-});
-
-$('.main').on('click', '.done-icon', function (doneElement) {
-    var el = sharedState.categoryElement;
-    var isAll = sharedState.isAll;
-    var catId = sharedState.categoryId;
-    var buttonId = doneElement.currentTarget.id;
-    var taskId = buttonId.slice(5);
-    database.addToDone(taskId);
-    if (isAll) {
-        var currentCatLength = database.getAllTasks().length;
-        visualize.allTasks();
-    } else {
-        var currentCatLength = database.getAllTasksInCategory(catId).length;
-        visualize.tasksInCategory(catId);
-    }
-    el.currentTarget.children[1].innerHTML = currentCatLength;
-    updateBadges();
-
-    var incompletedSum = calculatePoints().incompletedSum;
-    var doneSum = calculatePoints().doneSum;
-    var pointsResult = doneSum + incompletedSum;
-    $('#calculated-points').text(pointsResult);
 });
 
 $('#category-list').on('click', '.all-tasks', function (el) {
@@ -250,6 +210,7 @@ $('.add-category').click(function () {
 
         var nextId = +getLastCategory.id + 1;
         database.addCategory(nextId);
-        $('.category-input').val('');        
+        $('.category-input').val('');
     }
 });
+})();

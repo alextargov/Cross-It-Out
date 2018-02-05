@@ -9,7 +9,7 @@ functionalities which help him finish his duties in time.
 
 ## Team Members
 
-| #        | First name | Family     |       
+| #        | First name | Last name  |       
 | -------- | --------- 	| ---------- |
 | 1.	   | Alexander 	| Targov	 |
 | 2.	   | Zhitomir  	| Oreshenski |
