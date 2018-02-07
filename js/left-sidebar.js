@@ -110,6 +110,7 @@ var updateBadges = function () {
         $('#datepicker').datepicker({
             minDate: 0,
             maxDate: '+1M +10D',
+            dateFormat: 'dd/mm/yy'
         });
         $('#datepicker').datepicker().datepicker('setDate', new Date());
 
@@ -212,7 +213,7 @@ var updateBadges = function () {
 
             div.id = +getLastCategory.id + 1;
             badge.id = 'badge_' + (+getLastCategory.id + 1);
-            
+
             if (value.length > 18) {
                 substr = value.substr(0, 18);
                 substr += '...';

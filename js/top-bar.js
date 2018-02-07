@@ -33,7 +33,9 @@
         $(this).popover('toggle');
 
         // invoke datepicker
-        $('#rightPicker').datepicker();
+        $('#rightPicker').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
 
         /*  Set interval, take datepicker's value and hiding datepicker */
         var self = this;

@@ -2,8 +2,6 @@
 
 var visualize = (function () {
     function _visualizeLogic(tasks, isDoneCategory, isIncompleted, inputSearch) {
-        var counter = 0;
-
         var itemsToShow;
 
         for (var i = 0; i < tasks.length; i += 1) {
@@ -166,8 +164,7 @@ var visualize = (function () {
             caption.appendChild(htmlTtaskDueTime);
             caption.appendChild(horizonalLine3);
             caption.appendChild(footer);
-            
-            counter += 1;
+
         }
     }
 

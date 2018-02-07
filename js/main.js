@@ -6,7 +6,7 @@ $.ajax({
     url: 'json/resources.json',
     success: function (result) {
         userCategories = result.clients[0].categories;
-        visualizaCategories(userCategories);
+        processJSON(userCategories);
     },
     error: function (result, err, errorThrown) {
         console.log(result);
@@ -31,7 +31,8 @@ $('.main').on('click', '.done-icon, .delete-icon', function (doneElement) {
     var isAll = sharedState.isAll;
     var catId = sharedState.categoryId;
     var buttonId = $(this).attr('id');
-
+    
+    // checking for class name because we've attached the functionallity for two buttons
     if ($(this).hasClass('delete-icon')) {
         var taskId = buttonId.slice(4);
         database.addtoIncompleted(taskId);
@@ -40,11 +41,8 @@ $('.main').on('click', '.done-icon, .delete-icon', function (doneElement) {
         database.addToDone(taskId);
     }
 
-    if (isAll) {
-        visualize.allTasks();
-    } else {
-        visualize.tasksInCategory(catId);
-    }
+    // remove element from the DOM cuz it is marked done/deleted
+    $(this).parent().parent().parent().remove();
 
     updateBadges();
     var incompletedSum = calculatePoints().incompletedSum;

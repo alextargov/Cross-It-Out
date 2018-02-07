@@ -66,29 +66,6 @@ var database = (function () {
         }
     }
 
-    /*
-        Used by getSortedByDateAndTime() and getDone()
-    */
-    var _compareFuncByDateAndTime = function (a, b) {
-        if (a.taskDueDate < b.taskDueDate) {
-            return -1;
-        }
-
-        if (a.taskDueDate > b.taskDueDate) {
-            return 1;
-        }
-
-        if (a.taskDueDate === b.taskDueDate) {
-            if (a.taskDueTime < b.taskDueTime) {
-                return -1;
-            }
-            if (a.taskDueTime > b.taskDueTime) {
-                return 1;
-            }
-
-            return 0
-        }
-    }
     /**
      * @description Adds a task to the incompleted array.
      * @description  If an id is provided, the task is deleted and pushed to the array
@@ -120,6 +97,30 @@ var database = (function () {
         done.push(task[0]);
         this.tasksLength -= 1;
         this.doneLength += 1;
+    }
+  
+    /*
+        Used by getSortedByDateAndTime() and getDone()
+    */
+    var _compareFuncByDateAndTime = function (a, b) {
+        if (a.taskDueDate < b.taskDueDate) {
+            return -1;
+        }
+
+        if (a.taskDueDate > b.taskDueDate) {
+            return 1;
+        }
+
+        if (a.taskDueDate === b.taskDueDate) {
+            if (a.taskDueTime < b.taskDueTime) {
+                return -1;
+            }
+            if (a.taskDueTime > b.taskDueTime) {
+                return 1;
+            }
+
+            return 0
+        }
     }
 
     function getDone() {
@@ -286,7 +287,7 @@ var database = (function () {
             minutes = '0' + minutes;
         }
 
-        var currentDate = month + '/' + day + '/' + year;
+        var currentDate = day + '/' + month + '/' + year;
         var currentTime = hours + ':' + minutes;
 
         for (var i = 0; i < allTasks.length; i += 1) {

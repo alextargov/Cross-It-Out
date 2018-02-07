@@ -204,6 +204,12 @@ a.dropdown-toggle {
     background: #e3e3e3;
 }
 
+.completedCat .input-group-addon:hover,
+.incompletedCat .input-group-addon:hover {
+    background: #eee;
+    cursor: default;
+}
+
 .input-group-addon i,
 #parent-dropdown i {
     color: #337ab7;
@@ -303,11 +309,10 @@ a.dropdown-toggle {
 }
 
 .show-more {
-    padding: 2px 5px !important;
+    padding: 0px 5px !important;
     float: right;
-    margin: -4px 0px 0px 0px;
     position: absolute;
-    top: 5px;
+    top: 0px;
     left: 16px;
     border-top-right-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
@@ -415,7 +420,6 @@ input[type="password"] {
 }
 
 .modal-dialog {
-    height: 235px !important;
     max-width: 450px !important;
 }
 
@@ -424,7 +428,7 @@ input[type="password"] {
     margin-top: 100px;
 }
 
-#greeetings-content>.modal-content-heading, 
+#greeetings-content>.modal-content-heading,
 #greeetings-content>.modal-content-body {
     font-size: 1.3em;
     font-weight: bold;

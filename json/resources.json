@@ -6,21 +6,21 @@
                     "tasks": [{
                             "taskName": "English lesson",
                             "taskDueTime": "14:30",
-                            "taskDueDate": "01/26/2018",
+                            "taskDueDate": "26/01/2018",
                             "taskPriority": "high",
                             "taskId": 1
                         },
                         {
                             "taskName": "Cleaning my room",
                             "taskDueTime": "17:30",
-                            "taskDueDate": "01/26/2018",
+                            "taskDueDate": "26/01/2018",
                             "taskPriority": "low",
                             "taskId": 2
                         },
                         {
                             "taskName": "Visit my parents",
                             "taskDueTime": "20:30",
-                            "taskDueDate": "01/26/2018",
+                            "taskDueDate": "26/01/2018",
                             "taskPriority": "medium",
                             "taskId": 3
                         }
@@ -31,28 +31,28 @@
                     "tasks": [{
                             "taskName": "Making a breakfast",
                             "taskDueTime": "07:00",
-                            "taskDueDate": "02/08/2018",
+                            "taskDueDate": "08/02/2018",
                             "taskPriority": "low",
                             "taskId": 4
                         },
                         {
                             "taskName": "Learning new staff at Telerik Academy",
                             "taskDueTime": "10:00",
-                            "taskDueDate": "02/08/2018",
+                            "taskDueDate": "08/02/2018",
                             "taskPriority": "high",
                             "taskId": 5
                         },
                         {
                             "taskName": "Going to haircut",
                             "taskDueTime": "15:30",
-                            "taskDueDate": "02/08/2018",
+                            "taskDueDate": "08/02/2018",
                             "taskPriority": "low",
                             "taskId": 6
                         },
                         {
                             "taskName": "Going to cinema",
                             "taskDueTime": "15:30",
-                            "taskDueDate": "02/08/2018",
+                            "taskDueDate": "08/02/2018",
                             "taskPriority": "low",
                             "taskId": 7
                         }
@@ -64,14 +64,14 @@
                     "tasks": [{
                             "taskName": "Designing a new website",
                             "taskDueTime": "09:30",
-                            "taskDueDate": "02/19/2018",
+                            "taskDueDate": "19/02/2018",
                             "taskPriority": "medium",
                             "taskId": 8
                         },
                         {
                             "taskName": "Preparing for the Presentation",
                             "taskDueTime": "16:30",
-                            "taskDueDate": "01/28/2018",
+                            "taskDueDate": "28/01/2018",
                             "taskPriority": "high",
                             "taskId": 9
                         }
@@ -82,14 +82,14 @@
                     "tasks": [{
                             "taskName": "Defending the project",
                             "taskDueTime": "10:30",
-                            "taskDueDate": "02/12/2018",
+                            "taskDueDate": "12/02/2018",
                             "taskPriority": "high",
                             "taskId": 10
                         },
                         {
                             "taskName": "DSA Exam 2",
                             "taskDueTime": "10:00",
-                            "taskDueDate": "02/16/2018",
+                            "taskDueDate": "16/02/2018",
                             "taskPriority": "high",
                             "taskId": 11
                         }
@@ -100,7 +100,7 @@
                     "tasks": [{
                         "taskName": "Playing football",
                         "taskDueTime": "19:30",
-                        "taskDueDate": "02/29/2018",
+                        "taskDueDate": "29/02/2018",
                         "taskPriority": "low",
                         "taskId": 12
                     }]

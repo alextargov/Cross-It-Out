@@ -1,9 +1,8 @@
 /* eslint-disable */
-var visualizaCategories = function(categories) {
+var processJSON = function (categories) {
     for (var i = 0; i < categories.length; i += 1) {
         var cat = categories[i];
-
-        var taskLength = cat.tasks.length;
+        var catLength = cat.tasks.length;
         var getLastCategory = $('.category').last()[0];
         var anchor = document.createElement('a');
         var icon = document.createElement('i');
@@ -30,8 +29,15 @@ var visualizaCategories = function(categories) {
         anchor.setAttribute('data-toggle', 'popover');
 
         div.id = +getLastCategory.id + 1;
-        badge.id = 'badge_' + (+getLastCategory.id + 1);
-        catName.innerHTML += ' ' + cat.categoryName;
+        badge.id = 'badge_' + (+getLastCategory.id + 1)
+
+        if (cat.categoryName.length > 18) {
+            substr = cat.categoryName.substr(0, 18);
+            substr += '...';
+            catName.innerHTML += ' ' + substr;
+        } else {
+            catName.innerHTML += ' ' + cat.categoryName;
+        }
 
         div.appendChild(addon);
         addon.appendChild(icon);
@@ -40,7 +46,7 @@ var visualizaCategories = function(categories) {
         anchor.appendChild(catName);
         anchor.appendChild(badge);
 
-        badge.innerHTML = taskLength;
+        badge.innerHTML = catLength;
         getLastCategory.after(div);
     }
 };
