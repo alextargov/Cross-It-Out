@@ -103,6 +103,7 @@ var database = (function () {
         Used by getSortedByDateAndTime() and getDone()
     */
     var _compareFuncByDateAndTime = function (a, b) {
+        var yearA = a.taskDueDate.splice(5);
         if (a.taskDueDate < b.taskDueDate) {
             return -1;
         }
