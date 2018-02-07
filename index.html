@@ -12,7 +12,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
-
+    <link rel="icon" type="image/png" href="img/logo-monkey-transp.png"/>
     <script src="js/jquery.js"></script>
 </head>
 
@@ -46,7 +46,7 @@
                                     <i class="fa fa-lock login"></i> Password</label>
                                 <input type="password" class="form-control" id="psw" name="password" placeholder="Password" />
                                 <button id="login-button" class="btn btn-lg btn-primary btn-block" type="submit">
-                                    <span class="glyphicon glyphicon-off"></span> Sign in</button>
+                                    <i class="fa fa-power-off" aria-hidden="true"></i> Sign in</button>
                             </form>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
     aria-hidden="true" style="display: none">
     <div class="modal-dialog modal-lg">
         <div class="modal-content greetings" id="greeetings-content">
-            <img class="logo" src="img/logo.png" alt="Missing logo">
+            <img class="full-logo" src="img/logo.png" alt="Missing logo">
             <p class="modal-content-heading"></p>
             <p class="modal-content-body"></p>
             <button type="button" id="btn_ok" class="btn btn-primary confirm">OK</button>
@@ -78,7 +78,7 @@
         <div class="row">
             <!-- Container (Left Sidebar) -->
             <div class="el col-sm-4 col-md-3 sidebar">
-                <div id="category-list" class="el list-group" >
+                <div id="category-list" class="list-group" >
                     <div id="user" href="#" class="list-group-item active">
                         <i class="fa fa-user icon-user"></i>
                         <div class='input-group search-div'>
@@ -137,7 +137,7 @@
             </div>
 
             <div class="el col-sm-8 col-md-9">
-                <div class="row">
+                <div class="">
 
                     <!-- Container (Navbar) -->
                     <nav class="navbar navbar header">
@@ -176,7 +176,7 @@
                                                         to receive more points if you finish each task with highest priority).
                                                         Else these points will be substracted from accounts points.
                                                         <p>
-                                                            <span class="glyphicon glyphicon-pushpin"></span> Please note: Negative points are possible.</p>
+                                                            <i class="fa fa-thumb-tack" aria-hidden="true"></i> Please note: Negative points are possible.</p>
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
@@ -278,6 +278,7 @@
     <script src="js/database.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/visualize-tasks.js"></script>
+    <script src="js/visualize-categories.js"></script>
     <script src="js/points-logic.js"></script>
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
@@ -285,7 +286,7 @@
     <script src="js/top-bar.js"></script>
     <script src="js/sort.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/jquery.timepicker.js"></script> 
+    <script type="text/javascript" src="js/jquery.timepicker.min.js"></script> 
 </body>
 
 </html>

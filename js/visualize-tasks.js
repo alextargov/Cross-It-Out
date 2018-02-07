@@ -3,25 +3,10 @@
 var visualize = (function () {
     function _visualizeLogic(tasks, isDoneCategory, isIncompleted, inputSearch) {
         var counter = 0;
-        var row = document.createElement('div');
+
         var itemsToShow;
 
-        if (window.innerWidth >= 992) {
-            itemsToShow = 3;
-        } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
-            itemsToShow = 2;
-        } else if (window.innerWidth < 768) {
-            itemsToShow = 1;
-        }
-
-        //document.getElementsByClassName('main')[0].appendChild(row);
-
         for (var i = 0; i < tasks.length; i += 1) {
-            // if (counter === itemsToShow) {
-            //     row = document.createElement('div');
-            //     document.getElementsByClassName('main')[0].appendChild(row)
-            //     counter = 0;
-            // }
             var divCol = document.createElement('div');
             var thumbnail = document.createElement('div');
             var caption = document.createElement('div');
@@ -35,11 +20,14 @@ var visualize = (function () {
             var deleteIcon = document.createElement('i');
             var icon = document.createElement('i');
             var doneIcon = document.createElement('i');
+            var horizonalLine1 = document.createElement('hr');
+            var horizonalLine2 = document.createElement('hr');
+            var horizonalLine3 = document.createElement('hr');
 
             button.className = 'btn btn-primary show-more';
             thumbnail.className = 'thumbnail';
             caption.className = 'caption';
-            divCol.className = 'col-sm-6 col-md-4 col-lg-4 col-xl-4';
+            divCol.className = 'col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4';
             htmlTaskNameWrapper.className = 'taskNameWrapper';
             htmlTaskName.className = 'taskName';
             icon.className = 'fa fa-minus-square';
@@ -172,10 +160,13 @@ var visualize = (function () {
             divCol.appendChild(thumbnail);
             thumbnail.appendChild(caption);
             caption.appendChild(htmlTaskNameWrapper);
+            caption.appendChild(horizonalLine1);
             caption.appendChild(htmlTaskDueDate);
+            caption.appendChild(horizonalLine2);
             caption.appendChild(htmlTtaskDueTime);
+            caption.appendChild(horizonalLine3);
             caption.appendChild(footer);
-
+            
             counter += 1;
         }
     }
