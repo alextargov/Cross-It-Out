@@ -10,14 +10,20 @@
 (function () {
     $('.sort-alphabeth-all').on('click', function () {
         var result;
-        if ($(this).hasClass('ascending')) {
+        var leftSortButton = $('#allCategories .sort-alphabeth-all');
+        var rightSortButton = $('#parent-dropdown .sort-alphabeth-all');
+        if (leftSortButton.hasClass('ascending') && rightSortButton.hasClass('ascending')) {
             result = database.getSortedAlphabetically(true);
-            $(this).removeClass('ascending');
-            $(this).addClass('descending');
+            rightSortButton.removeClass('ascending');
+            rightSortButton.addClass('descending');
+            leftSortButton.removeClass('ascending');
+            leftSortButton.addClass('descending');            
         } else {
             result = database.getSortedAlphabetically(false);
-            $(this).removeClass('descending');
-            $(this).addClass('ascending');
+            leftSortButton.addClass('ascending');
+            leftSortButton.removeClass('descending');
+            rightSortButton.addClass('ascending');
+            rightSortButton.removeClass('descending');
         }
         visualize.customTasks(result);
     });
