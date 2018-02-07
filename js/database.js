@@ -1,7 +1,4 @@
 /* eslint-disable */
-/*
- *** Database ***
- */
 
 var database = (function () {
 
@@ -13,7 +10,6 @@ var database = (function () {
     var tasks;
 
     // is zero because it will be increased after the ajax populates the database with json tasks.
-
     var tasksLength = 0;
     var doneLength = 0;
     var incompletedLength = 0;
