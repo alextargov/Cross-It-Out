@@ -4,6 +4,14 @@ var visualize = (function () {
     function _visualizeLogic(tasks, isDoneCategory, isIncompleted, inputSearch) {
         var itemsToShow;
 
+        var categoryNameWrapper = document.createElement('div');
+        var categoryName = document.createElement('span');
+        categoryName.className = 'label label-primary';
+        categoryNameWrapper.className = 'category-heading col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12';
+        categoryName.innerHTML = sharedState.categoryName;
+        categoryNameWrapper.appendChild(categoryName);
+        document.getElementsByClassName('main')[0].appendChild(categoryNameWrapper);
+
         for (var i = 0; i < tasks.length; i += 1) {
             var divCol = document.createElement('div');
             var thumbnail = document.createElement('div');
@@ -25,7 +33,7 @@ var visualize = (function () {
             button.className = 'btn btn-primary show-more';
             thumbnail.className = 'thumbnail';
             caption.className = 'caption';
-            divCol.className = 'col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4';
+            divCol.className = 'col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 task';
             htmlTaskNameWrapper.className = 'taskNameWrapper';
             htmlTaskName.className = 'taskName';
             icon.className = 'fa fa-minus-square';
@@ -172,11 +180,11 @@ var visualize = (function () {
      * @description Clears the main block out, gets all tasks and visualize them
      * @description Visualization parameters: tasks, is not in 'Done' category, is not in 'Incompleted' category, no input search string provided
      */
-    function allTasks() {
+    function allTasks(catName) {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasks();
         if (tasks.length > 0) {
-            _visualizeLogic(tasks, false, false, false);
+            _visualizeLogic(tasks, false, false, false, catName);
         } else {
             document.getElementsByClassName('main')[0].innerHTML = 'No tasks found.';
         }

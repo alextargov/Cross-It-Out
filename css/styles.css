@@ -32,6 +32,7 @@ body {
     min-height: 44px !important;
     background: #337ab7;
     color: #FFF;
+    margin-bottom: 5px;
 }
 
 .navbar.header ul.navbar-right li a {
@@ -241,6 +242,20 @@ a.dropdown-toggle {
 /* end categories */
 
 /* tasks visualization */
+
+.category-heading {
+    margin-bottom: 15px;
+}
+
+.category-heading .label {
+    margin: 0 auto;
+    font-size: 14px;
+    display: block;
+}
+
+.task {
+    max-height: 159px;
+}
 
 .main {
     padding: 0px !important;

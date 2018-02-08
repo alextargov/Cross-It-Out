@@ -158,9 +158,10 @@ var updateBadges = function () {
     });
 
     $('#category-list').on('click', '.all-tasks', function (el) {
-        visualize.allTasks();
         sharedState.categoryElement = el;
+        sharedState.categoryName = el.currentTarget.children[0].innerHTML
         sharedState.isAll = true;
+        visualize.allTasks();
         if (window.innerWidth < 768) {
             $('#allCategories').collapse('toggle');
         }
@@ -168,6 +169,7 @@ var updateBadges = function () {
 
     $('#category-list').on('click', '.cat', function (el) {
         var catId = $(this).parent().get(0).id;
+        sharedState.categoryName = el.currentTarget.children[0].innerHTML
         sharedState.categoryId = catId;
         sharedState.categoryElement = el;
         sharedState.isAll = false;
@@ -178,12 +180,14 @@ var updateBadges = function () {
     });
 
     $('#category-list').on('click', '.done-tasks', function (el) {
+        sharedState.categoryName = el.currentTarget.children[0].innerHTML
         visualize.allDoneTasks();
         if (window.innerWidth < 768) {
             $('#allCategories').collapse('toggle');
         }
     });
     $('#category-list').on('click', '.incompleted-tasks', function (el) {
+        sharedState.categoryName = el.currentTarget.children[0].innerHTML
         visualize.allIncompledTasks();
         if (window.innerWidth < 768) {
             $('#allCategories').collapse('toggle');
