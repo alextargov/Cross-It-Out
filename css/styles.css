@@ -476,6 +476,24 @@ ul.active>li>a {
     margin: 15px 15px;
 }
 
+.ordered-list {
+    color: rgb(10, 10, 10);
+    list-style-type: decimal;
+    padding-left: 15px;
+    margin: 0;
+}
+
+.ordered-list span:after {
+    white-space: pre-line;
+}
+
+.unordered-list {
+    color: rgb(10, 10, 10);
+    list-style-type: circle;
+    padding-left: 15px;
+    margin: 0;
+}
+
 /* end login and  greetings containers*/
 
 @media (max-width: 767px) {
