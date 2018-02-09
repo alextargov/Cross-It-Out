@@ -250,7 +250,7 @@ a.dropdown-toggle {
 .category-heading .label {
     margin: 0 auto;
     font-size: 14px;
-    display: block;
+    display: none;
 }
 
 .task {
@@ -515,5 +515,9 @@ ul.active>li>a {
     .nav>li {
         border-right: none;
         border-bottom: 2px solid #FFF;
+    }
+
+    .category-heading .label {
+        display: block;
     }
 }
