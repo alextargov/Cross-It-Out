@@ -51,3 +51,16 @@ $('.main').on('click', '.done-icon, .delete-icon', function (doneElement) {
     var pointsResult = doneSum + incompletedSum;
     $('#calculated-points').text(pointsResult);
 });
+
+// event for the show more button on the task visualization
+$('.main').on('click', '.show-more', function() {
+    $(this).popover('toggle');
+    var self = this;
+    $(document).mouseup(function (e) {
+        var container = $('.taskNameWrapper .popover');
+        if (!container.is(e.target) && container.has(e.target).length === 0 &&
+            !$(self).is(e.target) && $(self).has(e.target).length === 0) {
+            $(self).popover('hide');
+        }
+    });
+})

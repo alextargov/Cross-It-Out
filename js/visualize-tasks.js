@@ -83,6 +83,7 @@ var visualize = (function () {
             }
 
             $(button).popover({
+                trigger: 'manual',
                 placement: 'bottom',
                 html: true,
                 content: `<p style='padding: 0px; word-wrap: break-word'>${fullTaskname}</p>`,
