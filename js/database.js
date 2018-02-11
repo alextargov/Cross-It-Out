@@ -98,7 +98,7 @@ var database = (function () {
         this.tasksLength -= 1;
         this.doneLength += 1;
     }
-  
+
     /*
         Used by getSortedByDateAndTime() and getDone()
     */
@@ -113,51 +113,39 @@ var database = (function () {
         var bMonth = b.taskDueDate.slice(3, 5);
         var bYear = b.taskDueDate.slice(6);
         var bTime = b.taskDueTime;
-       
+
         if (aYear < bYear) {
             return -1;
         }
-
         if (aYear > bYear) {
             return 1;
         }
-
         if (aYear === bYear) {
-            
             if (aMonth < bMonth) {
                 return -1;
             }
-
             if (aMonth > bMonth) {
                 return 1;
             }
-
             if (aMonth === bMonth) {
-                
                 if (aDate < bDate) {
                     return -1;
                 }
-    
                 if (aDate > bDate) {
                     return 1;
                 }
-
                 if (aDate === bDate) {
-                    
+
                     if (aTime < bTime) {
                         return -1;
                     }
-        
                     if (aTime > bTime) {
                         return 1;
                     }
-
                     return 0;
                 }
-
                 return 0;
             }
-            
             return 0;
         }
     }

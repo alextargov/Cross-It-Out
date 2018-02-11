@@ -1,11 +1,9 @@
 /* eslint-disable */
 
 /**
-  * @desc By clicking $('.sort-alphabeth-all') execute sorting in increasing or decreasing order. 
-  * By so class 'ascending' in sort button is changed with 'descending'.
-  * @param bool - true or false in getSortedAlphabetically() or getSortedAlphabeticallyInCategory(catId).
-  * @return visualize.customTasks().
-*/
+ * @desc By clicking $('.sort-alphabeth-all') execute sorting in increasing or decreasing order. 
+ * By so class 'ascending' in sort button is changed with 'descending'.
+ */
 
 (function () {
     $('.sort-alphabeth-all').on('click', function () {
@@ -17,7 +15,7 @@
             rightSortButton.removeClass('ascending');
             rightSortButton.addClass('descending');
             leftSortButton.removeClass('ascending');
-            leftSortButton.addClass('descending');            
+            leftSortButton.addClass('descending');
         } else {
             result = database.getSortedAlphabetically(false);
             leftSortButton.addClass('ascending');
@@ -27,10 +25,10 @@
         }
         visualize.customTasks(result);
     });
-    
+
     $('#sort-alphabeth-in-cat').on('click', function () {
         var catId = sharedState.categoryId;
-        
+
         if (!catId) {
             visualize.noTasks();
             return;
@@ -45,20 +43,20 @@
             result = database.getSortedAlphabeticallyInCategory(catId, false);
             $(this).removeClass('descending');
             $(this).addClass('ascending');
-    
+
         }
         visualize.customTasks(result);
     });
-    
+
     /*
         Sorting by dateTime and visualize
     */
-    
+
     $('#sort-due-date').on('click', function () {
         var result = database.getSortedByDateAndTime();
         visualize.customTasks(result);
     });
-    
+
     $('#sort-due-date-in-cat').on('click', function () {
         var catId = sharedState.categoryId;
         if (!catId) {

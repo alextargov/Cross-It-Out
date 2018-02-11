@@ -45,7 +45,7 @@ $('.main').on('click', '.done-icon, .delete-icon', function (doneElement) {
     $(this).parent().parent().parent().remove();
 
     updateBadges();
-    var calculation = calculatePoints();
+    var calculation = pointsLogic.calculatePoints();
     var incompletedSum = calculation.incompletedSum;
     var doneSum = calculation.doneSum;
     var pointsResult = doneSum + incompletedSum;

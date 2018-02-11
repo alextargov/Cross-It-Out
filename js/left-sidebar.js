@@ -125,8 +125,10 @@ var updateBadges = function () {
             var allCurrentTasks = database.getAllTasks();
             var lastTaskId;
             if (allCurrentTasks.length === 0) {
+                // if there are any tasks
                 lastTaskId = 0;
             } else {
+                // get the last task's id in the db
                 lastTaskId = allCurrentTasks[allCurrentTasks.length - 1].taskId;
             }
             if (task && priority && time && date) {
@@ -139,8 +141,11 @@ var updateBadges = function () {
                 };
                 database.addTask(id, taskInformation);
                 $(self).popover('hide');
-                var count = visualize.categoryLength(id);
                 updateBadges();
+                // collapse categories if in mobile view
+                if (window.innerWidth < 768) {
+                    $('#allCategories').collapse('toggle');
+                }
             }
         });
 
@@ -199,6 +204,8 @@ var updateBadges = function () {
         var value = $('.category-input').val();
         if (value) {
             var getLastCategory = $('.category').last()[0];
+            var nextId = +getLastCategory.id + 1;
+
             var anchor = document.createElement('a');
             var icon = document.createElement('i');
             var badge = document.createElement('span');
@@ -215,15 +222,15 @@ var updateBadges = function () {
             anchor.setAttribute('href', '#');
             anchor.setAttribute('data-toggle', 'popover');
 
-            div.id = +getLastCategory.id + 1;
-            badge.id = 'badge_' + (+getLastCategory.id + 1);
+            div.id = nextId;
+            badge.id = 'badge_' + (nextId);
 
             if (value.length > 18) {
                 substr = value.substr(0, 18);
                 substr += '...';
-                catName.innerHTML += ' ' + substr;
+                catName.innerHTML = substr;
             } else {
-                catName.innerHTML += ' ' + value;
+                catName.innerHTML = value;
             }
 
             div.appendChild(addon);
@@ -236,7 +243,6 @@ var updateBadges = function () {
             badge.innerHTML = 0;
             getLastCategory.after(div);
 
-            var nextId = +getLastCategory.id + 1;
             database.addCategory(nextId);
             $('.category-input').val('');
         }

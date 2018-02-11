@@ -34,9 +34,9 @@ var processJSON = function (categories) {
         if (cat.categoryName.length > 18) {
             substr = cat.categoryName.substr(0, 18);
             substr += '...';
-            catName.innerHTML += ' ' + substr;
+            catName.innerHTML = substr;
         } else {
-            catName.innerHTML += ' ' + cat.categoryName;
+            catName.innerHTML = cat.categoryName;
         }
 
         div.appendChild(addon);

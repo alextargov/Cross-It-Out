@@ -2,7 +2,6 @@
 
 var visualize = (function () {
     function _visualizeLogic(tasks, isDoneCategory, isIncompleted, inputSearch) {
-        var itemsToShow;
 
         var categoryNameWrapper = document.createElement('div');
         var categoryName = document.createElement('span');
@@ -34,6 +33,7 @@ var visualize = (function () {
             thumbnail.className = 'thumbnail';
             caption.className = 'caption';
             divCol.className = 'col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 task';
+            htmlTaskPriority.className = 'task-priority';
             htmlTaskNameWrapper.className = 'taskNameWrapper';
             htmlTaskName.className = 'taskName';
             icon.className = 'fa fa-minus-square';
@@ -41,11 +41,6 @@ var visualize = (function () {
             deleteIcon.className = 'fa fa-times delete-icon';
             deleteIcon.id = 'del-' + tasks[i].taskId;
             doneIcon.id = 'done-' + tasks[i].taskId;
-
-            htmlTaskName.style.wordWrap = 'normal';
-            htmlTaskName.style.display = 'inline';
-            htmlTaskPriority.style.display = 'inline';
-            htmlTaskPriority.style.padding = '0px 5px';
 
             var taskname = tasks[i].taskName;
             var fullTaskname = tasks[i].taskName;
@@ -181,11 +176,11 @@ var visualize = (function () {
      * @description Clears the main block out, gets all tasks and visualize them
      * @description Visualization parameters: tasks, is not in 'Done' category, is not in 'Incompleted' category, no input search string provided
      */
-    function allTasks(catName) {
+    function allTasks() {
         document.getElementsByClassName('main')[0].innerHTML = '';
         var tasks = database.getAllTasks();
         if (tasks.length > 0) {
-            _visualizeLogic(tasks, false, false, false, catName);
+            _visualizeLogic(tasks, false, false, false);
         } else {
             document.getElementsByClassName('main')[0].innerHTML = 'No tasks found.';
         }

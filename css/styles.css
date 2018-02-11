@@ -41,10 +41,11 @@ body {
 
 #points {
     cursor: default;
+    padding-right: 10px
 }
 
 #calculated-points {
-    min-width: 20px;
+    min-width: 25px;
     float: right;
     margin: 0px;
 }
@@ -333,6 +334,16 @@ a.dropdown-toggle {
     border-bottom-left-radius: 0px !important;
 }
 
+.task-priority {
+    display: inline;
+    padding: 0px 5px;
+}
+
+.taskName {
+    display: inherit;
+    word-wrap: normal;
+}
+
 /* end tasks visualization */
 
 /* login and  greetings containers*/
@@ -436,6 +447,7 @@ input[type="password"] {
 
 .modal-dialog {
     max-width: 450px !important;
+    margin: 10px auto !important
 }
 
 .greetings {
@@ -516,7 +528,6 @@ ul.active>li>a {
         border-right: none;
         border-bottom: 2px solid #FFF;
     }
-
     .category-heading .label {
         display: block;
     }
