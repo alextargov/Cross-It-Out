@@ -51,36 +51,31 @@ var pointsLogic = (function () {
     var dueTasks;
 
     function showTime() {
-        if (counter % 2 === 0) {
-            dueTasks = database.checkDueTasks();
-            if (dueTasks.length > 0) {
-                for (var i = 0; i < dueTasks.length; i += 1) {
-                    var id = dueTasks[i].taskId;
-                    database.addtoIncompleted(id, dueTasks[i]);
-                    // update current element only if it is visualized
-                    if ($('#del-' + id)[0]) {
-                        $('#del-' + id)[0].style.display = 'block';
-                        $('#done-' + id)[0].style.display = 'none';
-                        $('#del-' + id).hover(function () {
-                            $('#del-' + id)[0].style.color = '#F00';
-                            $('#del-' + id)[0].style.backgroundColor = '#FFF'
-                            $('#del-' + id)[0].style.cursor = 'default'
-                        });
-                    }
+        dueTasks = database.checkDueTasks();
+        if (dueTasks.length > 0) {
+            for (var i = 0; i < dueTasks.length; i += 1) {
+                var id = dueTasks[i].taskId;
+                database.addtoIncompleted(id, dueTasks[i]);
+                // update current element only if it is visualized
+                if ($('#del-' + id)[0]) {
+                    $('#del-' + id)[0].style.display = 'block';
+                    $('#done-' + id)[0].style.display = 'none';
+                    $('#del-' + id).hover(function () {
+                        $('#del-' + id)[0].style.color = '#F00';
+                        $('#del-' + id)[0].style.backgroundColor = '#FFF'
+                        $('#del-' + id)[0].style.cursor = 'default'
+                    });
                 }
-
-                updateBadges();
-
-                var incompletedSum = calculatePoints().incompletedSum;
-                var doneSum = calculatePoints().doneSum;
-                var pointsResult = doneSum + incompletedSum;
-                $('#calculated-points').text(pointsResult);
             }
-        }
-        counter += 1;
-    }
 
-    setInterval(showTime, ONE_MINUTE);
+            updateBadges();
+
+            var incompletedSum = calculatePoints().incompletedSum;
+            var doneSum = calculatePoints().doneSum;
+            var pointsResult = doneSum + incompletedSum;
+            $('#calculated-points').text(pointsResult);
+        }
+    }
 
     function repeatEvery(func, interval) {
         var now = new Date();

@@ -110,7 +110,8 @@ var updateBadges = function () {
         $('#datepicker').datepicker({
             minDate: 0,
             maxDate: '+1M +10D',
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1
         });
         $('#datepicker').datepicker().datepicker('setDate', new Date());
 

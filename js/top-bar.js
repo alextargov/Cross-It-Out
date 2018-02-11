@@ -34,7 +34,8 @@
 
         // invoke datepicker
         $('#rightPicker').datepicker({
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1
         });
 
         /*  Set interval, take datepicker's value and hiding datepicker */
