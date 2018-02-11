@@ -65,17 +65,15 @@ var visualize = (function () {
                     button.innerHTML = 'More';
                     htmlTaskNameWrapper.appendChild(button);
                 }
-            } else if (window.innerWidth >= 768 && window.innerWidth < 992) {
-                if (taskname.length > 25) {
-                    substr = taskname.substr(0, 25);
+            } else if (window.innerWidth < 992) {
+                if (taskname.length > 20) {
+                    substr = taskname.substr(0, 20);
                     substr += '...';
                     taskname = substr;
                     button.innerHTML = 'More';
                     htmlTaskNameWrapper.appendChild(button);
                 }
-            } else if (window.innerWidth < 768) {
-                htmlTaskName.style.wordWrap = 'break-word';
-            }
+            } 
 
             $(button).popover({
                 trigger: 'manual',
