@@ -6,21 +6,21 @@
                     "tasks": [{
                             "taskName": "English lesson",
                             "taskDueTime": "14:30",
-                            "taskDueDate": "26/01/2018",
+                            "taskDueDate": "26/02/2018",
                             "taskPriority": "high",
                             "taskId": 1
                         },
                         {
                             "taskName": "Cleaning my room",
                             "taskDueTime": "17:30",
-                            "taskDueDate": "26/01/2018",
+                            "taskDueDate": "25/02/2018",
                             "taskPriority": "low",
                             "taskId": 2
                         },
                         {
                             "taskName": "Visit my parents",
                             "taskDueTime": "20:30",
-                            "taskDueDate": "26/01/2018",
+                            "taskDueDate": "27/02/2018",
                             "taskPriority": "medium",
                             "taskId": 3
                         }
@@ -30,29 +30,29 @@
                     "categoryName": "Personal",
                     "tasks": [{
                             "taskName": "Making a breakfast",
-                            "taskDueTime": "07:00",
-                            "taskDueDate": "08/02/2018",
+                            "taskDueTime": "7:00",
+                            "taskDueDate": "12/02/2018",
                             "taskPriority": "low",
                             "taskId": 4
                         },
                         {
                             "taskName": "Learning new staff at Telerik Academy",
-                            "taskDueTime": "10:00",
-                            "taskDueDate": "08/02/2018",
+                            "taskDueTime": "20:00",
+                            "taskDueDate": "12/02/2018",
                             "taskPriority": "high",
                             "taskId": 5
                         },
                         {
                             "taskName": "Going to haircut",
                             "taskDueTime": "15:30",
-                            "taskDueDate": "08/02/2018",
+                            "taskDueDate": "18/02/2018",
                             "taskPriority": "low",
                             "taskId": 6
                         },
                         {
                             "taskName": "Going to cinema",
                             "taskDueTime": "15:30",
-                            "taskDueDate": "08/02/2018",
+                            "taskDueDate": "16/02/2018",
                             "taskPriority": "low",
                             "taskId": 7
                         }
@@ -71,7 +71,7 @@
                         {
                             "taskName": "Preparing for the Presentation",
                             "taskDueTime": "16:30",
-                            "taskDueDate": "28/01/2018",
+                            "taskDueDate": "27/02/2018",
                             "taskPriority": "high",
                             "taskId": 9
                         }
@@ -81,7 +81,7 @@
                     "categoryName": "Study",
                     "tasks": [{
                             "taskName": "Defending the project",
-                            "taskDueTime": "10:30",
+                            "taskDueTime": "15:30",
                             "taskDueDate": "12/02/2018",
                             "taskPriority": "high",
                             "taskId": 10
@@ -100,7 +100,7 @@
                     "tasks": [{
                         "taskName": "Playing football",
                         "taskDueTime": "19:30",
-                        "taskDueDate": "29/02/2018",
+                        "taskDueDate": "15/02/2018",
                         "taskPriority": "low",
                         "taskId": 12
                     }]

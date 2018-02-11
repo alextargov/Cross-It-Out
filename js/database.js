@@ -316,14 +316,32 @@ var database = (function () {
 
         var currentDate = day + '/' + month + '/' + year;
         var currentTime = hours + ':' + minutes;
-
+        
         for (var i = 0; i < allTasks.length; i += 1) {
-            if (allTasks[i].taskDueDate === currentDate) {
-                if (allTasks[i].taskDueTime === currentTime) {
+            var taskDay = allTasks[i].taskDueDate.slice(0, 2);
+            var taskMonth = allTasks[i].taskDueDate.slice(3, 5);
+            var taskYear = allTasks[i].taskDueDate.slice(6);
+            var taskHours = allTasks[i].taskDueTime.slice(0, 2);
+            var taskMinutes = allTasks[i].taskDueTime.slice(3);
+
+            if (taskYear < year) {
+                tasks.push(allTasks[i]);
+            } else if (taskYear === year) {
+                if (taskMonth < month) {
                     tasks.push(allTasks[i]);
+                } else if (taskMonth === month) {
+                    if (taskDay < day) {
+                        tasks.push(allTasks[i]);
+                    } else if (taskDay === day) {
+                        if (taskHours < hours) {
+                            tasks.push(allTasks[i]);
+                        } else if (taskHours === hours) {
+                            if (taskMinutes <= minutes) {
+                                tasks.push(allTasks[i]);
+                            }
+                        }
+                    }
                 }
-            } else {
-                continue;
             }
         }
         return tasks;
